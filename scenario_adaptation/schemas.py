@@ -1,31 +1,36 @@
 # schemas.py
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import List, Dict, Optional
-from datetime import datetime
+from enum import Enum
+
+class DialogRole(str, Enum):
+    USER = "user"
+    ASSISTANT = "assistant"
+
+class IntentType(str, Enum):
+    CARD_FRAUD = "card_fraud"
+    BALANCE_QUERY = "balance_query"
+    OTHER = "other"
 
 class DialogTurn(BaseModel):
-    """对话轮次数据结构"""
-    role: str  # "user"或"assistant"
+    role: DialogRole  # 严格使用枚举类型
     content: str
-    intent: str  # 场景意图分类
-    confidence: float = 1.0
+    intent: IntentType = IntentType.OTHER
+    confidence: float = Field(..., ge=0, le=1.0)
 
 class TransactionGraphNode(BaseModel):
-    """交易图谱节点定义"""
     node_id: str
-    node_type: str  # "account", "transaction", "location"
-    properties: Dict[str, str]
+    node_type: str = Field(..., pattern=r"^(account|transaction|location)$")
+    properties: Dict[str, str] = Field(default_factory=dict)
 
 class TransactionGraphEdge(BaseModel):
-    """交易图谱边定义"""
     source_id: str
     target_id: str
-    relation_type: str  # "TRANSFER_TO", "LOCATED_IN"等
-    properties: Dict[str, str]
+    relation_type: str = Field(..., pattern=r"^(initiated|sent_to|located_in)$")
+    properties: Dict[str, str] = Field(default_factory=dict)
 
 class ComplianceClause(BaseModel):
-    """合规条款映射数据"""
     original_text: str
-    summary: str
-    obligations: List[Dict[str, str]]
-    law_references: List[str]
+    summary: Optional[str] = None
+    obligations: List[Dict[str, str]] = Field(default_factory=list)
+    law_references: List[str] = Field(default_factory=list)
