@@ -1,7 +1,7 @@
 # fraud_encoder.py
 import networkx as nx
 from datetime import datetime, timedelta
-#from typing import List, Dict
+from typing import List, Dict
 from .schemas import TransactionGraphNode, TransactionGraphEdge
 from information_extraction.schemas import ProcessedChunk
 
@@ -46,13 +46,49 @@ class FraudEncoder:
             relation_type="sent_to"
         ))
 
+    # ========== 关键修复：显式定义 _add_node 和 _add_edge ==========
     def _add_node(self, node: TransactionGraphNode) -> None:
-        """添加节点到图谱（使用 model_dump 替代已弃用的 dict 方法）"""
+        """添加节点到图谱"""
         if not self.graph.has_node(node.node_id):
-            self.graph.add_node(node.node_id, **node.model_dump())  # 修复点
+            self.graph.add_node(node.node_id, **node.model_dump())
 
     def _add_edge(self, edge: TransactionGraphEdge) -> None:
-        """添加边到图谱（使用 model_dump 替代已弃用的 dict 方法）"""
-        self.graph.add_edge(edge.source_id, edge.target_id, **edge.model_dump())  # 修复点
+        """添加边到图谱"""
+        self.graph.add_edge(edge.source_id, edge.target_id, **edge.model_dump())
 
-    # 其他方法保持不变...
+    # ========== 其他方法保持不变 ==========
+    def detect_suspicious_patterns(self) -> List[Dict]:
+        """检测可疑交易模式"""
+        suspicious = []
+        for node in self.graph.nodes:
+            if self.graph.nodes[node].get("node_type") != "account":
+                continue
+            incoming_edges = list(self.graph.in_edges(node, data=True))
+            if self._is_high_frequency(incoming_edges):
+                suspicious.append({
+                    "type": "high_frequency_transfer",
+                    "account": node,
+                    "transaction_count": len(incoming_edges),
+                    "time_range": self._get_time_range(incoming_edges)
+                })
+        return suspicious
+
+    def _is_high_frequency(self, edges: List) -> bool:
+        """判断交易是否高频（基于时间窗口）"""
+        timestamps = [
+            datetime.fromisoformat(data.get("timestamp", ""))
+            for _, _, data in edges
+            if data.get("timestamp")
+        ]
+        if len(timestamps) < 3:
+            return False
+        return (max(timestamps) - min(timestamps)) < self.time_window
+
+    def _get_time_range(self, edges: List) -> str:
+        """获取交易时间范围"""
+        timestamps = [
+            datetime.fromisoformat(data.get("timestamp", ""))
+            for _, _, data in edges
+            if data.get("timestamp")
+        ]
+        return f"{min(timestamps)} - {max(timestamps)}"
