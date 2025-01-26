@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import Tuple, Optional, Dict  # 添加 Dict 导入
+from typing import Tuple, Optional, Dict
 from enum import Enum
 
 class SceneType(str, Enum):

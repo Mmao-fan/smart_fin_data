@@ -7,11 +7,11 @@ from information_extraction.schemas import ProcessedChunk
 
 class FraudEncoder:
     def __init__(self, time_window_minutes: int = 15):
-        self.graph = nx.MultiDiGraph()
+        self.graph = nx.MultiDiGraph()  # 初始化图谱
         self.time_window = timedelta(minutes=time_window_minutes)
 
-    def add_transaction_chunk(self, chunk: ProcessedChunk) -> None:
-        """将交易数据编码为图谱"""
+    def add_transaction_chunk(self, chunk: ProcessedChunk) -> Dict:
+        """处理交易分块数据"""
         # 添加账户节点
         accounts = [e for e in chunk.entities if e.label == "ACCOUNT"]
         for acc in accounts:
@@ -26,6 +26,12 @@ class FraudEncoder:
             if rel.relation_type == "TRANSFER_TO":
                 tx_id = f"tx_{rel.source.text}_{rel.target.text}_{datetime.now().timestamp()}"
                 self._add_transaction(tx_id, rel.source.text, rel.target.text)
+
+        return {
+            "original_text": chunk.original_text,
+            "graph": self.graph,
+            "anomalies": self.detect_suspicious_patterns()
+        }
 
     def _add_transaction(self, tx_id: str, source: str, target: str) -> None:
         """添加交易节点和边"""
@@ -46,7 +52,6 @@ class FraudEncoder:
             relation_type="sent_to"
         ))
 
-    # ========== 关键修复：显式定义 _add_node 和 _add_edge ==========
     def _add_node(self, node: TransactionGraphNode) -> None:
         """添加节点到图谱"""
         if not self.graph.has_node(node.node_id):
@@ -56,7 +61,6 @@ class FraudEncoder:
         """添加边到图谱"""
         self.graph.add_edge(edge.source_id, edge.target_id, **edge.model_dump())
 
-    # ========== 其他方法保持不变 ==========
     def detect_suspicious_patterns(self) -> List[Dict]:
         """检测可疑交易模式"""
         suspicious = []
@@ -74,7 +78,7 @@ class FraudEncoder:
         return suspicious
 
     def _is_high_frequency(self, edges: List) -> bool:
-        """判断交易是否高频（基于时间窗口）"""
+        """判断交易是否高频"""
         timestamps = [
             datetime.fromisoformat(data.get("timestamp", ""))
             for _, _, data in edges
