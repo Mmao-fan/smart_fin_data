@@ -1,6 +1,5 @@
-# customer_service_generator.py
 from typing import List, Dict
-from .schemas import DialogTurn, IntentType, DialogRole
+from scenario_adaptation.schemas import DialogTurn, IntentType, DialogRole
 from information_extraction.schemas import ProcessedChunk
 
 class CustomerServiceGenerator:
@@ -14,15 +13,47 @@ class CustomerServiceGenerator:
             IntentType.BALANCE_QUERY: "您的账户余额为{amount}"
         })
 
-    def generate_dialog(self, chunk: ProcessedChunk) -> Dict:  # 修改返回类型为Dict
+    def generate_dialog(self, chunk: ProcessedChunk) -> Dict:
         """生成对话数据，并保留原始文本"""
         intent = self._detect_intent(chunk)
         user_turn = self._build_user_turn(chunk, intent)
         assistant_turn = self._build_assistant_turn(chunk, intent)
         return {
-            "original_text": chunk.original_text,  # 新增字段
-            "dialog": [user_turn, assistant_turn],  # 原对话数据
-            "intent": intent.value  # 新增意图标签
+            "original_text": chunk.original_text,
+            "dialog": [
+                user_turn.model_dump(),
+                assistant_turn.model_dump()
+            ],
+            "intent": intent.value
         }
 
-    # 其他方法保持不变（_detect_intent, _build_user_turn, _build_assistant_turn）
+    def _detect_intent(self, chunk: ProcessedChunk) -> IntentType:
+        entity_labels = {e.label for e in chunk.entities}
+        for label, intent in self.intent_mapping.items():
+            if label in entity_labels:
+                return intent
+        return IntentType.OTHER
+
+    @staticmethod
+    def _build_user_turn(chunk: ProcessedChunk, intent: IntentType) -> DialogTurn:
+        if intent == IntentType.CARD_FRAUD:
+            card_entity = next((e for e in chunk.entities if e.label == "CREDIT_CARD"), None)
+            content = f"我的信用卡{card_entity.text}有可疑交易" if card_entity else chunk.original_text
+        else:
+            content = chunk.original_text
+        return DialogTurn(role=DialogRole.USER, content=content, intent=intent)
+
+    def _build_assistant_turn(self, chunk: ProcessedChunk, intent: IntentType) -> DialogTurn:
+        template = self.response_templates.get(intent)
+        if not template:
+            return DialogTurn(role=DialogRole.ASSISTANT, content="已收到您的反馈", intent=intent)
+        slots = {
+            "card": next((e.text for e in chunk.entities if e.label == "CREDIT_CARD"), "未知卡号"),
+            "amount": next((e.text for e in chunk.entities if e.label == "AMOUNT"), "未知金额"),
+            "date": next((e.text for e in chunk.entities if e.label == "DATE"), "未知时间")
+        }
+        return DialogTurn(
+            role=DialogRole.ASSISTANT,
+            content=template.format(**slots),
+            intent=intent
+        )
