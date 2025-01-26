@@ -3,7 +3,43 @@ from typing import List, Dict
 from cryptography.fernet import Fernet
 from scenario_adaptation.compliance_mapper import  ComplianceClause
 from scenario_adaptation.customer_service_generator import DialogTurn
-from ..information_extraction.schemas import ProcessedChunk
+from information_extraction.schemas import ProcessedChunk
+
+
+def _format_customer_service(dialog_turns: List[DialogTurn]) -> Dict:
+    """客户服务对话格式化"""
+    user_input = next(
+        turn.content for turn in dialog_turns
+        if turn.role == "user"
+    )
+    assistant_response = next(
+        turn.content for turn in dialog_turns
+        if turn.role == "assistant"
+    )
+    return {
+        "input": f"场景：客户服务\n输入：{user_input}",
+        "target": assistant_response,
+        "original_text": user_input  # 保留原始文本供后续处理
+    }
+
+
+def _format_compliance(clause: ComplianceClause) -> Dict:
+    """合规摘要格式化"""
+    return {
+        "input": f"条款原文：{clause.original_text}",
+        "target": clause.summary,
+        "original_text": clause.original_text
+    }
+
+
+def _format_fraud_detection(graph_data: Dict) -> Dict:
+    """欺诈检测图谱格式化"""
+    return {
+        "input": f"分析交易记录：{graph_data['original_text']}",
+        "target": "\n".join(graph_data["anomalies"]),
+        "original_text": graph_data["original_text"]
+    }
+
 
 class TrainingDataFormatter:
     def __init__(self, encryption_key: str = None):
@@ -17,13 +53,14 @@ class TrainingDataFormatter:
     ) -> None:
         """将场景数据转换为JSONL格式并保存（可选加密）"""
         formatted_data = []
+        item: dict
         for item in scene_data:
             if scene_type == "customer_service":
-                formatted_item = self._format_customer_service(item)
+                formatted_item = _format_customer_service(item)
             elif scene_type == "compliance":
-                formatted_item = self._format_compliance(item)
+                formatted_item = _format_compliance(item)
             elif scene_type == "fraud_detection":
-                formatted_item = self._format_fraud_detection(item)
+                formatted_item = _format_fraud_detection(item)
             else:
                 raise ValueError(f"未知场景类型: {scene_type}")
             formatted_data.append(formatted_item)
@@ -37,38 +74,6 @@ class TrainingDataFormatter:
             with open(output_path, "w") as f:
                 for item in formatted_data:
                     f.write(json.dumps(item, ensure_ascii=False) + "\n")
-
-    def _format_customer_service(self, dialog_turns: List[DialogTurn]) -> Dict:
-        """客户服务对话格式化"""
-        user_input = next(
-            turn.content for turn in dialog_turns
-            if turn.role == "user"
-        )
-        assistant_response = next(
-            turn.content for turn in dialog_turns
-            if turn.role == "assistant"
-        )
-        return {
-            "input": f"场景：客户服务\n输入：{user_input}",
-            "target": assistant_response,
-            "original_text": user_input  # 保留原始文本供后续处理
-        }
-
-    def _format_compliance(self, clause: ComplianceClause) -> Dict:
-        """合规摘要格式化"""
-        return {
-            "input": f"条款原文：{clause.original_text}",
-            "target": clause.summary,
-            "original_text": clause.original_text
-        }
-
-    def _format_fraud_detection(self, graph_data: Dict) -> Dict:
-        """欺诈检测图谱格式化"""
-        return {
-            "input": f"分析交易记录：{graph_data['original_text']}",
-            "target": "\n".join(graph_data["anomalies"]),
-            "original_text": graph_data["original_text"]
-        }
 
     def _encrypt_data(self, data: List[Dict]) -> str:
         """加密JSONL数据"""
