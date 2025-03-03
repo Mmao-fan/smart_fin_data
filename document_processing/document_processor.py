@@ -1,11 +1,11 @@
 # document_processor.py
 import os
-from processors.exceptions import DocumentProcessingError
-from processors.pdf_processor import PDFProcessor
-from processors.csv_processor import CSVProcessor
-from processors.json_processor import JSONProcessor
-from processors.excel_processor import ExcelProcessor
-from processors.docx_processor import DocxProcessor
+from .processors.exceptions import DocumentProcessingError
+from .processors.pdf_processor import PDFProcessor
+from .processors.csv_processor import CSVProcessor
+from .processors.json_processor import JSONProcessor
+from .processors.excel_processor import ExcelProcessor
+from .processors.docx_processor import DocxProcessor
 
 
 class DocumentProcessor:

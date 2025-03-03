@@ -2,7 +2,7 @@
 from abc import ABC, abstractmethod
 from typing import List, Optional
 import re
-from exceptions import ChunkingError
+from .exceptions import ChunkingError
 
 class ChunkStrategy(ABC):
     """分块策略抽象基类"""

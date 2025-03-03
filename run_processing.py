@@ -30,7 +30,7 @@ def process_pipeline(input_file: str, scenario: str):
 if __name__ == "__main__":
     # 假设 Excel 文件放在 data 目录下，文件名是 bank_transactions.xlsx
     data_dir = "data"
-    excel_file = "bank_transactions.xlsx"
+    excel_file = "bank_transactions.csv"
     input_file = os.path.join(data_dir, excel_file)
 
     # 选择一个场景，例如 "fraud_detection"
