@@ -35,3 +35,6 @@ class InformationProcessor:
         except Exception as e:
             print(f"信息处理失败: {str(e)}")
             return None
+
+    def process_chunks(self, chunks):
+        pass
