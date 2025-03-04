@@ -6,9 +6,10 @@ import logging
 class ComplianceSummarizer:
     def __init__(self):
         try:
+            local_model_path = "E:/bart-large-cnn"
             self.summarizer = pipeline(
                 "summarization",
-                model="facebook/bart-large-cnn",
+                model=local_model_path,
                 min_length=30,
                 max_length=150,
                 truncation=True

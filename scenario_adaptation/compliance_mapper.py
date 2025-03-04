@@ -13,7 +13,7 @@ class ComplianceMapper:
         "DATE": "effective_date"
     }
 
-    def __init__(self, model_name: str = "facebook/bart-large-cnn"):
+    def __init__(self, model_name: str = "E:/bart-large-cnn"):
         try:
             self.summarizer = pipeline(
                 "summarization",
