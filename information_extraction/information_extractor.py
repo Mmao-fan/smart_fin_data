@@ -1,10 +1,10 @@
-# information_extractor.py
+# information_extraction/information_extractor.py
 from .entity_extractor import FinancialEntityExtractor
 from .relation_extractor import FinancialRelationExtractor
 from .anomaly_detector import FraudDetector
 from .summarizer import ComplianceSummarizer
 from .schemas import ProcessedChunk
-from typing import Optional
+from typing import Optional, List
 
 class InformationProcessor:
     def __init__(self):
@@ -36,5 +36,9 @@ class InformationProcessor:
             print(f"信息处理失败: {str(e)}")
             return None
 
-    def process_chunks(self, chunks):
-        pass
+    def process_chunks(self, chunks: List[str]) -> List[Optional[ProcessedChunk]]:
+        processed_chunks = []
+        for chunk_id, chunk in enumerate(chunks):
+            processed_chunk = self.process_chunk(chunk_id, chunk)
+            processed_chunks.append(processed_chunk)
+        return processed_chunks
