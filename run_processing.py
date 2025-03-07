@@ -40,6 +40,8 @@ def process_pipeline(input_file: str, scenario: str):
             mapper = ComplianceMapper()
             return [mapper.map_clause(c) for c in processed_chunks]
         else:
+
+
             raise ValueError(f"不支持的场景: {scenario}")
     except Exception as e:
         logging.error(f"数据处理过程中出现异常: {str(e)}")

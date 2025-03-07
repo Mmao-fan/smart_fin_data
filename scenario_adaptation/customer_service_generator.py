@@ -1,59 +1,64 @@
-from typing import List, Dict
-from scenario_adaptation.schemas import DialogTurn, IntentType, DialogRole
-from information_extraction.schemas import ProcessedChunk
+# customer_service_generator.py
+from typing import Dict, List
+import logging
 
 class CustomerServiceGenerator:
     def __init__(self, config: Dict):
         self.intent_mapping = config.get("intent_mapping", {
-            "CREDIT_CARD": IntentType.CARD_FRAUD,
-            "AMOUNT": IntentType.BALANCE_QUERY
+            "CREDIT_CARD": "card_fraud",
+            "AMOUNT": "balance_query"
         })
         self.response_templates = config.get("response_templates", {
-            IntentType.CARD_FRAUD: "已冻结信用卡{card}，可疑交易金额{amount}，时间{date}",
-            IntentType.BALANCE_QUERY: "您的账户余额为{amount}"
+            "card_fraud": "已冻结信用卡{card}，可疑交易金额{amount}，时间{date}",
+            "balance_query": "您的账户余额为{amount}"
         })
 
-    def generate_dialog(self, chunk: ProcessedChunk) -> Dict:
-        """生成对话数据，并保留原始文本"""
-        intent = self._detect_intent(chunk)
-        user_turn = self._build_user_turn(chunk, intent)
-        assistant_turn = self._build_assistant_turn(chunk, intent)
-        return {
-            "original_text": chunk.original_text,
-            "dialog": [
-                user_turn.model_dump(),
-                assistant_turn.model_dump()
-            ],
-            "intent": intent.value
-        }
+    def generate_dialog(self, chunk) -> Dict:
+        """保持接口兼容性，优化实体提取逻辑"""
+        try:
+            intent = self._detect_intent(chunk)
+            return {
+                "original_text": getattr(chunk, "original_text", ""),
+                "dialog": [
+                    self._build_user_turn(chunk, intent),
+                    self._build_assistant_turn(chunk, intent)
+                ],
+                "intent": intent
+            }
+        except Exception as e:
+            logging.error(f"对话生成失败: {str(e)}")
+            return {}
 
-    def _detect_intent(self, chunk: ProcessedChunk) -> IntentType:
-        entity_labels = {e.label for e in chunk.entities}
+    def _detect_intent(self, chunk) -> str:
+        entity_labels = {getattr(e, "label", "") for e in getattr(chunk, "entities", [])}
         for label, intent in self.intent_mapping.items():
             if label in entity_labels:
                 return intent
-        return IntentType.OTHER
+        return "other"
 
-    @staticmethod
-    def _build_user_turn(chunk: ProcessedChunk, intent: IntentType) -> DialogTurn:
-        if intent == IntentType.CARD_FRAUD:
-            card_entity = next((e for e in chunk.entities if e.label == "CREDIT_CARD"), None)
-            content = f"我的信用卡{card_entity.text}有可疑交易" if card_entity else chunk.original_text
-        else:
-            content = chunk.original_text
-        return DialogTurn(role=DialogRole.USER, content=content, intent=intent)
+    def _build_user_turn(self, chunk, intent: str) -> Dict:
+        content = getattr(chunk, "original_text", "")
+        if intent == "card_fraud":
+            card_entity = next((e for e in getattr(chunk, "entities", [])
+                              if getattr(e, "label", "") == "CREDIT_CARD"), None)
+            if card_entity:
+                content = f"我的信用卡{getattr(card_entity, 'text', '')}有可疑交易"
+        return {"role": "user", "content": content, "intent": intent}
 
-    def _build_assistant_turn(self, chunk: ProcessedChunk, intent: IntentType) -> DialogTurn:
-        template = self.response_templates.get(intent)
-        if not template:
-            return DialogTurn(role=DialogRole.ASSISTANT, content="已收到您的反馈", intent=intent)
+    def _build_assistant_turn(self, chunk, intent: str) -> Dict:
+        template = self.response_templates.get(intent, "已收到您的反馈")
         slots = {
-            "card": next((e.text for e in chunk.entities if e.label == "CREDIT_CARD"), "未知卡号"),
-            "amount": next((e.text for e in chunk.entities if e.label == "AMOUNT"), "未知金额"),
-            "date": next((e.text for e in chunk.entities if e.label == "DATE"), "未知时间")
+            "card": self._find_entity_text(chunk, "CREDIT_CARD"),
+            "amount": self._find_entity_text(chunk, "AMOUNT"),
+            "date": self._find_entity_text(chunk, "DATE")
         }
-        return DialogTurn(
-            role=DialogRole.ASSISTANT,
-            content=template.format(**slots),
-            intent=intent
-        )
+        return {
+            "role": "assistant",
+            "content": template.format(**slots),
+            "intent": intent
+        }
+
+    def _find_entity_text(self, chunk, label: str) -> str:
+        entities = getattr(chunk, "entities", [])
+        return next((getattr(e, "text", "") for e in entities
+                    if getattr(e, "label", "") == label), "未知")

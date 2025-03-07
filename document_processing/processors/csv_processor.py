@@ -1,43 +1,40 @@
 # processors/csv_processor.py
-import pandas as pd
+import csv
+import chardet
 import logging
+from .base_processor import BaseProcessor
 from .exceptions import DocumentProcessingError
 
-class CSVProcessor:
-    @staticmethod
-    def extract_text(file_path: str, encoding: str = 'utf-8', date_columns: list = None) -> str:
-        """
-        将 CSV 转换为 Markdown 表格，自动识别表头。
 
-        参数:
-        file_path (str): CSV 文件的路径。
-        encoding (str, 可选): CSV 文件的编码，默认为 'utf-8'。
-        date_columns (list, 可选): 包含日期列的列名列表，默认为 None。
-
-        返回:
-        str: Markdown 表格格式的字符串。
-        """
+class CSVProcessor(BaseProcessor):
+    @classmethod
+    def extract_text(cls, file_path: str) -> str:
+        """自动检测编码，处理各种分隔符"""
         try:
-            # 读取 CSV 文件，指定日期列的格式
-            df = pd.read_csv(file_path, encoding=encoding, parse_dates=date_columns)
+            # 检测文件编码
+            with open(file_path, 'rb') as f:
+                rawdata = f.read(10000)
+                encoding = chardet.detect(rawdata)['encoding'] or 'utf-8'
 
-            if df.empty:
-                raise DocumentProcessingError("CSV 文件为空")
+            # 自动检测分隔符
+            with open(file_path, 'r', encoding=encoding) as f:
+                dialect = csv.Sniffer().sniff(f.read(1024))
+                f.seek(0)
+                reader = csv.reader(f, dialect)
+                data = [row for row in reader]
 
-            return df.to_markdown(index=False)
+            if not data:
+                raise DocumentProcessingError("CSV文件内容为空")
 
-        except pd.errors.EmptyDataError:
-            logging.error("CSV 文件为空")
-            raise DocumentProcessingError("CSV 文件为空")
-        except pd.errors.ParserError as e:
-            # 处理解析错误
-            logging.error(f"CSV 解析错误: {str(e)}")
-            raise DocumentProcessingError(f"CSV 解析错误: {str(e)}")
-        except UnicodeDecodeError as e:
-            # 处理编码错误
-            logging.error(f"CSV 编码错误: {str(e)}")
-            raise DocumentProcessingError(f"CSV 编码错误: {str(e)}")
+            return cls._convert_to_markdown(data)
+
         except Exception as e:
-            # 处理其他未知错误
-            logging.error(f"CSV 处理失败: {str(e)}")
-            raise DocumentProcessingError(f"CSV 处理失败: {str(e)}")
+            cls.safe_logging(file_path, e)
+            raise DocumentProcessingError(f"CSV处理失败: {str(e)}")
+
+    @staticmethod
+    def _convert_to_markdown(data: list) -> str:
+        header = data[0]
+        sep = ["---"] * len(header)
+        rows = [header, sep] + data[1:]
+        return "\n".join("| " + " | ".join(row) + " |" for row in rows)

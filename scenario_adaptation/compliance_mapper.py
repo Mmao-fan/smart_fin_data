@@ -1,8 +1,6 @@
 # compliance_mapper.py
 from transformers import pipeline
 from typing import List, Dict, Optional
-from .schemas import ComplianceClause
-from information_extraction.schemas import ProcessedChunk
 import re
 import logging
 
@@ -13,52 +11,57 @@ class ComplianceMapper:
         "DATE": "effective_date"
     }
 
-    def __init__(self, model_name: str = "E:/bart-large-cnn"):
+    def __init__(self, model_path: str = None):
+        self.summarizer = None
         try:
             self.summarizer = pipeline(
                 "summarization",
-                model=model_name,
+                model=model_path or "facebook/bart-large-cnn",
                 min_length=30,
                 max_length=150
             )
-        except ImportError as e:
-            logging.error(f"模型加载失败: {e}")
-            self.summarizer = None
+        except Exception as e:
+            logging.error(f"模型加载失败: {str(e)}")
 
-    def map_clause(self, chunk: ProcessedChunk) -> Dict:
-        """生成合规条款，并包装为字典"""
-        laws = self._extract_law_references(chunk.original_text)
+    def map_clause(self, chunk) -> Dict:
+        """保持原有接口，优化内部实现"""
+        original_text = getattr(chunk, "original_text", "")
         return {
-            "original_text": chunk.original_text,
-            "clause": ComplianceClause(
-                original_text=chunk.original_text,
-                summary=self._generate_summary(chunk.original_text),
-                obligations=self._extract_obligations(chunk),
-                law_references=laws
-            )
+            "original_text": original_text,
+            "clause": {
+                "original_text": original_text,
+                "summary": self._generate_summary(original_text),
+                "obligations": self._extract_obligations(chunk),
+                "law_references": self._extract_law_references(original_text)
+            }
         }
 
-    @staticmethod
-    def _extract_law_references(text: str) -> List[str]:
-        """提取法律条款引用（静态方法）"""
-        pattern = r"(?:依据|根据)《([^》]+)》(第[零一二三四五六七八九十百]+条)"
-        matches = re.findall(pattern, text)
-        return [f"《{law}》{clause}" for law, clause in matches]
+    def _extract_law_references(self, text: str) -> List[str]:
+        """增强法律条款识别"""
+        patterns = [
+            r"《([^》]+)》(第[零一二三四五六七八九十百]+条)",
+            r"《([^》]+)》(?:的)?相关规定"
+        ]
+        laws = []
+        for pattern in patterns:
+            laws += [f"《{match[0]}》{match[1]}" if len(match) > 1 else f"《{match[0]}》"
+                    for match in re.findall(pattern, text)]
+        return list(set(laws))
 
     def _generate_summary(self, text: str) -> Optional[str]:
-        """生成摘要"""
         if not self.summarizer or len(text) < 50:
             return None
         try:
             return self.summarizer(text, max_length=150)[0]['summary_text']
         except Exception as e:
-            logging.error(f"摘要生成失败: {e}")
+            logging.error(f"摘要生成失败: {str(e)}")
             return None
 
-    def _extract_obligations(self, chunk: ProcessedChunk) -> List[Dict]:
-        """提取义务信息"""
+    def _extract_obligations(self, chunk) -> List[Dict]:
+        """兼容不同数据结构的实体输入"""
+        entities = getattr(chunk, "entities", [])
         return [
-            {"type": self.ENTITY_MAPPING[ent.label], "text": ent.text}
-            for ent in chunk.entities
-            if ent.label in self.ENTITY_MAPPING
+            {"type": self.ENTITY_MAPPING.get(ent.label, "other"), "text": ent.text}
+            for ent in entities
+            if hasattr(ent, "label") and hasattr(ent, "text")
         ]

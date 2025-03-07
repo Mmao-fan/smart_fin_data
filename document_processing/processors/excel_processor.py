@@ -1,23 +1,50 @@
 # processors/excel_processor.py
 import pandas as pd
-import logging
+import openpyxl
+from .base_processor import BaseProcessor
 from .exceptions import DocumentProcessingError
+from pathlib import Path
 
-class ExcelProcessor:
-    @staticmethod
-    def extract_text(file_path: str) -> str:
-        """提取Excel所有Sheet为Markdown表格"""
+
+class ExcelProcessor(BaseProcessor):
+    @classmethod
+    def extract_text(cls, file_path: str) -> str:
+        """流式读取大文件，优化内存使用"""
         try:
-            xls = pd.ExcelFile(file_path)
             output = []
-            for sheet_name in xls.sheet_names:
-                df = pd.read_excel(xls, sheet_name=sheet_name)
-                if df.empty:
-                    output.append(f"=== Sheet '{sheet_name}' (空) ===")
-                else:
+            # 使用openpyxl优化大文件读取
+            wb = openpyxl.load_workbook(
+                filename=file_path,
+                read_only=True,
+                data_only=True
+            )
+
+            for sheet_name in wb.sheetnames:
+                ws = wb[sheet_name]
+                if ws.max_row == 0:  # 空Sheet跳过
+                    continue
+
+                # 转换为Markdown表格
+                table_data = []
+                for row in ws.iter_rows(values_only=True):
+                    table_data.append([str(cell) if cell is not None else "" for cell in row])
+
+                if table_data:
                     output.append(f"=== Sheet '{sheet_name}' ===")
-                    output.append(df.to_markdown(index=False))
+                    output.append(
+                        cls._convert_to_markdown(table_data)
+                    )
+
             return "\n\n".join(output)
+
         except Exception as e:
-            logging.error(f"Excel处理失败: {str(e)}")
+            cls.safe_logging(file_path, e)
             raise DocumentProcessingError(f"Excel处理失败: {str(e)}")
+
+    @staticmethod
+    def _convert_to_markdown(data: list) -> str:
+        """高效生成Markdown表格（避免pandas内存开销）"""
+        headers = data[0]
+        sep = ["---"] * len(headers)
+        rows = [headers, sep] + data[1:]
+        return "\n".join("| " + " | ".join(row) + " |" for row in rows)

@@ -1,38 +1,43 @@
 # processors/pdf_processor.py
 import PyPDF2
 import logging
+from pathlib import Path
+from .base_processor import BaseProcessor
 from .exceptions import DocumentProcessingError
 
 
-class PDFProcessor:
-    @staticmethod
-    def extract_text(file_path: str) -> str:
-        """
-        提取文本型PDF内容，不支持扫描件或图像型PDF
-        - 每页内容标注页码（如 === Page 1 ===）
-        - 若检测到扫描件，抛出异常提示需OCR处理
-        """
+class PDFProcessor(BaseProcessor):
+    @classmethod
+    def extract_text(cls, file_path: str) -> str:
+        """支持混合型PDF（文本+图像），智能检测扫描件"""
         try:
             text = []
             with open(file_path, 'rb') as file:
                 reader = PyPDF2.PdfReader(file)
                 for page_num in range(len(reader.pages)):
                     page = reader.pages[page_num]
-                    page_text = page.extract_text()
+                    page_text = page.extract_text() or ""  # 防止None
 
-                    # 检测扫描件：若页面无文本内容，判定为扫描件
-                    if not page_text.strip():
+                    # 增强扫描件检测逻辑
+                    if cls._is_scanned_page(page):
                         raise DocumentProcessingError(
-                            f"检测到扫描件或图像型PDF（第{page_num + 1}页），请使用OCR模块处理"
+                            f"检测到扫描件/图像内容（第{page_num + 1}页）"
                         )
 
-                    # 标注页码并保存文本
-                    text.append(f"=== Page {page_num + 1} ===\n{page_text}")
+                    # 保留原始换行和空格
+                    text.append(f"=== Page {page_num + 1} ===\n{page_text.strip()}")
             return "\n".join(text)
 
-        except DocumentProcessingError as e:
-            logging.error(str(e))
-            raise
         except Exception as e:
-            logging.error(f"PDF解析失败: {str(e)}")
+            cls.safe_logging(file_path, e)
+            if isinstance(e, DocumentProcessingError):
+                raise
             raise DocumentProcessingError(f"PDF处理失败: {str(e)}")
+
+    @staticmethod
+    def _is_scanned_page(page) -> bool:
+        """综合判断是否为扫描页：文本量+图像存在"""
+        text = page.extract_text() or ""
+        if len(text) < 50 and '/XObject' in page['/Resources']:
+            return True
+        return False

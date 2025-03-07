@@ -1,10 +1,14 @@
 # exceptions.py
 class InvalidChunkingMode(Exception):
-    """无效的分块模式异常"""
-    def __init__(self, message="Unsupported chunking mode"):
-        super().__init__(message)
+    """强化异常信息可读性"""
+    def __init__(self, invalid_mode: str):
+        modes = ["fixed", "semantic", "structure"]
+        super().__init__(
+            f"无效分块模式 '{invalid_mode}'。可用模式: {', '.join(modes)}"
+        )
 
 class ChunkingError(Exception):
-    """分块过程通用异常"""
-    def __init__(self, message="Text chunking failed"):
-        super().__init__(message)
+    """保留原始错误信息"""
+    def __init__(self, original_error: Exception):
+        super().__init__(f"分块过程出错: {str(original_error)}")
+        self.original_error = original_error

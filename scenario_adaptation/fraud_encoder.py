@@ -1,59 +1,66 @@
+# fraud_encoder.py
 import networkx as nx
 from datetime import datetime, timedelta
 from typing import List, Dict
-from scenario_adaptation.schemas import TransactionGraphNode, TransactionGraphEdge
-from information_extraction.schemas import ProcessedChunk
+import logging
+
 
 class FraudEncoder:
     def __init__(self, time_window_minutes: int = 15):
         self.graph = nx.MultiDiGraph()
         self.time_window = timedelta(minutes=time_window_minutes)
 
-    def add_transaction_chunk(self, chunk: ProcessedChunk) -> Dict:
-        accounts = [e for e in chunk.entities if e.label == "ACCOUNT"]
-        for acc in accounts:
-            self._add_node(TransactionGraphNode(
-                node_id=acc.text,
-                node_type="account",
-                properties={"last_activity": datetime.now().isoformat()}
-            ))
+    def add_transaction_chunk(self, chunk) -> Dict:
+        """保持接口不变，优化节点处理逻辑"""
+        try:
+            accounts = {e.text for e in getattr(chunk, "entities", [])
+                        if getattr(e, "label", "") == "ACCOUNT"}
 
-        for rel in chunk.relations:
-            if rel.relation_type == "TRANSFER_TO":
-                tx_id = f"tx_{rel.source.text}_{rel.target.text}_{datetime.now().timestamp()}"
-                self._add_transaction(tx_id, rel.source.text, rel.target.text)
+            # 添加账户节点（自动去重）
+            for acc in accounts:
+                if not self.graph.has_node(acc):
+                    self.graph.add_node(acc,
+                                        node_type="account",
+                                        last_activity=datetime.now().isoformat())
 
+            # 处理交易关系
+            for rel in getattr(chunk, "relations", []):
+                if getattr(rel, "relation_type", "") == "TRANSFER_TO":
+                    self._process_transfer(
+                        getattr(rel.source, "text", ""),
+                        getattr(rel.target, "text", "")
+                    )
+
+            return self._generate_output(chunk)
+
+        except Exception as e:
+            logging.error(f"交易处理失败: {str(e)}")
+            return {}
+
+    def _process_transfer(self, source: str, target: str):
+        """封装交易处理逻辑"""
+        if not source or not target:
+            return
+
+        tx_id = f"tx_{source}_{target}_{datetime.now().timestamp()}"
+        tx_data = {
+            "node_type": "transaction",
+            "timestamp": datetime.now().isoformat()
+        }
+
+        # 添加交易节点和边
+        self.graph.add_node(tx_id, **tx_data)
+        self.graph.add_edge(source, tx_id, relation_type="initiated")
+        self.graph.add_edge(tx_id, target, relation_type="sent_to")
+
+    def _generate_output(self, chunk) -> Dict:
+        """保持原有输出格式"""
         return {
-            "original_text": chunk.original_text,
+            "original_text": getattr(chunk, "original_text", ""),
             "nodes": list(self.graph.nodes(data=True)),
             "edges": list(self.graph.edges(data=True)),
             "anomalies": self.detect_suspicious_patterns()
         }
-
-    def _add_transaction(self, tx_id: str, source: str, target: str) -> None:
-        tx_node = TransactionGraphNode(
-            node_id=tx_id,
-            node_type="transaction",
-            properties={"timestamp": datetime.now().isoformat()}
-        )
-        self._add_node(tx_node)
-        self._add_edge(TransactionGraphEdge(
-            source_id=source,
-            target_id=tx_id,
-            relation_type="initiated"
-        ))
-        self._add_edge(TransactionGraphEdge(
-            source_id=tx_id,
-            target_id=target,
-            relation_type="sent_to"
-        ))
-
-    def _add_node(self, node: TransactionGraphNode) -> None:
-        if not self.graph.has_node(node.node_id):
-            self.graph.add_node(node.node_id, **node.model_dump())
-
-    def _add_edge(self, edge: TransactionGraphEdge) -> None:
-        self.graph.add_edge(edge.source_id, edge.target_id, **edge.model_dump())
 
     def detect_suspicious_patterns(self) -> List[Dict]:
         suspicious = []
