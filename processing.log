@@ -1,0 +1,191 @@
+2025-03-10 19:37:53,214 - WARNING - PyPDF2 模块未安装，PDF处理功能将受限
+2025-03-10 19:37:53,216 - WARNING - DocumentProcessor 模块导入失败，只能处理CSV文件
+2025-03-10 19:37:53,220 - WARNING - 文本处理模块导入失败，部分功能将受限
+2025-03-10 19:37:53,225 - WARNING - 场景适配模块导入失败，部分功能将受限
+2025-03-10 19:37:53,226 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-10 19:37:53,226 - INFO - 使用pandas直接读取CSV文件: data\bank_transactions.csv
+2025-03-10 19:37:53,258 - INFO - CSV文件读取成功，共 2512 行数据
+2025-03-10 19:37:53,258 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-10 19:37:53,288 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-10 19:41:17,551 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-10 19:41:17,551 - INFO - 使用pandas直接读取CSV文件: data\bank_transactions.csv
+2025-03-10 19:41:17,896 - INFO - CSV文件读取成功，共 2512 行数据
+2025-03-10 19:41:17,897 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-10 19:41:27,075 - INFO - 发现 90 个可疑交易模式
+2025-03-10 19:41:27,566 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-10 19:55:02,588 - WARNING - PyPDF2 模块未安装，PDF处理功能将受限
+2025-03-10 19:55:02,588 - WARNING - DocumentProcessor 模块导入失败，只能处理CSV文件
+2025-03-10 19:55:02,589 - WARNING - 文本处理模块导入失败，部分功能将受限
+2025-03-10 19:55:02,592 - WARNING - 场景适配模块导入失败，部分功能将受限
+2025-03-10 19:55:02,600 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-10 19:55:02,600 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-10 19:55:02,600 - INFO - 使用pandas直接读取CSV文件: data\bank_transactions.csv
+2025-03-10 19:55:02,616 - INFO - CSV文件读取成功，共 2512 行数据
+2025-03-10 19:55:02,617 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-10 19:55:02,645 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-10 19:55:02,645 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-10 19:55:02,645 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-10 19:55:02,645 - ERROR - DocumentProcessor 模块未加载，无法处理Word文档
+2025-03-10 19:57:24,908 - WARNING - python-docx 模块未安装，Word处理功能将受限
+2025-03-10 19:57:24,909 - WARNING - PyPDF2 模块未安装，PDF处理功能将受限
+2025-03-10 19:57:24,910 - WARNING - DocumentProcessor 模块导入失败，只能处理CSV文件和Word文件
+2025-03-10 19:57:24,911 - WARNING - 文本处理模块导入失败，部分功能将受限
+2025-03-10 19:57:24,912 - WARNING - 场景适配模块导入失败，部分功能将受限
+2025-03-10 19:57:24,919 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-10 19:57:24,920 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-10 19:57:24,920 - INFO - 使用pandas直接读取CSV文件: data\bank_transactions.csv
+2025-03-10 19:57:24,934 - INFO - CSV文件读取成功，共 2512 行数据
+2025-03-10 19:57:24,934 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-10 19:57:24,964 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-10 19:57:24,964 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-10 19:57:24,964 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-10 19:57:24,964 - ERROR - python-docx 模块未安装，无法处理Word文档
+2025-03-10 19:58:24,752 - WARNING - python-docx 模块未安装，Word处理功能将受限
+2025-03-10 19:58:24,754 - WARNING - PyPDF2 模块未安装，PDF处理功能将受限
+2025-03-10 19:58:24,755 - WARNING - DocumentProcessor 模块导入失败，只能处理CSV文件和Word文件
+2025-03-10 19:58:24,756 - WARNING - 文本处理模块导入失败，部分功能将受限
+2025-03-10 19:58:24,757 - WARNING - 场景适配模块导入失败，部分功能将受限
+2025-03-10 19:58:24,765 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-10 19:58:24,765 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-10 19:58:24,765 - INFO - 使用pandas直接读取CSV文件: data\bank_transactions.csv
+2025-03-10 19:58:24,779 - INFO - CSV文件读取成功，共 2512 行数据
+2025-03-10 19:58:24,781 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-10 19:58:24,809 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-10 19:58:24,809 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-10 19:58:24,809 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-10 19:58:24,809 - ERROR - python-docx 模块未安装，无法处理Word文档
+2025-03-10 20:12:12,444 - WARNING - python-docx 模块未安装，Word处理功能将受限
+2025-03-10 20:12:12,446 - WARNING - PyPDF2 模块未安装，PDF处理功能将受限
+2025-03-10 20:12:12,446 - WARNING - DocumentProcessor 模块导入失败，只能处理CSV文件和Word文件
+2025-03-10 20:12:12,447 - WARNING - 文本处理模块导入失败，部分功能将受限
+2025-03-10 20:12:12,448 - WARNING - 场景适配模块导入失败，部分功能将受限
+2025-03-10 20:12:12,456 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-10 20:12:12,456 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-10 20:12:12,456 - INFO - 使用pandas直接读取CSV文件: data\bank_transactions.csv
+2025-03-10 20:12:12,475 - INFO - CSV文件读取成功，共 2512 行数据
+2025-03-10 20:12:12,475 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-10 20:12:12,508 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-10 20:12:12,508 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-10 20:12:12,508 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-10 20:12:12,508 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-10 20:12:12,508 - INFO - 成功提取文本，长度: 299 字符
+2025-03-10 20:12:12,509 - INFO - 提取了 11 个段落
+2025-03-10 20:12:12,509 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-10 20:12:12,510 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-10 20:12:37,120 - INFO - python-docx 模块已安装
+2025-03-10 20:12:53,580 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-10 20:12:53,581 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-10 20:12:53,583 - INFO - 使用pandas直接读取CSV文件: data\bank_transactions.csv
+2025-03-10 20:12:53,687 - INFO - CSV文件读取成功，共 2512 行数据
+2025-03-10 20:12:53,688 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-10 20:13:02,979 - INFO - 发现 90 个可疑交易模式
+2025-03-10 20:13:03,518 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-10 20:13:03,519 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-10 20:13:03,519 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-10 20:13:03,519 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-10 20:13:03,545 - INFO - 成功提取文本，长度: 1239 字符
+2025-03-10 20:13:03,545 - INFO - 提取了 14 个段落
+2025-03-10 20:13:03,552 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-10 20:13:03,553 - INFO - 生成 9 个客服对话
+2025-03-10 20:13:03,556 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-10 20:23:59,092 - INFO - python-docx 模块已安装
+2025-03-10 20:24:09,436 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-10 20:24:09,436 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-10 20:24:09,436 - INFO - 使用pandas直接读取CSV文件: data\bank_transactions.csv
+2025-03-10 20:24:09,533 - INFO - CSV文件读取成功，共 2512 行数据
+2025-03-10 20:24:09,533 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-10 20:24:19,394 - INFO - 发现 90 个可疑交易模式
+2025-03-10 20:24:19,861 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-10 20:24:19,862 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-10 20:24:19,862 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-10 20:24:19,862 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-10 20:24:19,884 - INFO - 成功提取文本，长度: 1239 字符
+2025-03-10 20:24:19,885 - INFO - 提取了 14 个段落
+2025-03-10 20:24:19,889 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-10 20:24:19,891 - INFO - 生成 9 个客服对话
+2025-03-10 20:24:19,895 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-10 20:24:19,895 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-10 20:24:19,896 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-10 20:24:24,974 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-10 20:24:24,974 - ERROR - 客服场景处理失败: 'structure'
+Traceback (most recent call last):
+  File "D:\Python\smart_fin_data\run_processing.py", line 389, in process_file
+    paragraphs = structured_data['structure']['paragraphs']
+KeyError: 'structure'
+2025-03-10 20:24:24,988 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-10 20:26:10,689 - WARNING - python-docx 模块未安装，Word处理功能将受限
+2025-03-10 20:26:10,689 - WARNING - PyPDF2 模块未安装，PDF处理功能将受限
+2025-03-10 20:26:10,690 - WARNING - PyPDF2 模块未安装，PDF处理功能将受限
+2025-03-10 20:26:10,691 - WARNING - DocumentProcessor 模块导入失败，只能处理CSV文件、Word文件和PDF文件
+2025-03-10 20:26:10,692 - WARNING - 文本处理模块导入失败，部分功能将受限
+2025-03-10 20:26:10,693 - WARNING - 场景适配模块导入失败，部分功能将受限
+2025-03-10 20:26:10,703 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-10 20:26:10,703 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-10 20:26:10,703 - INFO - 使用pandas直接读取CSV文件: data\bank_transactions.csv
+2025-03-10 20:26:10,720 - INFO - CSV文件读取成功，共 2512 行数据
+2025-03-10 20:26:10,720 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-10 20:26:10,754 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-10 20:26:10,754 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-10 20:26:10,756 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-10 20:26:10,756 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-10 20:26:10,756 - INFO - 成功提取文本，长度: 299 字符
+2025-03-10 20:26:10,756 - INFO - 提取了 11 个段落
+2025-03-10 20:26:10,757 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-10 20:26:10,758 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-10 20:26:10,758 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-10 20:26:10,758 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-10 20:26:10,759 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-10 20:26:10,759 - INFO - 成功提取文本，长度: 359 字符
+2025-03-10 20:26:10,759 - INFO - 提取了 14 个段落
+2025-03-10 20:26:10,759 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-10 20:26:10,760 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-10 20:27:13,588 - INFO - python-docx 模块已安装
+2025-03-10 20:27:13,615 - INFO - PyPDF2 模块已安装
+2025-03-10 20:27:22,413 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-10 20:27:22,413 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-10 20:27:22,413 - INFO - 使用pandas直接读取CSV文件: data\bank_transactions.csv
+2025-03-10 20:27:22,498 - INFO - CSV文件读取成功，共 2512 行数据
+2025-03-10 20:27:22,498 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-10 20:27:31,972 - INFO - 发现 90 个可疑交易模式
+2025-03-10 20:27:32,502 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-10 20:27:32,503 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-10 20:27:32,503 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-10 20:27:32,504 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-10 20:27:32,532 - INFO - 成功提取文本，长度: 1239 字符
+2025-03-10 20:27:32,532 - INFO - 提取了 14 个段落
+2025-03-10 20:27:32,539 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-10 20:27:32,541 - INFO - 生成 9 个客服对话
+2025-03-10 20:27:32,545 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-10 20:27:32,546 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-10 20:27:32,546 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-10 20:27:32,546 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-10 20:27:35,117 - INFO - 成功提取文本，长度: 10355 字符
+2025-03-10 20:27:35,118 - INFO - 提取了 329 个段落
+2025-03-10 20:27:35,120 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-10 20:27:35,121 - INFO - 生成 7 个客服对话
+2025-03-10 20:27:35,125 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-10 20:36:11,094 - INFO - python-docx 模块已安装
+2025-03-10 20:36:11,124 - INFO - PyPDF2 模块已安装
+2025-03-10 20:36:19,594 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-10 20:36:19,594 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-10 20:36:19,595 - INFO - 使用pandas直接读取CSV文件: data\bank_transactions.csv
+2025-03-10 20:36:19,702 - INFO - CSV文件读取成功，共 2512 行数据
+2025-03-10 20:36:19,702 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-10 20:36:29,170 - INFO - 发现 90 个可疑交易模式
+2025-03-10 20:36:29,695 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-10 20:36:29,696 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-10 20:36:29,697 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-10 20:36:29,697 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-10 20:36:29,721 - INFO - 成功提取文本，长度: 1239 字符
+2025-03-10 20:36:29,722 - INFO - 提取了 14 个段落
+2025-03-10 20:36:29,728 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-10 20:36:29,732 - INFO - 生成 9 个客服对话
+2025-03-10 20:36:29,736 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-10 20:36:29,736 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-10 20:36:29,737 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-10 20:36:29,737 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-10 20:36:32,339 - INFO - 成功提取文本，长度: 10355 字符
+2025-03-10 20:36:32,340 - INFO - 提取了 329 个段落
+2025-03-10 20:36:32,345 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-10 20:36:32,346 - INFO - 生成 7 个客服对话
+2025-03-10 20:36:32,349 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json

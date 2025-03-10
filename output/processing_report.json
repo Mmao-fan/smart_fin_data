@@ -1,0 +1,10 @@
+{
+  "total_files": 3,
+  "processed_files": [
+    "bank_transactions.csv",
+    "huaqi_info.docx",
+    "tencent_info.pdf"
+  ],
+  "failed_files": [],
+  "success_rate": 1.0
+}
