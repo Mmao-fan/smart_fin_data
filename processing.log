@@ -189,3 +189,114 @@ KeyError: 'structure'
 2025-03-10 20:36:32,345 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
 2025-03-10 20:36:32,346 - INFO - 生成 7 个客服对话
 2025-03-10 20:36:32,349 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-10 20:53:26,984 - INFO - python-docx 模块已安装
+2025-03-10 20:53:27,012 - INFO - PyPDF2 模块已安装
+2025-03-10 20:53:36,656 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-10 20:53:36,657 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-10 20:53:36,657 - INFO - 使用pandas直接读取CSV文件: data\bank_transactions.csv
+2025-03-10 20:53:36,723 - INFO - CSV文件读取成功，共 2512 行数据
+2025-03-10 20:53:36,723 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-10 20:53:46,597 - INFO - 发现 90 个可疑交易模式
+2025-03-10 20:53:47,129 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-10 20:53:47,131 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-10 20:53:47,131 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-10 20:53:47,131 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-10 20:53:47,157 - INFO - 成功提取文本，长度: 1239 字符
+2025-03-10 20:53:47,157 - INFO - 提取了 14 个段落
+2025-03-10 20:53:47,164 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-10 20:53:47,168 - INFO - 生成 9 个客服对话
+2025-03-10 20:53:47,171 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-10 20:53:47,171 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-10 20:53:47,172 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-10 20:53:47,172 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-10 20:53:49,818 - INFO - 成功提取文本，长度: 10355 字符
+2025-03-10 20:53:49,819 - INFO - 提取了 329 个段落
+2025-03-10 20:53:49,825 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-10 20:53:49,825 - INFO - 生成 7 个客服对话
+2025-03-10 20:53:49,829 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-10 20:55:27,166 - INFO - python-docx 模块已安装
+2025-03-10 20:55:27,193 - INFO - PyPDF2 模块已安装
+2025-03-10 20:56:39,813 - INFO - python-docx 模块已安装
+2025-03-10 20:56:39,884 - INFO - PyPDF2 模块已安装
+2025-03-10 20:56:51,354 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-10 20:56:51,355 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-10 20:56:51,355 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-10 20:56:52,152 - INFO - 检测到文件编码: ascii
+2025-03-10 20:56:52,347 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-10 20:57:01,721 - INFO - 发现 90 个可疑交易模式
+2025-03-10 20:57:02,249 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-10 20:57:02,250 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-10 20:57:02,250 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-10 20:57:02,251 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-10 20:57:02,279 - ERROR - 提取Word文档文本失败: 'ParagraphFormat' object has no attribute 'level'
+2025-03-10 20:57:02,281 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-10 20:57:02,281 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-10 20:57:02,281 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-10 20:57:02,935 - ERROR - 提取PDF文档文本失败: 'IndirectObject' object has no attribute 'get'
+2025-03-10 20:58:51,809 - INFO - python-docx 模块已安装
+2025-03-10 20:58:51,861 - INFO - PyPDF2 模块已安装
+2025-03-10 20:59:02,937 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-10 20:59:02,938 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-10 20:59:02,939 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-10 20:59:03,759 - INFO - 检测到文件编码: ascii
+2025-03-10 20:59:03,971 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-10 20:59:13,424 - INFO - 发现 90 个可疑交易模式
+2025-03-10 20:59:13,986 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-10 20:59:13,987 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-10 20:59:13,987 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-10 20:59:13,987 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-10 20:59:14,009 - ERROR - 提取Word文档文本失败: '_Header' object has no attribute 'text'
+2025-03-10 20:59:14,010 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-10 20:59:14,010 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-10 20:59:14,010 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-10 20:59:16,678 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-10 20:59:16,681 - INFO - 生成 8 个客服对话
+2025-03-10 20:59:16,688 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-10 21:01:05,820 - INFO - python-docx 模块已安装
+2025-03-10 21:01:05,850 - INFO - PyPDF2 模块已安装
+2025-03-10 21:01:16,035 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-10 21:01:16,036 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-10 21:01:16,036 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-10 21:01:16,828 - INFO - 检测到文件编码: ascii
+2025-03-10 21:01:17,089 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-10 21:01:26,519 - INFO - 发现 90 个可疑交易模式
+2025-03-10 21:01:27,057 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-10 21:01:27,058 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-10 21:01:27,059 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-10 21:01:27,059 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-10 21:01:27,140 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-10 21:01:27,145 - INFO - 生成 1 个客服对话
+2025-03-10 21:01:27,147 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-10 21:01:27,147 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-10 21:01:27,147 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-10 21:01:27,148 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-10 21:01:29,843 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-10 21:01:29,844 - INFO - 生成 8 个客服对话
+2025-03-10 21:01:29,850 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-10 21:03:25,249 - INFO - python-docx 模块已安装
+2025-03-10 21:03:25,277 - INFO - PyPDF2 模块已安装
+2025-03-10 21:03:34,128 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-10 21:03:34,128 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-10 21:03:34,130 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-10 21:03:34,929 - INFO - 检测到文件编码: ascii
+2025-03-10 21:03:35,193 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-10 21:03:45,133 - INFO - 发现 90 个可疑交易模式
+2025-03-10 21:03:45,682 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-10 21:03:45,682 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-10 21:03:45,683 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-10 21:03:45,683 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-10 21:03:45,757 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-10 21:03:45,762 - INFO - 生成 1 个客服对话
+2025-03-10 21:03:45,765 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-10 21:03:45,766 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-10 21:03:45,767 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-10 21:03:45,767 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-10 21:04:31,232 - INFO - 文件 data\shiyou_info.pdf 结构化处理完成
+2025-03-10 21:04:31,235 - INFO - 生成 8 个客服对话
+2025-03-10 21:04:31,260 - INFO - 文件 shiyou_info.pdf 处理完成，结果保存至 output\shiyou_info_structured.json
+2025-03-10 21:04:31,260 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-10 21:04:31,261 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-10 21:04:31,261 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-10 21:04:33,928 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-10 21:04:33,929 - INFO - 生成 8 个客服对话
+2025-03-10 21:04:33,936 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json

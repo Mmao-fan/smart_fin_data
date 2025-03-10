@@ -1,8 +1,9 @@
 {
-  "total_files": 3,
+  "total_files": 4,
   "processed_files": [
     "bank_transactions.csv",
     "huaqi_info.docx",
+    "shiyou_info.pdf",
     "tencent_info.pdf"
   ],
   "failed_files": [],

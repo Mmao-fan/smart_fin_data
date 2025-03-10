@@ -45236,12 +45236,77 @@
     "AccountBalance",
     "PreviousTransactionDate"
   ],
+  "column_types": {
+    "TransactionID": "numeric_string",
+    "AccountID": "numeric_string",
+    "TransactionAmount": "float64",
+    "TransactionDate": "numeric_string",
+    "TransactionType": "text",
+    "Location": "text",
+    "DeviceID": "numeric_string",
+    "IP Address": "numeric_string",
+    "MerchantID": "numeric_string",
+    "Channel": "text",
+    "CustomerAge": "int64",
+    "CustomerOccupation": "text",
+    "TransactionDuration": "int64",
+    "LoginAttempts": "int64",
+    "AccountBalance": "float64",
+    "PreviousTransactionDate": "numeric_string"
+  },
   "row_count": 2512,
   "metadata": {
     "file_path": "data\\bank_transactions.csv",
     "file_type": ".csv",
+    "encoding": "ascii",
+    "separator": ",",
     "file_size": 324710,
-    "processed_time": "2025-03-10T20:36:19.701688"
+    "processed_time": "2025-03-10T21:03:35.180601"
+  },
+  "statistics": {
+    "missing_values": {
+      "TransactionID": 0,
+      "AccountID": 0,
+      "TransactionAmount": 0,
+      "TransactionDate": 0,
+      "TransactionType": 0,
+      "Location": 0,
+      "DeviceID": 0,
+      "IP Address": 0,
+      "MerchantID": 0,
+      "Channel": 0,
+      "CustomerAge": 0,
+      "CustomerOccupation": 0,
+      "TransactionDuration": 0,
+      "LoginAttempts": 0,
+      "AccountBalance": 0,
+      "PreviousTransactionDate": 0
+    },
+    "unique_values": {
+      "TransactionID": 2512,
+      "AccountID": 495,
+      "TransactionAmount": 2455,
+      "TransactionDate": 2405,
+      "TransactionType": 2,
+      "Location": 43,
+      "DeviceID": 681,
+      "IP Address": 592,
+      "MerchantID": 100,
+      "Channel": 3,
+      "CustomerAge": 63,
+      "CustomerOccupation": 4,
+      "TransactionDuration": 288,
+      "LoginAttempts": 5,
+      "AccountBalance": 2510,
+      "PreviousTransactionDate": 7
+    },
+    "numeric_columns": [
+      "TransactionAmount",
+      "CustomerAge",
+      "TransactionDuration",
+      "LoginAttempts",
+      "AccountBalance"
+    ]
   },
   "analysis": {
     "suspicious_patterns": [
