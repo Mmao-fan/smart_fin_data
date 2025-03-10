@@ -1,9 +1,17 @@
+# -*- coding: utf-8 -*-
 # processors/pdf_processor.py
-import PyPDF2
 import logging
 from pathlib import Path
 from .base_processor import BaseProcessor
 from .exceptions import DocumentProcessingError
+
+# 尝试导入 PyPDF2，如果不存在则提供一个替代方案
+try:
+    import PyPDF2
+    HAS_PYPDF2 = True
+except ImportError:
+    HAS_PYPDF2 = False
+    logging.warning("PyPDF2 模块未安装，PDF处理功能将受限")
 
 
 class PDFProcessor(BaseProcessor):
@@ -11,6 +19,9 @@ class PDFProcessor(BaseProcessor):
     def extract_text(cls, file_path: str) -> str:
         """支持混合型PDF（文本+图像），智能检测扫描件"""
         try:
+            if not HAS_PYPDF2:
+                raise DocumentProcessingError("PyPDF2 模块未安装，无法处理PDF文件。请安装 PyPDF2: pip install PyPDF2")
+                
             text = []
             with open(file_path, 'rb') as file:
                 reader = PyPDF2.PdfReader(file)
@@ -37,6 +48,9 @@ class PDFProcessor(BaseProcessor):
     @staticmethod
     def _is_scanned_page(page) -> bool:
         """综合判断是否为扫描页：文本量+图像存在"""
+        if not HAS_PYPDF2:
+            return False
+            
         text = page.extract_text() or ""
         if len(text) < 50 and '/XObject' in page['/Resources']:
             return True
