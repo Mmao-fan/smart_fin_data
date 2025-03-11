@@ -1,0 +1,70 @@
+{
+  "file_name": "test_2.txt",
+  "file_type": ".txt",
+  "processing_time": "2025-03-11T22:44:00.414314",
+  "original_text": "农业银行信用卡6228481234567890000支付3999.99元购买商品，交易时间为2024年4月1日10:30 ",
+  "entities": [
+    {
+      "text": "农业银行",
+      "type": "ORG",
+      "start": 0,
+      "end": 4
+    },
+    {
+      "text": "6228481234567890000",
+      "type": "MONEY",
+      "start": 7,
+      "end": 26
+    },
+    {
+      "text": "3999.99元",
+      "type": "MONEY",
+      "start": 28,
+      "end": 36
+    },
+    {
+      "text": "2024年4月1日",
+      "type": "DATE",
+      "start": 46,
+      "end": 55
+    },
+    {
+      "text": "30",
+      "type": "MONEY",
+      "start": 58,
+      "end": 60
+    }
+  ],
+  "relations": [],
+  "summary": "农业银行信用卡6228481234567890000支付3999.... 文档包含 ORG类型实体1个：农业银行；MONEY类型实体3个：3999.99元, 6228481234567890000, 30；DATE类型实体1个：2024年4月1日。",
+  "qa_pairs": [
+    {
+      "question": "文本中提到了哪些组织机构？",
+      "answer": "农业银行。"
+    },
+    {
+      "question": "文本中提到了哪些金额？",
+      "answer": "3999.99元, 6228481234567890000, 30。"
+    },
+    {
+      "question": "有哪些日期在文本中被提及？",
+      "answer": "2024年4月1日。"
+    },
+    {
+      "question": "这份文档的主要内容是什么？",
+      "answer": "文档包含5个实体（主要类型：DATE, ORG, MONEY）。"
+    },
+    {
+      "question": "文档中有哪些重要发现？",
+      "answer": "涉及机构：农业银行。相关金额：6228481234567890000, 3999.99元。"
+    }
+  ],
+  "compliance_events": [],
+  "processing_stats": {
+    "initial_entity_count": 5,
+    "enhanced_entity_count": 5,
+    "relation_count": 0,
+    "qa_pair_count": 5,
+    "compliance_event_count": 0
+  }
+}

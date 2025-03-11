@@ -1,0 +1,4953 @@
+{
+  "file_name": "tencent_info.pdf",
+  "file_type": ".pdf",
+  "processing_time": "2025-03-11T22:46:07.676491",
+  "original_text": " \n1 \n \n即时发布  \n \n腾讯公布二零二 四年第三季业绩 \n \n香港，二零二 四年十一月十三日 – 世界领先的互联网 科技公司 ——腾讯控股有限公司 （港交所代码： 00700\n（港币柜台）及 80700（人民币柜台） ,“腾讯”或“本公司” ） 今天公布截至二零二 四年九月三十日止第 三\n季未经审核综合业绩。  \n \n董事会主席兼首席执行官马化腾表示： “二零二四年第三季，我们的游戏业务收入实现强劲增长，得益于长青\n游戏在全球的稳健表现及具备长青潜力的新游戏贡献。我们围绕微信小店升级了交易平台策略，旨在依托于\n整个微信生态打造统一且可信赖的交易体验。我们 持续在产品和运营中部署 AI，包括营销服务和云服务， 所\n带来的切实可见效益也愈加显现。我们将持续投资于 AI技术、工具和解决方案，以服务用户与合作伙伴。 ” \n \n二零二四年第三季业绩摘要   \n总收入：同比增长 8%；毛利：同比增长 16%；按非国际财务报告准则1的经营盈利*：同比增长 19% \n \n▪ 总收入为人民币 1,672亿元（ 239亿美元2） ，较二零二 三年第三季（ “同比” ）增长 8%。 \n▪ 毛利为人民币 888亿元（ 127亿美元） ，同比增长 16%。 \n▪ 按非国际财务报告准则 ，撇除若干一次性及 /或非现金 项目的影响，以体现 核心业务的业绩：  \n- 经营盈利*为人民币 613亿元（ 87亿美元） ，同比增长 19%；经营利润率*由去年同期 33%上升至 37%。 \n- 期内盈利 为人民币 609亿元（ 87亿美元） ，同比增长 33%。 \n- 期内本公司权益持有人应占盈利 为人民币 598亿元（ 85亿美元） ，同比增长 33%。 \n- 每股基本盈利 为人民币 6.475元，每股摊薄盈利 为人民币 6.340元。 \n▪ 按国际财务报告准则 ： \n- 经营盈利*为人民币 533亿元（ 76亿美元） ，同比增 长20%；经营利润率*由去年同期的 29%上升至\n32%。 \n- 期内盈利为人民币 540亿元（ 77亿美元） ，同比 增长 47%。 \n- 期内本公司权益持有人应占盈利为人民币 532亿元（ 76亿美元） ，同比 增长 47%。 \n- 每股基本盈利为人民币 5.762元，每股摊薄盈利为人民币 5.644元。 \n▪ 总现金为人民币  4,255 亿元（ 607亿美元） ...",
+  "entities": [
+    {
+      "text": "1",
+      "type": "MONEY",
+      "start": 2,
+      "end": 3
+    },
+    {
+      "text": "科技公司",
+      "type": "ORG",
+      "start": 62,
+      "end": 66
+    },
+    {
+      "text": "腾讯控股有限公司",
+      "type": "ORG",
+      "start": 69,
+      "end": 77
+    },
+    {
+      "text": "00700",
+      "type": "MONEY",
+      "start": 86,
+      "end": 91
+    },
+    {
+      "text": "80700",
+      "type": "MONEY",
+      "start": 100,
+      "end": 105
+    },
+    {
+      "text": "8%",
+      "type": "PERCENT",
+      "start": 393,
+      "end": 395
+    },
+    {
+      "text": "16%",
+      "type": "PERCENT",
+      "start": 404,
+      "end": 407
+    },
+    {
+      "text": "1",
+      "type": "MONEY",
+      "start": 418,
+      "end": 419
+    },
+    {
+      "text": "19%",
+      "type": "PERCENT",
+      "start": 431,
+      "end": 434
+    },
+    {
+      "text": "1",
+      "type": "MONEY",
+      "start": 448,
+      "end": 449
+    },
+    {
+      "text": "672亿元",
+      "type": "MONEY",
+      "start": 450,
+      "end": 455
+    },
+    {
+      "text": "239亿",
+      "type": "MONEY",
+      "start": 457,
+      "end": 461
+    },
+    {
+      "text": "8%",
+      "type": "PERCENT",
+      "start": 488,
+      "end": 490
+    },
+    {
+      "text": "888亿元",
+      "type": "MONEY",
+      "start": 502,
+      "end": 507
+    },
+    {
+      "text": "127亿",
+      "type": "MONEY",
+      "start": 509,
+      "end": 513
+    },
+    {
+      "text": "16%",
+      "type": "PERCENT",
+      "start": 523,
+      "end": 526
+    },
+    {
+      "text": "613亿元",
+      "type": "MONEY",
+      "start": 591,
+      "end": 596
+    },
+    {
+      "text": "87亿",
+      "type": "MONEY",
+      "start": 598,
+      "end": 601
+    },
+    {
+      "text": "19%",
+      "type": "PERCENT",
+      "start": 611,
+      "end": 614
+    },
+    {
+      "text": "33%",
+      "type": "PERCENT",
+      "start": 627,
+      "end": 630
+    },
+    {
+      "text": "37%",
+      "type": "PERCENT",
+      "start": 634,
+      "end": 637
+    },
+    {
+      "text": "609亿元",
+      "type": "MONEY",
+      "start": 652,
+      "end": 657
+    },
+    {
+      "text": "87亿",
+      "type": "MONEY",
+      "start": 659,
+      "end": 662
+    },
+    {
+      "text": "33%",
+      "type": "PERCENT",
+      "start": 672,
+      "end": 675
+    },
+    {
+      "text": "期内本公司",
+      "type": "ORG",
+      "start": 680,
+      "end": 685
+    },
+    {
+      "text": "598亿元",
+      "type": "MONEY",
+      "start": 700,
+      "end": 705
+    },
+    {
+      "text": "85亿",
+      "type": "MONEY",
+      "start": 707,
+      "end": 710
+    },
+    {
+      "text": "33%",
+      "type": "PERCENT",
+      "start": 720,
+      "end": 723
+    },
+    {
+      "text": "6.475元",
+      "type": "MONEY",
+      "start": 740,
+      "end": 746
+    },
+    {
+      "text": "6.340元",
+      "type": "MONEY",
+      "start": 759,
+      "end": 765
+    },
+    {
+      "text": "533亿元",
+      "type": "MONEY",
+      "start": 795,
+      "end": 800
+    },
+    {
+      "text": "76亿",
+      "type": "MONEY",
+      "start": 802,
+      "end": 805
+    },
+    {
+      "text": "20%",
+      "type": "PERCENT",
+      "start": 815,
+      "end": 818
+    },
+    {
+      "text": "29%",
+      "type": "PERCENT",
+      "start": 832,
+      "end": 835
+    },
+    {
+      "text": "32%",
+      "type": "PERCENT",
+      "start": 839,
+      "end": 842
+    },
+    {
+      "text": "540亿元",
+      "type": "MONEY",
+      "start": 856,
+      "end": 861
+    },
+    {
+      "text": "77亿",
+      "type": "MONEY",
+      "start": 863,
+      "end": 866
+    },
+    {
+      "text": "47%",
+      "type": "PERCENT",
+      "start": 877,
+      "end": 880
+    },
+    {
+      "text": "期内本公司",
+      "type": "ORG",
+      "start": 885,
+      "end": 890
+    },
+    {
+      "text": "532亿元",
+      "type": "MONEY",
+      "start": 904,
+      "end": 909
+    },
+    {
+      "text": "76亿",
+      "type": "MONEY",
+      "start": 911,
+      "end": 914
+    },
+    {
+      "text": "47%",
+      "type": "PERCENT",
+      "start": 925,
+      "end": 928
+    },
+    {
+      "text": "5.762元",
+      "type": "MONEY",
+      "start": 944,
+      "end": 950
+    },
+    {
+      "text": "5.644元",
+      "type": "MONEY",
+      "start": 962,
+      "end": 968
+    },
+    {
+      "text": "4",
+      "type": "MONEY",
+      "start": 982,
+      "end": 983
+    },
+    {
+      "text": "255",
+      "type": "MONEY",
+      "start": 984,
+      "end": 987
+    },
+    {
+      "text": "607亿",
+      "type": "MONEY",
+      "start": 992,
+      "end": 996
+    },
+    {
+      "text": "585亿元",
+      "type": "MONEY",
+      "start": 1013,
+      "end": 1018
+    },
+    {
+      "text": "83亿",
+      "type": "MONEY",
+      "start": 1020,
+      "end": 1023
+    },
+    {
+      "text": "14%",
+      "type": "PERCENT",
+      "start": 1034,
+      "end": 1037
+    },
+    {
+      "text": "955亿元",
+      "type": "MONEY",
+      "start": 1049,
+      "end": 1054
+    },
+    {
+      "text": "136亿",
+      "type": "MONEY",
+      "start": 1056,
+      "end": 1060
+    },
+    {
+      "text": "我们于上市投资公司",
+      "type": "ORG",
+      "start": 1070,
+      "end": 1079
+    },
+    {
+      "text": "不包括附属公司",
+      "type": "ORG",
+      "start": 1080,
+      "end": 1087
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 1090,
+      "end": 1091
+    },
+    {
+      "text": "6",
+      "type": "MONEY",
+      "start": 1101,
+      "end": 1102
+    },
+    {
+      "text": "125亿元",
+      "type": "MONEY",
+      "start": 1103,
+      "end": 1108
+    },
+    {
+      "text": "874亿",
+      "type": "MONEY",
+      "start": 1110,
+      "end": 1114
+    },
+    {
+      "text": "上市",
+      "type": "EVENT",
+      "start": 1125,
+      "end": 1127
+    },
+    {
+      "text": "不包括附属公司",
+      "type": "ORG",
+      "start": 1133,
+      "end": 1140
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 1154,
+      "end": 1155
+    },
+    {
+      "text": "277亿元",
+      "type": "MONEY",
+      "start": 1156,
+      "end": 1161
+    },
+    {
+      "text": "468亿",
+      "type": "MONEY",
+      "start": 1163,
+      "end": 1167
+    },
+    {
+      "text": "359亿",
+      "type": "MONEY",
+      "start": 1200,
+      "end": 1204
+    },
+    {
+      "text": "9",
+      "type": "MONEY",
+      "start": 1214,
+      "end": 1215
+    },
+    {
+      "text": "490万",
+      "type": "MONEY",
+      "start": 1216,
+      "end": 1220
+    },
+    {
+      "text": "1",
+      "type": "MONEY",
+      "start": 1239,
+      "end": 1240
+    },
+    {
+      "text": "如来自投资公司",
+      "type": "ORG",
+      "start": 1265,
+      "end": 1272
+    },
+    {
+      "text": "2",
+      "type": "MONEY",
+      "start": 1344,
+      "end": 1345
+    },
+    {
+      "text": "1",
+      "type": "MONEY",
+      "start": 1353,
+      "end": 1354
+    },
+    {
+      "text": "7.0074元",
+      "type": "MONEY",
+      "start": 1361,
+      "end": 1368
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 1373,
+      "end": 1374
+    },
+    {
+      "text": "包括透过特殊目的公司",
+      "type": "ORG",
+      "start": 1375,
+      "end": 1385
+    },
+    {
+      "text": "2",
+      "type": "MONEY",
+      "start": 1470,
+      "end": 1471
+    },
+    {
+      "text": "2万",
+      "type": "MONEY",
+      "start": 1518,
+      "end": 1520
+    },
+    {
+      "text": "16%",
+      "type": "PERCENT",
+      "start": 1860,
+      "end": 1863
+    },
+    {
+      "text": "1.19亿",
+      "type": "MONEY",
+      "start": 1864,
+      "end": 1869
+    },
+    {
+      "text": "6%",
+      "type": "PERCENT",
+      "start": 1911,
+      "end": 1913
+    },
+    {
+      "text": "1.16亿",
+      "type": "MONEY",
+      "start": 1914,
+      "end": 1919
+    },
+    {
+      "text": "本土市",
+      "type": "LOCATION",
+      "start": 1943,
+      "end": 1946
+    },
+    {
+      "text": "在国际市",
+      "type": "LOCATION",
+      "start": 2089,
+      "end": 2093
+    },
+    {
+      "text": "在五个关键国际市",
+      "type": "LOCATION",
+      "start": 2136,
+      "end": 2144
+    },
+    {
+      "text": "30%",
+      "type": "PERCENT",
+      "start": 2177,
+      "end": 2180
+    },
+    {
+      "text": "合并",
+      "type": "EVENT",
+      "start": 2377,
+      "end": 2379
+    },
+    {
+      "text": "1",
+      "type": "MONEY",
+      "start": 2387,
+      "end": 2388
+    },
+    {
+      "text": "382",
+      "type": "MONEY",
+      "start": 2389,
+      "end": 2392
+    },
+    {
+      "text": "1",
+      "type": "MONEY",
+      "start": 2393,
+      "end": 2394
+    },
+    {
+      "text": "336",
+      "type": "MONEY",
+      "start": 2395,
+      "end": 2398
+    },
+    {
+      "text": "3%",
+      "type": "PERCENT",
+      "start": 2399,
+      "end": 2401
+    },
+    {
+      "text": "1",
+      "type": "MONEY",
+      "start": 2402,
+      "end": 2403
+    },
+    {
+      "text": "371",
+      "type": "MONEY",
+      "start": 2404,
+      "end": 2407
+    },
+    {
+      "text": "0.8%",
+      "type": "PERCENT",
+      "start": 2408,
+      "end": 2412
+    },
+    {
+      "text": "562",
+      "type": "MONEY",
+      "start": 2436,
+      "end": 2439
+    },
+    {
+      "text": "558",
+      "type": "MONEY",
+      "start": 2440,
+      "end": 2443
+    },
+    {
+      "text": "0.7%",
+      "type": "PERCENT",
+      "start": 2444,
+      "end": 2448
+    },
+    {
+      "text": "571",
+      "type": "MONEY",
+      "start": 2449,
+      "end": 2452
+    },
+    {
+      "text": "2%",
+      "type": "PERCENT",
+      "start": 2454,
+      "end": 2456
+    },
+    {
+      "text": "265",
+      "type": "MONEY",
+      "start": 2479,
+      "end": 2482
+    },
+    {
+      "text": "243",
+      "type": "MONEY",
+      "start": 2483,
+      "end": 2486
+    },
+    {
+      "text": "9%",
+      "type": "PERCENT",
+      "start": 2487,
+      "end": 2489
+    },
+    {
+      "text": "263",
+      "type": "MONEY",
+      "start": 2490,
+      "end": 2493
+    },
+    {
+      "text": "0.8%",
+      "type": "PERCENT",
+      "start": 2494,
+      "end": 2498
+    },
+    {
+      "text": "4",
+      "type": "MONEY",
+      "start": 2540,
+      "end": 2541
+    },
+    {
+      "text": "5",
+      "type": "MONEY",
+      "start": 2567,
+      "end": 2568
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 2607,
+      "end": 2608
+    },
+    {
+      "text": "9%",
+      "type": "PERCENT",
+      "start": 2654,
+      "end": 2656
+    },
+    {
+      "text": "827亿元",
+      "type": "MONEY",
+      "start": 2661,
+      "end": 2666
+    },
+    {
+      "text": "国际市",
+      "type": "LOCATION",
+      "start": 2667,
+      "end": 2670
+    },
+    {
+      "text": "145亿",
+      "type": "MONEY",
+      "start": 2680,
+      "end": 2684
+    },
+    {
+      "text": "9%",
+      "type": "PERCENT",
+      "start": 2692,
+      "end": 2694
+    },
+    {
+      "text": "11%",
+      "type": "PERCENT",
+      "start": 2706,
+      "end": 2709
+    },
+    {
+      "text": "国际市",
+      "type": "LOCATION",
+      "start": 2750,
+      "end": 2753
+    },
+    {
+      "text": "本土市",
+      "type": "LOCATION",
+      "start": 2799,
+      "end": 2802
+    },
+    {
+      "text": "14%",
+      "type": "PERCENT",
+      "start": 2812,
+      "end": 2815
+    },
+    {
+      "text": "373亿元",
+      "type": "MONEY",
+      "start": 2820,
+      "end": 2825
+    },
+    {
+      "text": "4%",
+      "type": "PERCENT",
+      "start": 2886,
+      "end": 2888
+    },
+    {
+      "text": "309亿元",
+      "type": "MONEY",
+      "start": 2893,
+      "end": 2898
+    },
+    {
+      "text": "6",
+      "type": "MONEY",
+      "start": 2967,
+      "end": 2968
+    },
+    {
+      "text": "17%",
+      "type": "PERCENT",
+      "start": 2984,
+      "end": 2987
+    },
+    {
+      "text": "300亿元",
+      "type": "MONEY",
+      "start": 2992,
+      "end": 2997
+    },
+    {
+      "text": "得益于广告主对视频号",
+      "type": "LOCATION",
+      "start": 2998,
+      "end": 3008
+    },
+    {
+      "text": "2%",
+      "type": "PERCENT",
+      "start": 3120,
+      "end": 3122
+    },
+    {
+      "text": "531亿元",
+      "type": "MONEY",
+      "start": 3127,
+      "end": 3132
+    },
+    {
+      "text": "或通过微信公众号",
+      "type": "LOCATION",
+      "start": 3305,
+      "end": 3313
+    },
+    {
+      "text": "微信号",
+      "type": "LOCATION",
+      "start": 3316,
+      "end": 3319
+    },
+    {
+      "text": "1998",
+      "type": "MONEY",
+      "start": 3529,
+      "end": 3533
+    },
+    {
+      "text": "年于香港联合交易所上市",
+      "type": "LOCATION",
+      "start": 3550,
+      "end": 3561
+    },
+    {
+      "text": "6",
+      "type": "MONEY",
+      "start": 3629,
+      "end": 3630
+    },
+    {
+      "text": "4",
+      "type": "MONEY",
+      "start": 3705,
+      "end": 3706
+    },
+    {
+      "text": "本公司及其附属公司",
+      "type": "ORG",
+      "start": 3748,
+      "end": 3757
+    },
+    {
+      "text": "制的本集团",
+      "type": "ORG",
+      "start": 3873,
+      "end": 3878
+    },
+    {
+      "text": "此等非国际财务报告准则财务计量的定义可能与其他公司",
+      "type": "ORG",
+      "start": 3895,
+      "end": 3920
+    },
+    {
+      "text": "资者评估本公司",
+      "type": "ORG",
+      "start": 3986,
+      "end": 3993
+    },
+    {
+      "text": "非国际财务报告准则调整包括本集团",
+      "type": "ORG",
+      "start": 4014,
+      "end": 4030
+    },
+    {
+      "text": "此乃基于相关主要联营公司可获得的已公布财务资料或本公司",
+      "type": "ORG",
+      "start": 4052,
+      "end": 4079
+    },
+    {
+      "text": "所载列的前瞻性陈述不应视为董事会或本公司",
+      "type": "ORG",
+      "start": 4319,
+      "end": 4339
+    },
+    {
+      "text": "5",
+      "type": "MONEY",
+      "start": 4429,
+      "end": 4430
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 4475,
+      "end": 4476
+    },
+    {
+      "text": "2024",
+      "type": "MONEY",
+      "start": 4477,
+      "end": 4481
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 4485,
+      "end": 4486
+    },
+    {
+      "text": "2023",
+      "type": "MONEY",
+      "start": 4487,
+      "end": 4491
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 4501,
+      "end": 4502
+    },
+    {
+      "text": "2024",
+      "type": "MONEY",
+      "start": 4503,
+      "end": 4507
+    },
+    {
+      "text": "2",
+      "type": "MONEY",
+      "start": 4511,
+      "end": 4512
+    },
+    {
+      "text": "202",
+      "type": "MONEY",
+      "start": 4513,
+      "end": 4516
+    },
+    {
+      "text": "4",
+      "type": "MONEY",
+      "start": 4517,
+      "end": 4518
+    },
+    {
+      "text": "167",
+      "type": "MONEY",
+      "start": 4525,
+      "end": 4528
+    },
+    {
+      "text": "193",
+      "type": "MONEY",
+      "start": 4529,
+      "end": 4532
+    },
+    {
+      "text": "154",
+      "type": "MONEY",
+      "start": 4534,
+      "end": 4537
+    },
+    {
+      "text": "625",
+      "type": "MONEY",
+      "start": 4538,
+      "end": 4541
+    },
+    {
+      "text": "167",
+      "type": "MONEY",
+      "start": 4544,
+      "end": 4547
+    },
+    {
+      "text": "193",
+      "type": "MONEY",
+      "start": 4548,
+      "end": 4551
+    },
+    {
+      "text": "161",
+      "type": "MONEY",
+      "start": 4553,
+      "end": 4556
+    },
+    {
+      "text": "117",
+      "type": "MONEY",
+      "start": 4557,
+      "end": 4560
+    },
+    {
+      "text": "82",
+      "type": "MONEY",
+      "start": 4573,
+      "end": 4575
+    },
+    {
+      "text": "695",
+      "type": "MONEY",
+      "start": 4576,
+      "end": 4579
+    },
+    {
+      "text": "75",
+      "type": "MONEY",
+      "start": 4581,
+      "end": 4583
+    },
+    {
+      "text": "748",
+      "type": "MONEY",
+      "start": 4584,
+      "end": 4587
+    },
+    {
+      "text": "82",
+      "type": "MONEY",
+      "start": 4590,
+      "end": 4592
+    },
+    {
+      "text": "695",
+      "type": "MONEY",
+      "start": 4593,
+      "end": 4596
+    },
+    {
+      "text": "78",
+      "type": "MONEY",
+      "start": 4598,
+      "end": 4600
+    },
+    {
+      "text": "822",
+      "type": "MONEY",
+      "start": 4601,
+      "end": 4604
+    },
+    {
+      "text": "29",
+      "type": "MONEY",
+      "start": 4617,
+      "end": 4619
+    },
+    {
+      "text": "993",
+      "type": "MONEY",
+      "start": 4620,
+      "end": 4623
+    },
+    {
+      "text": "25",
+      "type": "MONEY",
+      "start": 4625,
+      "end": 4627
+    },
+    {
+      "text": "721",
+      "type": "MONEY",
+      "start": 4628,
+      "end": 4631
+    },
+    {
+      "text": "29",
+      "type": "MONEY",
+      "start": 4634,
+      "end": 4636
+    },
+    {
+      "text": "993",
+      "type": "MONEY",
+      "start": 4637,
+      "end": 4640
+    },
+    {
+      "text": "29",
+      "type": "MONEY",
+      "start": 4642,
+      "end": 4644
+    },
+    {
+      "text": "871",
+      "type": "MONEY",
+      "start": 4645,
+      "end": 4648
+    },
+    {
+      "text": "53",
+      "type": "MONEY",
+      "start": 4666,
+      "end": 4668
+    },
+    {
+      "text": "089",
+      "type": "MONEY",
+      "start": 4669,
+      "end": 4672
+    },
+    {
+      "text": "52",
+      "type": "MONEY",
+      "start": 4674,
+      "end": 4676
+    },
+    {
+      "text": "048",
+      "type": "MONEY",
+      "start": 4677,
+      "end": 4680
+    },
+    {
+      "text": "53",
+      "type": "MONEY",
+      "start": 4683,
+      "end": 4685
+    },
+    {
+      "text": "089",
+      "type": "MONEY",
+      "start": 4686,
+      "end": 4689
+    },
+    {
+      "text": "50",
+      "type": "MONEY",
+      "start": 4691,
+      "end": 4693
+    },
+    {
+      "text": "440",
+      "type": "MONEY",
+      "start": 4694,
+      "end": 4697
+    },
+    {
+      "text": "1",
+      "type": "MONEY",
+      "start": 4707,
+      "end": 4708
+    },
+    {
+      "text": "416",
+      "type": "MONEY",
+      "start": 4709,
+      "end": 4712
+    },
+    {
+      "text": "1",
+      "type": "MONEY",
+      "start": 4713,
+      "end": 4714
+    },
+    {
+      "text": "108",
+      "type": "MONEY",
+      "start": 4715,
+      "end": 4718
+    },
+    {
+      "text": "1",
+      "type": "MONEY",
+      "start": 4721,
+      "end": 4722
+    },
+    {
+      "text": "416",
+      "type": "MONEY",
+      "start": 4723,
+      "end": 4726
+    },
+    {
+      "text": "1",
+      "type": "MONEY",
+      "start": 4727,
+      "end": 4728
+    },
+    {
+      "text": "984",
+      "type": "MONEY",
+      "start": 4729,
+      "end": 4732
+    },
+    {
+      "text": "78",
+      "type": "MONEY",
+      "start": 4742,
+      "end": 4744
+    },
+    {
+      "text": "365",
+      "type": "MONEY",
+      "start": 4745,
+      "end": 4748
+    },
+    {
+      "text": "78",
+      "type": "MONEY",
+      "start": 4752,
+      "end": 4754
+    },
+    {
+      "text": "102",
+      "type": "MONEY",
+      "start": 4755,
+      "end": 4758
+    },
+    {
+      "text": "78",
+      "type": "MONEY",
+      "start": 4763,
+      "end": 4765
+    },
+    {
+      "text": "365",
+      "type": "MONEY",
+      "start": 4766,
+      "end": 4769
+    },
+    {
+      "text": "75",
+      "type": "MONEY",
+      "start": 4773,
+      "end": 4775
+    },
+    {
+      "text": "222",
+      "type": "MONEY",
+      "start": 4776,
+      "end": 4779
+    },
+    {
+      "text": "88",
+      "type": "MONEY",
+      "start": 4786,
+      "end": 4788
+    },
+    {
+      "text": "828",
+      "type": "MONEY",
+      "start": 4789,
+      "end": 4792
+    },
+    {
+      "text": "76",
+      "type": "MONEY",
+      "start": 4794,
+      "end": 4796
+    },
+    {
+      "text": "523",
+      "type": "MONEY",
+      "start": 4797,
+      "end": 4800
+    },
+    {
+      "text": "88",
+      "type": "MONEY",
+      "start": 4803,
+      "end": 4805
+    },
+    {
+      "text": "828",
+      "type": "MONEY",
+      "start": 4806,
+      "end": 4809
+    },
+    {
+      "text": "85",
+      "type": "MONEY",
+      "start": 4811,
+      "end": 4813
+    },
+    {
+      "text": "895",
+      "type": "MONEY",
+      "start": 4814,
+      "end": 4817
+    },
+    {
+      "text": "53%",
+      "type": "PERCENT",
+      "start": 4825,
+      "end": 4828
+    },
+    {
+      "text": "49%",
+      "type": "PERCENT",
+      "start": 4829,
+      "end": 4832
+    },
+    {
+      "text": "53%",
+      "type": "PERCENT",
+      "start": 4834,
+      "end": 4837
+    },
+    {
+      "text": "53%",
+      "type": "PERCENT",
+      "start": 4838,
+      "end": 4841
+    },
+    {
+      "text": "销售及市",
+      "type": "LOCATION",
+      "start": 4843,
+      "end": 4847
+    },
+    {
+      "text": "9",
+      "type": "MONEY",
+      "start": 4855,
+      "end": 4856
+    },
+    {
+      "text": "411",
+      "type": "MONEY",
+      "start": 4857,
+      "end": 4860
+    },
+    {
+      "text": "7",
+      "type": "MONEY",
+      "start": 4864,
+      "end": 4865
+    },
+    {
+      "text": "912",
+      "type": "MONEY",
+      "start": 4866,
+      "end": 4869
+    },
+    {
+      "text": "9",
+      "type": "MONEY",
+      "start": 4874,
+      "end": 4875
+    },
+    {
+      "text": "411",
+      "type": "MONEY",
+      "start": 4876,
+      "end": 4879
+    },
+    {
+      "text": "9",
+      "type": "MONEY",
+      "start": 4883,
+      "end": 4884
+    },
+    {
+      "text": "156",
+      "type": "MONEY",
+      "start": 4885,
+      "end": 4888
+    },
+    {
+      "text": "29",
+      "type": "MONEY",
+      "start": 4902,
+      "end": 4904
+    },
+    {
+      "text": "058",
+      "type": "MONEY",
+      "start": 4905,
+      "end": 4908
+    },
+    {
+      "text": "26",
+      "type": "MONEY",
+      "start": 4912,
+      "end": 4914
+    },
+    {
+      "text": "289",
+      "type": "MONEY",
+      "start": 4915,
+      "end": 4918
+    },
+    {
+      "text": "29",
+      "type": "MONEY",
+      "start": 4923,
+      "end": 4925
+    },
+    {
+      "text": "058",
+      "type": "MONEY",
+      "start": 4926,
+      "end": 4929
+    },
+    {
+      "text": "27",
+      "type": "MONEY",
+      "start": 4933,
+      "end": 4935
+    },
+    {
+      "text": "491",
+      "type": "MONEY",
+      "start": 4936,
+      "end": 4939
+    },
+    {
+      "text": "2",
+      "type": "MONEY",
+      "start": 4957,
+      "end": 4958
+    },
+    {
+      "text": "974",
+      "type": "MONEY",
+      "start": 4959,
+      "end": 4962
+    },
+    {
+      "text": "2",
+      "type": "MONEY",
+      "start": 4964,
+      "end": 4965
+    },
+    {
+      "text": "026",
+      "type": "MONEY",
+      "start": 4966,
+      "end": 4969
+    },
+    {
+      "text": "2",
+      "type": "MONEY",
+      "start": 4973,
+      "end": 4974
+    },
+    {
+      "text": "974",
+      "type": "MONEY",
+      "start": 4975,
+      "end": 4978
+    },
+    {
+      "text": "1",
+      "type": "MONEY",
+      "start": 4980,
+      "end": 4981
+    },
+    {
+      "text": "484",
+      "type": "MONEY",
+      "start": 4982,
+      "end": 4985
+    },
+    {
+      "text": "53",
+      "type": "MONEY",
+      "start": 4994,
+      "end": 4996
+    },
+    {
+      "text": "333",
+      "type": "MONEY",
+      "start": 4997,
+      "end": 5000
+    },
+    {
+      "text": "44",
+      "type": "MONEY",
+      "start": 5002,
+      "end": 5004
+    },
+    {
+      "text": "348",
+      "type": "MONEY",
+      "start": 5005,
+      "end": 5008
+    },
+    {
+      "text": "53",
+      "type": "MONEY",
+      "start": 5012,
+      "end": 5014
+    },
+    {
+      "text": "333",
+      "type": "MONEY",
+      "start": 5015,
+      "end": 5018
+    },
+    {
+      "text": "50",
+      "type": "MONEY",
+      "start": 5020,
+      "end": 5022
+    },
+    {
+      "text": "732",
+      "type": "MONEY",
+      "start": 5023,
+      "end": 5026
+    },
+    {
+      "text": "32%",
+      "type": "PERCENT",
+      "start": 5036,
+      "end": 5039
+    },
+    {
+      "text": "29%",
+      "type": "PERCENT",
+      "start": 5040,
+      "end": 5043
+    },
+    {
+      "text": "32%",
+      "type": "PERCENT",
+      "start": 5047,
+      "end": 5050
+    },
+    {
+      "text": "31%",
+      "type": "PERCENT",
+      "start": 5051,
+      "end": 5054
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 5073,
+      "end": 5074
+    },
+    {
+      "text": "066",
+      "type": "MONEY",
+      "start": 5075,
+      "end": 5078
+    },
+    {
+      "text": "618",
+      "type": "MONEY",
+      "start": 5080,
+      "end": 5083
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 5086,
+      "end": 5087
+    },
+    {
+      "text": "066",
+      "type": "MONEY",
+      "start": 5088,
+      "end": 5091
+    },
+    {
+      "text": "654",
+      "type": "MONEY",
+      "start": 5094,
+      "end": 5097
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 5107,
+      "end": 5108
+    },
+    {
+      "text": "996",
+      "type": "MONEY",
+      "start": 5109,
+      "end": 5112
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 5114,
+      "end": 5115
+    },
+    {
+      "text": "509",
+      "type": "MONEY",
+      "start": 5116,
+      "end": 5119
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 5123,
+      "end": 5124
+    },
+    {
+      "text": "996",
+      "type": "MONEY",
+      "start": 5125,
+      "end": 5128
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 5130,
+      "end": 5131
+    },
+    {
+      "text": "850",
+      "type": "MONEY",
+      "start": 5132,
+      "end": 5135
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 5145,
+      "end": 5146
+    },
+    {
+      "text": "531",
+      "type": "MONEY",
+      "start": 5147,
+      "end": 5150
+    },
+    {
+      "text": "2",
+      "type": "MONEY",
+      "start": 5154,
+      "end": 5155
+    },
+    {
+      "text": "784",
+      "type": "MONEY",
+      "start": 5156,
+      "end": 5159
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 5164,
+      "end": 5165
+    },
+    {
+      "text": "531",
+      "type": "MONEY",
+      "start": 5166,
+      "end": 5169
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 5173,
+      "end": 5174
+    },
+    {
+      "text": "112",
+      "type": "MONEY",
+      "start": 5175,
+      "end": 5178
+    },
+    {
+      "text": "分占联营公司及合营公司",
+      "type": "ORG",
+      "start": 5182,
+      "end": 5193
+    },
+    {
+      "text": "6",
+      "type": "MONEY",
+      "start": 5242,
+      "end": 5243
+    },
+    {
+      "text": "019",
+      "type": "MONEY",
+      "start": 5244,
+      "end": 5247
+    },
+    {
+      "text": "2",
+      "type": "MONEY",
+      "start": 5249,
+      "end": 5250
+    },
+    {
+      "text": "098",
+      "type": "MONEY",
+      "start": 5251,
+      "end": 5254
+    },
+    {
+      "text": "6",
+      "type": "MONEY",
+      "start": 5257,
+      "end": 5258
+    },
+    {
+      "text": "019",
+      "type": "MONEY",
+      "start": 5259,
+      "end": 5262
+    },
+    {
+      "text": "7",
+      "type": "MONEY",
+      "start": 5264,
+      "end": 5265
+    },
+    {
+      "text": "718",
+      "type": "MONEY",
+      "start": 5266,
+      "end": 5269
+    },
+    {
+      "text": "62",
+      "type": "MONEY",
+      "start": 5279,
+      "end": 5281
+    },
+    {
+      "text": "883",
+      "type": "MONEY",
+      "start": 5282,
+      "end": 5285
+    },
+    {
+      "text": "47",
+      "type": "MONEY",
+      "start": 5287,
+      "end": 5289
+    },
+    {
+      "text": "789",
+      "type": "MONEY",
+      "start": 5290,
+      "end": 5293
+    },
+    {
+      "text": "62",
+      "type": "MONEY",
+      "start": 5296,
+      "end": 5298
+    },
+    {
+      "text": "883",
+      "type": "MONEY",
+      "start": 5299,
+      "end": 5302
+    },
+    {
+      "text": "58",
+      "type": "MONEY",
+      "start": 5304,
+      "end": 5306
+    },
+    {
+      "text": "534",
+      "type": "MONEY",
+      "start": 5307,
+      "end": 5310
+    },
+    {
+      "text": "8",
+      "type": "MONEY",
+      "start": 5321,
+      "end": 5322
+    },
+    {
+      "text": "900",
+      "type": "MONEY",
+      "start": 5323,
+      "end": 5326
+    },
+    {
+      "text": "11",
+      "type": "MONEY",
+      "start": 5330,
+      "end": 5332
+    },
+    {
+      "text": "008",
+      "type": "MONEY",
+      "start": 5333,
+      "end": 5336
+    },
+    {
+      "text": "8",
+      "type": "MONEY",
+      "start": 5341,
+      "end": 5342
+    },
+    {
+      "text": "900",
+      "type": "MONEY",
+      "start": 5343,
+      "end": 5346
+    },
+    {
+      "text": "10",
+      "type": "MONEY",
+      "start": 5350,
+      "end": 5352
+    },
+    {
+      "text": "168",
+      "type": "MONEY",
+      "start": 5353,
+      "end": 5356
+    },
+    {
+      "text": "53",
+      "type": "MONEY",
+      "start": 5366,
+      "end": 5368
+    },
+    {
+      "text": "983",
+      "type": "MONEY",
+      "start": 5369,
+      "end": 5372
+    },
+    {
+      "text": "36",
+      "type": "MONEY",
+      "start": 5374,
+      "end": 5376
+    },
+    {
+      "text": "781",
+      "type": "MONEY",
+      "start": 5377,
+      "end": 5380
+    },
+    {
+      "text": "53",
+      "type": "MONEY",
+      "start": 5383,
+      "end": 5385
+    },
+    {
+      "text": "983",
+      "type": "MONEY",
+      "start": 5386,
+      "end": 5389
+    },
+    {
+      "text": "48",
+      "type": "MONEY",
+      "start": 5391,
+      "end": 5393
+    },
+    {
+      "text": "366",
+      "type": "MONEY",
+      "start": 5394,
+      "end": 5397
+    },
+    {
+      "text": "53",
+      "type": "MONEY",
+      "start": 5430,
+      "end": 5432
+    },
+    {
+      "text": "230",
+      "type": "MONEY",
+      "start": 5433,
+      "end": 5436
+    },
+    {
+      "text": "36",
+      "type": "MONEY",
+      "start": 5438,
+      "end": 5440
+    },
+    {
+      "text": "182",
+      "type": "MONEY",
+      "start": 5441,
+      "end": 5444
+    },
+    {
+      "text": "53",
+      "type": "MONEY",
+      "start": 5447,
+      "end": 5449
+    },
+    {
+      "text": "230",
+      "type": "MONEY",
+      "start": 5450,
+      "end": 5453
+    },
+    {
+      "text": "47",
+      "type": "MONEY",
+      "start": 5455,
+      "end": 5457
+    },
+    {
+      "text": "630",
+      "type": "MONEY",
+      "start": 5458,
+      "end": 5461
+    },
+    {
+      "text": "753",
+      "type": "MONEY",
+      "start": 5472,
+      "end": 5475
+    },
+    {
+      "text": "599",
+      "type": "MONEY",
+      "start": 5476,
+      "end": 5479
+    },
+    {
+      "text": "753",
+      "type": "MONEY",
+      "start": 5481,
+      "end": 5484
+    },
+    {
+      "text": "736",
+      "type": "MONEY",
+      "start": 5485,
+      "end": 5488
+    },
+    {
+      "text": "61",
+      "type": "MONEY",
+      "start": 5512,
+      "end": 5514
+    },
+    {
+      "text": "274",
+      "type": "MONEY",
+      "start": 5515,
+      "end": 5518
+    },
+    {
+      "text": "51",
+      "type": "MONEY",
+      "start": 5520,
+      "end": 5522
+    },
+    {
+      "text": "668",
+      "type": "MONEY",
+      "start": 5523,
+      "end": 5526
+    },
+    {
+      "text": "61",
+      "type": "MONEY",
+      "start": 5530,
+      "end": 5532
+    },
+    {
+      "text": "274",
+      "type": "MONEY",
+      "start": 5533,
+      "end": 5536
+    },
+    {
+      "text": "58",
+      "type": "MONEY",
+      "start": 5538,
+      "end": 5540
+    },
+    {
+      "text": "443",
+      "type": "MONEY",
+      "start": 5541,
+      "end": 5544
+    },
+    {
+      "text": "59",
+      "type": "MONEY",
+      "start": 5573,
+      "end": 5575
+    },
+    {
+      "text": "813",
+      "type": "MONEY",
+      "start": 5576,
+      "end": 5579
+    },
+    {
+      "text": "44",
+      "type": "MONEY",
+      "start": 5580,
+      "end": 5582
+    },
+    {
+      "text": "921",
+      "type": "MONEY",
+      "start": 5583,
+      "end": 5586
+    },
+    {
+      "text": "59",
+      "type": "MONEY",
+      "start": 5588,
+      "end": 5590
+    },
+    {
+      "text": "813",
+      "type": "MONEY",
+      "start": 5591,
+      "end": 5594
+    },
+    {
+      "text": "57",
+      "type": "MONEY",
+      "start": 5596,
+      "end": 5598
+    },
+    {
+      "text": "313",
+      "type": "MONEY",
+      "start": 5599,
+      "end": 5602
+    },
+    {
+      "text": "5.762",
+      "type": "MONEY",
+      "start": 5651,
+      "end": 5656
+    },
+    {
+      "text": "3.828",
+      "type": "MONEY",
+      "start": 5659,
+      "end": 5664
+    },
+    {
+      "text": "5.762",
+      "type": "MONEY",
+      "start": 5667,
+      "end": 5672
+    },
+    {
+      "text": "5.112",
+      "type": "MONEY",
+      "start": 5675,
+      "end": 5680
+    },
+    {
+      "text": "5.644",
+      "type": "MONEY",
+      "start": 5688,
+      "end": 5693
+    },
+    {
+      "text": "3.752",
+      "type": "MONEY",
+      "start": 5696,
+      "end": 5701
+    },
+    {
+      "text": "5.644",
+      "type": "MONEY",
+      "start": 5704,
+      "end": 5709
+    },
+    {
+      "text": "4.994",
+      "type": "MONEY",
+      "start": 5711,
+      "end": 5716
+    },
+    {
+      "text": "6",
+      "type": "MONEY",
+      "start": 5793,
+      "end": 5794
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 5836,
+      "end": 5837
+    },
+    {
+      "text": "2024",
+      "type": "MONEY",
+      "start": 5838,
+      "end": 5842
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 5844,
+      "end": 5845
+    },
+    {
+      "text": "2023",
+      "type": "MONEY",
+      "start": 5846,
+      "end": 5850
+    },
+    {
+      "text": "53",
+      "type": "MONEY",
+      "start": 5859,
+      "end": 5861
+    },
+    {
+      "text": "983",
+      "type": "MONEY",
+      "start": 5862,
+      "end": 5865
+    },
+    {
+      "text": "36",
+      "type": "MONEY",
+      "start": 5867,
+      "end": 5869
+    },
+    {
+      "text": "781",
+      "type": "MONEY",
+      "start": 5870,
+      "end": 5873
+    },
+    {
+      "text": "分占联营公司及合营公司",
+      "type": "ORG",
+      "start": 5916,
+      "end": 5927
+    },
+    {
+      "text": "155",
+      "type": "MONEY",
+      "start": 5935,
+      "end": 5938
+    },
+    {
+      "text": "278",
+      "type": "MONEY",
+      "start": 5939,
+      "end": 5942
+    },
+    {
+      "text": "1",
+      "type": "MONEY",
+      "start": 5979,
+      "end": 5980
+    },
+    {
+      "text": "20",
+      "type": "MONEY",
+      "start": 6030,
+      "end": 6032
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 6034,
+      "end": 6035
+    },
+    {
+      "text": "2",
+      "type": "MONEY",
+      "start": 6048,
+      "end": 6049
+    },
+    {
+      "text": "909",
+      "type": "MONEY",
+      "start": 6050,
+      "end": 6053
+    },
+    {
+      "text": "7",
+      "type": "MONEY",
+      "start": 6057,
+      "end": 6058
+    },
+    {
+      "text": "303",
+      "type": "MONEY",
+      "start": 6059,
+      "end": 6062
+    },
+    {
+      "text": "880",
+      "type": "MONEY",
+      "start": 6078,
+      "end": 6081
+    },
+    {
+      "text": "897",
+      "type": "MONEY",
+      "start": 6085,
+      "end": 6088
+    },
+    {
+      "text": "分占联营公司及合营公司",
+      "type": "ORG",
+      "start": 6117,
+      "end": 6128
+    },
+    {
+      "text": "52",
+      "type": "MONEY",
+      "start": 6137,
+      "end": 6139
+    },
+    {
+      "text": "564",
+      "type": "MONEY",
+      "start": 6140,
+      "end": 6143
+    },
+    {
+      "text": "33",
+      "type": "MONEY",
+      "start": 6193,
+      "end": 6195
+    },
+    {
+      "text": "578",
+      "type": "MONEY",
+      "start": 6196,
+      "end": 6199
+    },
+    {
+      "text": "25",
+      "type": "MONEY",
+      "start": 6202,
+      "end": 6204
+    },
+    {
+      "text": "417",
+      "type": "MONEY",
+      "start": 6205,
+      "end": 6208
+    },
+    {
+      "text": "153",
+      "type": "MONEY",
+      "start": 6222,
+      "end": 6225
+    },
+    {
+      "text": "720",
+      "type": "MONEY",
+      "start": 6229,
+      "end": 6232
+    },
+    {
+      "text": "19",
+      "type": "MONEY",
+      "start": 6247,
+      "end": 6249
+    },
+    {
+      "text": "29",
+      "type": "MONEY",
+      "start": 6257,
+      "end": 6259
+    },
+    {
+      "text": "882",
+      "type": "MONEY",
+      "start": 6260,
+      "end": 6263
+    },
+    {
+      "text": "33",
+      "type": "MONEY",
+      "start": 6266,
+      "end": 6268
+    },
+    {
+      "text": "497",
+      "type": "MONEY",
+      "start": 6269,
+      "end": 6272
+    },
+    {
+      "text": "83",
+      "type": "MONEY",
+      "start": 6287,
+      "end": 6289
+    },
+    {
+      "text": "865",
+      "type": "MONEY",
+      "start": 6290,
+      "end": 6293
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 6295,
+      "end": 6296
+    },
+    {
+      "text": "284",
+      "type": "MONEY",
+      "start": 6297,
+      "end": 6300
+    },
+    {
+      "text": "82",
+      "type": "MONEY",
+      "start": 6327,
+      "end": 6329
+    },
+    {
+      "text": "179",
+      "type": "MONEY",
+      "start": 6330,
+      "end": 6333
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 6335,
+      "end": 6336
+    },
+    {
+      "text": "526",
+      "type": "MONEY",
+      "start": 6337,
+      "end": 6340
+    },
+    {
+      "text": "1",
+      "type": "MONEY",
+      "start": 6352,
+      "end": 6353
+    },
+    {
+      "text": "686",
+      "type": "MONEY",
+      "start": 6354,
+      "end": 6357
+    },
+    {
+      "text": "242",
+      "type": "MONEY",
+      "start": 6360,
+      "end": 6363
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 6404,
+      "end": 6405
+    },
+    {
+      "text": "2024",
+      "type": "MONEY",
+      "start": 6406,
+      "end": 6410
+    },
+    {
+      "text": "2",
+      "type": "MONEY",
+      "start": 6411,
+      "end": 6412
+    },
+    {
+      "text": "202",
+      "type": "MONEY",
+      "start": 6413,
+      "end": 6416
+    },
+    {
+      "text": "4",
+      "type": "MONEY",
+      "start": 6417,
+      "end": 6418
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 6419,
+      "end": 6420
+    },
+    {
+      "text": "202",
+      "type": "MONEY",
+      "start": 6421,
+      "end": 6424
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 6425,
+      "end": 6426
+    },
+    {
+      "text": "64",
+      "type": "MONEY",
+      "start": 6440,
+      "end": 6442
+    },
+    {
+      "text": "397",
+      "type": "MONEY",
+      "start": 6443,
+      "end": 6446
+    },
+    {
+      "text": "62",
+      "type": "MONEY",
+      "start": 6447,
+      "end": 6449
+    },
+    {
+      "text": "902",
+      "type": "MONEY",
+      "start": 6450,
+      "end": 6453
+    },
+    {
+      "text": "55",
+      "type": "MONEY",
+      "start": 6455,
+      "end": 6457
+    },
+    {
+      "text": "824",
+      "type": "MONEY",
+      "start": 6458,
+      "end": 6461
+    },
+    {
+      "text": "69",
+      "type": "MONEY",
+      "start": 6480,
+      "end": 6482
+    },
+    {
+      "text": "656",
+      "type": "MONEY",
+      "start": 6483,
+      "end": 6486
+    },
+    {
+      "text": "68",
+      "type": "MONEY",
+      "start": 6487,
+      "end": 6489
+    },
+    {
+      "text": "518",
+      "type": "MONEY",
+      "start": 6490,
+      "end": 6493
+    },
+    {
+      "text": "61",
+      "type": "MONEY",
+      "start": 6495,
+      "end": 6497
+    },
+    {
+      "text": "301",
+      "type": "MONEY",
+      "start": 6498,
+      "end": 6501
+    },
+    {
+      "text": "42%",
+      "type": "PERCENT",
+      "start": 6521,
+      "end": 6524
+    },
+    {
+      "text": "43%",
+      "type": "PERCENT",
+      "start": 6525,
+      "end": 6528
+    },
+    {
+      "text": "40%",
+      "type": "PERCENT",
+      "start": 6529,
+      "end": 6532
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 6543,
+      "end": 6544
+    },
+    {
+      "text": "145",
+      "type": "MONEY",
+      "start": 6545,
+      "end": 6548
+    },
+    {
+      "text": "2",
+      "type": "MONEY",
+      "start": 6549,
+      "end": 6550
+    },
+    {
+      "text": "918",
+      "type": "MONEY",
+      "start": 6551,
+      "end": 6554
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 6556,
+      "end": 6557
+    },
+    {
+      "text": "061",
+      "type": "MONEY",
+      "start": 6558,
+      "end": 6561
+    },
+    {
+      "text": "95",
+      "type": "MONEY",
+      "start": 6577,
+      "end": 6579
+    },
+    {
+      "text": "462",
+      "type": "MONEY",
+      "start": 6580,
+      "end": 6583
+    },
+    {
+      "text": "71",
+      "type": "MONEY",
+      "start": 6584,
+      "end": 6586
+    },
+    {
+      "text": "757",
+      "type": "MONEY",
+      "start": 6587,
+      "end": 6590
+    },
+    {
+      "text": "36",
+      "type": "MONEY",
+      "start": 6592,
+      "end": 6594
+    },
+    {
+      "text": "431",
+      "type": "MONEY",
+      "start": 6595,
+      "end": 6598
+    },
+    {
+      "text": "17",
+      "type": "MONEY",
+      "start": 6610,
+      "end": 6612
+    },
+    {
+      "text": "094",
+      "type": "MONEY",
+      "start": 6613,
+      "end": 6616
+    },
+    {
+      "text": "8",
+      "type": "MONEY",
+      "start": 6617,
+      "end": 6618
+    },
+    {
+      "text": "729",
+      "type": "MONEY",
+      "start": 6619,
+      "end": 6622
+    },
+    {
+      "text": "8",
+      "type": "MONEY",
+      "start": 6624,
+      "end": 6625
+    },
+    {
+      "text": "005",
+      "type": "MONEY",
+      "start": 6626,
+      "end": 6629
+    },
+    {
+      "text": "合并",
+      "type": "EVENT",
+      "start": 6869,
+      "end": 6871
+    },
+    {
+      "text": "7",
+      "type": "MONEY",
+      "start": 6936,
+      "end": 6937
+    },
+    {
+      "text": "69",
+      "type": "MONEY",
+      "start": 7134,
+      "end": 7136
+    },
+    {
+      "text": "583",
+      "type": "MONEY",
+      "start": 7137,
+      "end": 7140
+    },
+    {
+      "text": "53",
+      "type": "MONEY",
+      "start": 7144,
+      "end": 7146
+    },
+    {
+      "text": "232",
+      "type": "MONEY",
+      "start": 7147,
+      "end": 7150
+    },
+    {
+      "text": "23",
+      "type": "MONEY",
+      "start": 7161,
+      "end": 7163
+    },
+    {
+      "text": "310",
+      "type": "MONEY",
+      "start": 7164,
+      "end": 7167
+    },
+    {
+      "text": "17",
+      "type": "MONEY",
+      "start": 7170,
+      "end": 7172
+    },
+    {
+      "text": "179",
+      "type": "MONEY",
+      "start": 7173,
+      "end": 7176
+    },
+    {
+      "text": "17",
+      "type": "MONEY",
+      "start": 7187,
+      "end": 7189
+    },
+    {
+      "text": "793",
+      "type": "MONEY",
+      "start": 7190,
+      "end": 7193
+    },
+    {
+      "text": "20",
+      "type": "MONEY",
+      "start": 7196,
+      "end": 7198
+    },
+    {
+      "text": "464",
+      "type": "MONEY",
+      "start": 7199,
+      "end": 7202
+    },
+    {
+      "text": "12",
+      "type": "MONEY",
+      "start": 7212,
+      "end": 7214
+    },
+    {
+      "text": "801",
+      "type": "MONEY",
+      "start": 7215,
+      "end": 7218
+    },
+    {
+      "text": "13",
+      "type": "MONEY",
+      "start": 7222,
+      "end": 7224
+    },
+    {
+      "text": "583",
+      "type": "MONEY",
+      "start": 7225,
+      "end": 7228
+    },
+    {
+      "text": "738",
+      "type": "MONEY",
+      "start": 7238,
+      "end": 7241
+    },
+    {
+      "text": "570",
+      "type": "MONEY",
+      "start": 7244,
+      "end": 7247
+    },
+    {
+      "text": "178",
+      "type": "MONEY",
+      "start": 7256,
+      "end": 7259
+    },
+    {
+      "text": "773",
+      "type": "MONEY",
+      "start": 7260,
+      "end": 7263
+    },
+    {
+      "text": "177",
+      "type": "MONEY",
+      "start": 7266,
+      "end": 7269
+    },
+    {
+      "text": "727",
+      "type": "MONEY",
+      "start": 7270,
+      "end": 7273
+    },
+    {
+      "text": "于联营公司",
+      "type": "ORG",
+      "start": 7277,
+      "end": 7282
+    },
+    {
+      "text": "266",
+      "type": "MONEY",
+      "start": 7287,
+      "end": 7290
+    },
+    {
+      "text": "057",
+      "type": "MONEY",
+      "start": 7291,
+      "end": 7294
+    },
+    {
+      "text": "253",
+      "type": "MONEY",
+      "start": 7298,
+      "end": 7301
+    },
+    {
+      "text": "696",
+      "type": "MONEY",
+      "start": 7302,
+      "end": 7305
+    },
+    {
+      "text": "于合营公司",
+      "type": "ORG",
+      "start": 7309,
+      "end": 7314
+    },
+    {
+      "text": "7",
+      "type": "MONEY",
+      "start": 7319,
+      "end": 7320
+    },
+    {
+      "text": "113",
+      "type": "MONEY",
+      "start": 7321,
+      "end": 7324
+    },
+    {
+      "text": "7",
+      "type": "MONEY",
+      "start": 7328,
+      "end": 7329
+    },
+    {
+      "text": "969",
+      "type": "MONEY",
+      "start": 7330,
+      "end": 7333
+    },
+    {
+      "text": "209",
+      "type": "MONEY",
+      "start": 7359,
+      "end": 7362
+    },
+    {
+      "text": "200",
+      "type": "MONEY",
+      "start": 7363,
+      "end": 7366
+    },
+    {
+      "text": "211",
+      "type": "MONEY",
+      "start": 7370,
+      "end": 7373
+    },
+    {
+      "text": "145",
+      "type": "MONEY",
+      "start": 7374,
+      "end": 7377
+    },
+    {
+      "text": "283",
+      "type": "MONEY",
+      "start": 7417,
+      "end": 7420
+    },
+    {
+      "text": "632",
+      "type": "MONEY",
+      "start": 7421,
+      "end": 7424
+    },
+    {
+      "text": "213",
+      "type": "MONEY",
+      "start": 7427,
+      "end": 7430
+    },
+    {
+      "text": "951",
+      "type": "MONEY",
+      "start": 7431,
+      "end": 7434
+    },
+    {
+      "text": "27",
+      "type": "MONEY",
+      "start": 7452,
+      "end": 7454
+    },
+    {
+      "text": "995",
+      "type": "MONEY",
+      "start": 7455,
+      "end": 7458
+    },
+    {
+      "text": "28",
+      "type": "MONEY",
+      "start": 7461,
+      "end": 7463
+    },
+    {
+      "text": "439",
+      "type": "MONEY",
+      "start": 7464,
+      "end": 7467
+    },
+    {
+      "text": "848",
+      "type": "MONEY",
+      "start": 7479,
+      "end": 7482
+    },
+    {
+      "text": "2",
+      "type": "MONEY",
+      "start": 7484,
+      "end": 7485
+    },
+    {
+      "text": "527",
+      "type": "MONEY",
+      "start": 7486,
+      "end": 7489
+    },
+    {
+      "text": "31",
+      "type": "MONEY",
+      "start": 7502,
+      "end": 7504
+    },
+    {
+      "text": "214",
+      "type": "MONEY",
+      "start": 7505,
+      "end": 7508
+    },
+    {
+      "text": "29",
+      "type": "MONEY",
+      "start": 7511,
+      "end": 7513
+    },
+    {
+      "text": "017",
+      "type": "MONEY",
+      "start": 7514,
+      "end": 7517
+    },
+    {
+      "text": "70",
+      "type": "MONEY",
+      "start": 7527,
+      "end": 7529
+    },
+    {
+      "text": "134",
+      "type": "MONEY",
+      "start": 7530,
+      "end": 7533
+    },
+    {
+      "text": "29",
+      "type": "MONEY",
+      "start": 7536,
+      "end": 7538
+    },
+    {
+      "text": "301",
+      "type": "MONEY",
+      "start": 7539,
+      "end": 7542
+    },
+    {
+      "text": "1",
+      "type": "MONEY",
+      "start": 7547,
+      "end": 7548
+    },
+    {
+      "text": "199",
+      "type": "MONEY",
+      "start": 7549,
+      "end": 7552
+    },
+    {
+      "text": "191",
+      "type": "MONEY",
+      "start": 7553,
+      "end": 7556
+    },
+    {
+      "text": "1",
+      "type": "MONEY",
+      "start": 7559,
+      "end": 7560
+    },
+    {
+      "text": "058",
+      "type": "MONEY",
+      "start": 7561,
+      "end": 7564
+    },
+    {
+      "text": "800",
+      "type": "MONEY",
+      "start": 7565,
+      "end": 7568
+    },
+    {
+      "text": "9",
+      "type": "MONEY",
+      "start": 7590,
+      "end": 7591
+    },
+    {
+      "text": "823",
+      "type": "MONEY",
+      "start": 7592,
+      "end": 7595
+    },
+    {
+      "text": "456",
+      "type": "MONEY",
+      "start": 7598,
+      "end": 7601
+    },
+    {
+      "text": "47",
+      "type": "MONEY",
+      "start": 7610,
+      "end": 7612
+    },
+    {
+      "text": "336",
+      "type": "MONEY",
+      "start": 7613,
+      "end": 7616
+    },
+    {
+      "text": "46",
+      "type": "MONEY",
+      "start": 7619,
+      "end": 7621
+    },
+    {
+      "text": "606",
+      "type": "MONEY",
+      "start": 7622,
+      "end": 7625
+    },
+    {
+      "text": "103",
+      "type": "MONEY",
+      "start": 7643,
+      "end": 7646
+    },
+    {
+      "text": "135",
+      "type": "MONEY",
+      "start": 7647,
+      "end": 7650
+    },
+    {
+      "text": "88",
+      "type": "MONEY",
+      "start": 7653,
+      "end": 7655
+    },
+    {
+      "text": "411",
+      "type": "MONEY",
+      "start": 7656,
+      "end": 7659
+    },
+    {
+      "text": "4",
+      "type": "MONEY",
+      "start": 7671,
+      "end": 7672
+    },
+    {
+      "text": "950",
+      "type": "MONEY",
+      "start": 7673,
+      "end": 7676
+    },
+    {
+      "text": "5",
+      "type": "MONEY",
+      "start": 7679,
+      "end": 7680
+    },
+    {
+      "text": "949",
+      "type": "MONEY",
+      "start": 7681,
+      "end": 7684
+    },
+    {
+      "text": "9",
+      "type": "MONEY",
+      "start": 7710,
+      "end": 7711
+    },
+    {
+      "text": "773",
+      "type": "MONEY",
+      "start": 7712,
+      "end": 7715
+    },
+    {
+      "text": "14",
+      "type": "MONEY",
+      "start": 7718,
+      "end": 7720
+    },
+    {
+      "text": "903",
+      "type": "MONEY",
+      "start": 7721,
+      "end": 7724
+    },
+    {
+      "text": "2",
+      "type": "MONEY",
+      "start": 7764,
+      "end": 7765
+    },
+    {
+      "text": "132",
+      "type": "MONEY",
+      "start": 7766,
+      "end": 7769
+    },
+    {
+      "text": "197",
+      "type": "MONEY",
+      "start": 7782,
+      "end": 7785
+    },
+    {
+      "text": "995",
+      "type": "MONEY",
+      "start": 7786,
+      "end": 7789
+    },
+    {
+      "text": "185",
+      "type": "MONEY",
+      "start": 7792,
+      "end": 7795
+    },
+    {
+      "text": "983",
+      "type": "MONEY",
+      "start": 7796,
+      "end": 7799
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 7810,
+      "end": 7811
+    },
+    {
+      "text": "554",
+      "type": "MONEY",
+      "start": 7812,
+      "end": 7815
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 7818,
+      "end": 7819
+    },
+    {
+      "text": "818",
+      "type": "MONEY",
+      "start": 7820,
+      "end": 7823
+    },
+    {
+      "text": "145",
+      "type": "MONEY",
+      "start": 7837,
+      "end": 7840
+    },
+    {
+      "text": "468",
+      "type": "MONEY",
+      "start": 7841,
+      "end": 7844
+    },
+    {
+      "text": "172",
+      "type": "MONEY",
+      "start": 7847,
+      "end": 7850
+    },
+    {
+      "text": "320",
+      "type": "MONEY",
+      "start": 7851,
+      "end": 7854
+    },
+    {
+      "text": "524",
+      "type": "MONEY",
+      "start": 7860,
+      "end": 7863
+    },
+    {
+      "text": "166",
+      "type": "MONEY",
+      "start": 7864,
+      "end": 7867
+    },
+    {
+      "text": "518",
+      "type": "MONEY",
+      "start": 7869,
+      "end": 7872
+    },
+    {
+      "text": "446",
+      "type": "MONEY",
+      "start": 7873,
+      "end": 7876
+    },
+    {
+      "text": "1",
+      "type": "MONEY",
+      "start": 7885,
+      "end": 7886
+    },
+    {
+      "text": "723",
+      "type": "MONEY",
+      "start": 7887,
+      "end": 7890
+    },
+    {
+      "text": "357",
+      "type": "MONEY",
+      "start": 7891,
+      "end": 7894
+    },
+    {
+      "text": "1",
+      "type": "MONEY",
+      "start": 7897,
+      "end": 7898
+    },
+    {
+      "text": "577",
+      "type": "MONEY",
+      "start": 7899,
+      "end": 7902
+    },
+    {
+      "text": "246",
+      "type": "MONEY",
+      "start": 7903,
+      "end": 7906
+    },
+    {
+      "text": "8",
+      "type": "MONEY",
+      "start": 7914,
+      "end": 7915
+    },
+    {
+      "text": "37",
+      "type": "MONEY",
+      "start": 8052,
+      "end": 8054
+    },
+    {
+      "text": "201",
+      "type": "MONEY",
+      "start": 8055,
+      "end": 8058
+    },
+    {
+      "text": "37",
+      "type": "MONEY",
+      "start": 8061,
+      "end": 8063
+    },
+    {
+      "text": "989",
+      "type": "MONEY",
+      "start": 8064,
+      "end": 8067
+    },
+    {
+      "text": "2",
+      "type": "MONEY",
+      "start": 8079,
+      "end": 8080
+    },
+    {
+      "text": "571",
+      "type": "MONEY",
+      "start": 8081,
+      "end": 8084
+    },
+    {
+      "text": "4",
+      "type": "MONEY",
+      "start": 8089,
+      "end": 8090
+    },
+    {
+      "text": "740",
+      "type": "MONEY",
+      "start": 8091,
+      "end": 8094
+    },
+    {
+      "text": "4",
+      "type": "MONEY",
+      "start": 8114,
+      "end": 8115
+    },
+    {
+      "text": "976",
+      "type": "MONEY",
+      "start": 8116,
+      "end": 8119
+    },
+    {
+      "text": "5",
+      "type": "MONEY",
+      "start": 8124,
+      "end": 8125
+    },
+    {
+      "text": "350",
+      "type": "MONEY",
+      "start": 8126,
+      "end": 8129
+    },
+    {
+      "text": "21",
+      "type": "MONEY",
+      "start": 8142,
+      "end": 8144
+    },
+    {
+      "text": "113",
+      "type": "MONEY",
+      "start": 8145,
+      "end": 8148
+    },
+    {
+      "text": "33",
+      "type": "MONEY",
+      "start": 8152,
+      "end": 8154
+    },
+    {
+      "text": "219",
+      "type": "MONEY",
+      "start": 8155,
+      "end": 8158
+    },
+    {
+      "text": "861",
+      "type": "MONEY",
+      "start": 8171,
+      "end": 8174
+    },
+    {
+      "text": "819",
+      "type": "MONEY",
+      "start": 8175,
+      "end": 8178
+    },
+    {
+      "text": "813",
+      "type": "MONEY",
+      "start": 8181,
+      "end": 8184
+    },
+    {
+      "text": "911",
+      "type": "MONEY",
+      "start": 8185,
+      "end": 8188
+    },
+    {
+      "text": "912",
+      "type": "MONEY",
+      "start": 8192,
+      "end": 8195
+    },
+    {
+      "text": "586",
+      "type": "MONEY",
+      "start": 8196,
+      "end": 8199
+    },
+    {
+      "text": "808",
+      "type": "MONEY",
+      "start": 8202,
+      "end": 8205
+    },
+    {
+      "text": "591",
+      "type": "MONEY",
+      "start": 8206,
+      "end": 8209
+    },
+    {
+      "text": "67",
+      "type": "MONEY",
+      "start": 8225,
+      "end": 8227
+    },
+    {
+      "text": "921",
+      "type": "MONEY",
+      "start": 8228,
+      "end": 8231
+    },
+    {
+      "text": "65",
+      "type": "MONEY",
+      "start": 8234,
+      "end": 8236
+    },
+    {
+      "text": "090",
+      "type": "MONEY",
+      "start": 8237,
+      "end": 8240
+    },
+    {
+      "text": "980",
+      "type": "MONEY",
+      "start": 8254,
+      "end": 8257
+    },
+    {
+      "text": "507",
+      "type": "MONEY",
+      "start": 8258,
+      "end": 8261
+    },
+    {
+      "text": "873",
+      "type": "MONEY",
+      "start": 8264,
+      "end": 8267
+    },
+    {
+      "text": "681",
+      "type": "MONEY",
+      "start": 8268,
+      "end": 8271
+    },
+    {
+      "text": "151",
+      "type": "MONEY",
+      "start": 8301,
+      "end": 8304
+    },
+    {
+      "text": "600",
+      "type": "MONEY",
+      "start": 8305,
+      "end": 8308
+    },
+    {
+      "text": "155",
+      "type": "MONEY",
+      "start": 8311,
+      "end": 8314
+    },
+    {
+      "text": "819",
+      "type": "MONEY",
+      "start": 8315,
+      "end": 8318
+    },
+    {
+      "text": "127",
+      "type": "MONEY",
+      "start": 8328,
+      "end": 8331
+    },
+    {
+      "text": "285",
+      "type": "MONEY",
+      "start": 8332,
+      "end": 8335
+    },
+    {
+      "text": "137",
+      "type": "MONEY",
+      "start": 8338,
+      "end": 8341
+    },
+    {
+      "text": "101",
+      "type": "MONEY",
+      "start": 8342,
+      "end": 8345
+    },
+    {
+      "text": "12",
+      "type": "MONEY",
+      "start": 8357,
+      "end": 8359
+    },
+    {
+      "text": "227",
+      "type": "MONEY",
+      "start": 8360,
+      "end": 8363
+    },
+    {
+      "text": "12",
+      "type": "MONEY",
+      "start": 8366,
+      "end": 8368
+    },
+    {
+      "text": "169",
+      "type": "MONEY",
+      "start": 8369,
+      "end": 8372
+    },
+    {
+      "text": "7",
+      "type": "MONEY",
+      "start": 8384,
+      "end": 8385
+    },
+    {
+      "text": "904",
+      "type": "MONEY",
+      "start": 8386,
+      "end": 8389
+    },
+    {
+      "text": "8",
+      "type": "MONEY",
+      "start": 8392,
+      "end": 8393
+    },
+    {
+      "text": "781",
+      "type": "MONEY",
+      "start": 8394,
+      "end": 8397
+    },
+    {
+      "text": "15",
+      "type": "MONEY",
+      "start": 8410,
+      "end": 8412
+    },
+    {
+      "text": "561",
+      "type": "MONEY",
+      "start": 8413,
+      "end": 8416
+    },
+    {
+      "text": "17",
+      "type": "MONEY",
+      "start": 8419,
+      "end": 8421
+    },
+    {
+      "text": "635",
+      "type": "MONEY",
+      "start": 8422,
+      "end": 8425
+    },
+    {
+      "text": "14",
+      "type": "MONEY",
+      "start": 8435,
+      "end": 8437
+    },
+    {
+      "text": "023",
+      "type": "MONEY",
+      "start": 8438,
+      "end": 8441
+    },
+    {
+      "text": "16",
+      "type": "MONEY",
+      "start": 8444,
+      "end": 8446
+    },
+    {
+      "text": "468",
+      "type": "MONEY",
+      "start": 8447,
+      "end": 8450
+    },
+    {
+      "text": "6",
+      "type": "MONEY",
+      "start": 8460,
+      "end": 8461
+    },
+    {
+      "text": "473",
+      "type": "MONEY",
+      "start": 8462,
+      "end": 8465
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 8468,
+      "end": 8469
+    },
+    {
+      "text": "435",
+      "type": "MONEY",
+      "start": 8470,
+      "end": 8473
+    },
+    {
+      "text": "335",
+      "type": "MONEY",
+      "start": 8477,
+      "end": 8480
+    },
+    {
+      "text": "073",
+      "type": "MONEY",
+      "start": 8481,
+      "end": 8484
+    },
+    {
+      "text": "351",
+      "type": "MONEY",
+      "start": 8487,
+      "end": 8490
+    },
+    {
+      "text": "408",
+      "type": "MONEY",
+      "start": 8491,
+      "end": 8494
+    },
+    {
+      "text": "142",
+      "type": "MONEY",
+      "start": 8522,
+      "end": 8525
+    },
+    {
+      "text": "665",
+      "type": "MONEY",
+      "start": 8526,
+      "end": 8529
+    },
+    {
+      "text": "100",
+      "type": "MONEY",
+      "start": 8532,
+      "end": 8535
+    },
+    {
+      "text": "948",
+      "type": "MONEY",
+      "start": 8536,
+      "end": 8539
+    },
+    {
+      "text": "73",
+      "type": "MONEY",
+      "start": 8559,
+      "end": 8561
+    },
+    {
+      "text": "036",
+      "type": "MONEY",
+      "start": 8562,
+      "end": 8565
+    },
+    {
+      "text": "76",
+      "type": "MONEY",
+      "start": 8568,
+      "end": 8570
+    },
+    {
+      "text": "595",
+      "type": "MONEY",
+      "start": 8571,
+      "end": 8574
+    },
+    {
+      "text": "42",
+      "type": "MONEY",
+      "start": 8584,
+      "end": 8586
+    },
+    {
+      "text": "767",
+      "type": "MONEY",
+      "start": 8587,
+      "end": 8590
+    },
+    {
+      "text": "41",
+      "type": "MONEY",
+      "start": 8593,
+      "end": 8595
+    },
+    {
+      "text": "537",
+      "type": "MONEY",
+      "start": 8596,
+      "end": 8599
+    },
+    {
+      "text": "8",
+      "type": "MONEY",
+      "start": 8612,
+      "end": 8613
+    },
+    {
+      "text": "403",
+      "type": "MONEY",
+      "start": 8614,
+      "end": 8617
+    },
+    {
+      "text": "14",
+      "type": "MONEY",
+      "start": 8620,
+      "end": 8622
+    },
+    {
+      "text": "161",
+      "type": "MONEY",
+      "start": 8623,
+      "end": 8626
+    },
+    {
+      "text": "19",
+      "type": "MONEY",
+      "start": 8642,
+      "end": 8644
+    },
+    {
+      "text": "044",
+      "type": "MONEY",
+      "start": 8645,
+      "end": 8648
+    },
+    {
+      "text": "17",
+      "type": "MONEY",
+      "start": 8651,
+      "end": 8653
+    },
+    {
+      "text": "664",
+      "type": "MONEY",
+      "start": 8654,
+      "end": 8657
+    },
+    {
+      "text": "4",
+      "type": "MONEY",
+      "start": 8672,
+      "end": 8673
+    },
+    {
+      "text": "873",
+      "type": "MONEY",
+      "start": 8674,
+      "end": 8677
+    },
+    {
+      "text": "4",
+      "type": "MONEY",
+      "start": 8680,
+      "end": 8681
+    },
+    {
+      "text": "372",
+      "type": "MONEY",
+      "start": 8682,
+      "end": 8685
+    },
+    {
+      "text": "4",
+      "type": "MONEY",
+      "start": 8700,
+      "end": 8701
+    },
+    {
+      "text": "823",
+      "type": "MONEY",
+      "start": 8702,
+      "end": 8705
+    },
+    {
+      "text": "4",
+      "type": "MONEY",
+      "start": 8708,
+      "end": 8709
+    },
+    {
+      "text": "558",
+      "type": "MONEY",
+      "start": 8710,
+      "end": 8713
+    },
+    {
+      "text": "5",
+      "type": "MONEY",
+      "start": 8726,
+      "end": 8727
+    },
+    {
+      "text": "583",
+      "type": "MONEY",
+      "start": 8728,
+      "end": 8731
+    },
+    {
+      "text": "6",
+      "type": "MONEY",
+      "start": 8734,
+      "end": 8735
+    },
+    {
+      "text": "154",
+      "type": "MONEY",
+      "start": 8736,
+      "end": 8739
+    },
+    {
+      "text": "106",
+      "type": "MONEY",
+      "start": 8752,
+      "end": 8755
+    },
+    {
+      "text": "583",
+      "type": "MONEY",
+      "start": 8756,
+      "end": 8759
+    },
+    {
+      "text": "86",
+      "type": "MONEY",
+      "start": 8762,
+      "end": 8764
+    },
+    {
+      "text": "168",
+      "type": "MONEY",
+      "start": 8765,
+      "end": 8768
+    },
+    {
+      "text": "407",
+      "type": "MONEY",
+      "start": 8773,
+      "end": 8776
+    },
+    {
+      "text": "777",
+      "type": "MONEY",
+      "start": 8777,
+      "end": 8780
+    },
+    {
+      "text": "352",
+      "type": "MONEY",
+      "start": 8782,
+      "end": 8785
+    },
+    {
+      "text": "157",
+      "type": "MONEY",
+      "start": 8786,
+      "end": 8789
+    },
+    {
+      "text": "742",
+      "type": "MONEY",
+      "start": 8798,
+      "end": 8801
+    },
+    {
+      "text": "850",
+      "type": "MONEY",
+      "start": 8802,
+      "end": 8805
+    },
+    {
+      "text": "703",
+      "type": "MONEY",
+      "start": 8807,
+      "end": 8810
+    },
+    {
+      "text": "565",
+      "type": "MONEY",
+      "start": 8811,
+      "end": 8814
+    },
+    {
+      "text": "1",
+      "type": "MONEY",
+      "start": 8828,
+      "end": 8829
+    },
+    {
+      "text": "723",
+      "type": "MONEY",
+      "start": 8830,
+      "end": 8833
+    },
+    {
+      "text": "357",
+      "type": "MONEY",
+      "start": 8834,
+      "end": 8837
+    },
+    {
+      "text": "1",
+      "type": "MONEY",
+      "start": 8839,
+      "end": 8840
+    },
+    {
+      "text": "577",
+      "type": "MONEY",
+      "start": 8841,
+      "end": 8844
+    },
+    {
+      "text": "246",
+      "type": "MONEY",
+      "start": 8845,
+      "end": 8848
+    },
+    {
+      "text": "9",
+      "type": "MONEY",
+      "start": 8853,
+      "end": 8854
+    },
+    {
+      "text": "来自投资公司",
+      "type": "ORG",
+      "start": 8946,
+      "end": 8952
+    },
+    {
+      "text": "2024",
+      "type": "MONEY",
+      "start": 9040,
+      "end": 9044
+    },
+    {
+      "text": "9",
+      "type": "MONEY",
+      "start": 9047,
+      "end": 9048
+    },
+    {
+      "text": "30",
+      "type": "MONEY",
+      "start": 9051,
+      "end": 9053
+    },
+    {
+      "text": "53",
+      "type": "MONEY",
+      "start": 9068,
+      "end": 9070
+    },
+    {
+      "text": "333",
+      "type": "MONEY",
+      "start": 9071,
+      "end": 9074
+    },
+    {
+      "text": "6",
+      "type": "MONEY",
+      "start": 9076,
+      "end": 9077
+    },
+    {
+      "text": "377",
+      "type": "MONEY",
+      "start": 9078,
+      "end": 9081
+    },
+    {
+      "text": "1",
+      "type": "MONEY",
+      "start": 9086,
+      "end": 9087
+    },
+    {
+      "text": "324",
+      "type": "MONEY",
+      "start": 9088,
+      "end": 9091
+    },
+    {
+      "text": "240",
+      "type": "MONEY",
+      "start": 9095,
+      "end": 9098
+    },
+    {
+      "text": "61",
+      "type": "MONEY",
+      "start": 9103,
+      "end": 9105
+    },
+    {
+      "text": "274",
+      "type": "MONEY",
+      "start": 9106,
+      "end": 9109
+    },
+    {
+      "text": "分占联营公司及合营公司",
+      "type": "ORG",
+      "start": 9112,
+      "end": 9123
+    },
+    {
+      "text": "6",
+      "type": "MONEY",
+      "start": 9136,
+      "end": 9137
+    },
+    {
+      "text": "019",
+      "type": "MONEY",
+      "start": 9138,
+      "end": 9141
+    },
+    {
+      "text": "985",
+      "type": "MONEY",
+      "start": 9143,
+      "end": 9146
+    },
+    {
+      "text": "60",
+      "type": "MONEY",
+      "start": 9147,
+      "end": 9149
+    },
+    {
+      "text": "1",
+      "type": "MONEY",
+      "start": 9150,
+      "end": 9151
+    },
+    {
+      "text": "433",
+      "type": "MONEY",
+      "start": 9152,
+      "end": 9155
+    },
+    {
+      "text": "12",
+      "type": "MONEY",
+      "start": 9157,
+      "end": 9159
+    },
+    {
+      "text": "8",
+      "type": "MONEY",
+      "start": 9166,
+      "end": 9167
+    },
+    {
+      "text": "509",
+      "type": "MONEY",
+      "start": 9168,
+      "end": 9171
+    },
+    {
+      "text": "53",
+      "type": "MONEY",
+      "start": 9180,
+      "end": 9182
+    },
+    {
+      "text": "983",
+      "type": "MONEY",
+      "start": 9183,
+      "end": 9186
+    },
+    {
+      "text": "7",
+      "type": "MONEY",
+      "start": 9188,
+      "end": 9189
+    },
+    {
+      "text": "362",
+      "type": "MONEY",
+      "start": 9190,
+      "end": 9193
+    },
+    {
+      "text": "6",
+      "type": "MONEY",
+      "start": 9196,
+      "end": 9197
+    },
+    {
+      "text": "610",
+      "type": "MONEY",
+      "start": 9198,
+      "end": 9201
+    },
+    {
+      "text": "2",
+      "type": "MONEY",
+      "start": 9204,
+      "end": 9205
+    },
+    {
+      "text": "757",
+      "type": "MONEY",
+      "start": 9206,
+      "end": 9209
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 9211,
+      "end": 9212
+    },
+    {
+      "text": "788",
+      "type": "MONEY",
+      "start": 9213,
+      "end": 9216
+    },
+    {
+      "text": "304",
+      "type": "MONEY",
+      "start": 9218,
+      "end": 9221
+    },
+    {
+      "text": "653",
+      "type": "MONEY",
+      "start": 9225,
+      "end": 9228
+    },
+    {
+      "text": "60",
+      "type": "MONEY",
+      "start": 9231,
+      "end": 9233
+    },
+    {
+      "text": "931",
+      "type": "MONEY",
+      "start": 9234,
+      "end": 9237
+    },
+    {
+      "text": "53",
+      "type": "MONEY",
+      "start": 9254,
+      "end": 9256
+    },
+    {
+      "text": "230",
+      "type": "MONEY",
+      "start": 9257,
+      "end": 9260
+    },
+    {
+      "text": "7",
+      "type": "MONEY",
+      "start": 9262,
+      "end": 9263
+    },
+    {
+      "text": "180",
+      "type": "MONEY",
+      "start": 9264,
+      "end": 9267
+    },
+    {
+      "text": "6",
+      "type": "MONEY",
+      "start": 9270,
+      "end": 9271
+    },
+    {
+      "text": "664",
+      "type": "MONEY",
+      "start": 9272,
+      "end": 9275
+    },
+    {
+      "text": "2",
+      "type": "MONEY",
+      "start": 9278,
+      "end": 9279
+    },
+    {
+      "text": "591",
+      "type": "MONEY",
+      "start": 9280,
+      "end": 9283
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 9285,
+      "end": 9286
+    },
+    {
+      "text": "766",
+      "type": "MONEY",
+      "start": 9287,
+      "end": 9290
+    },
+    {
+      "text": "304",
+      "type": "MONEY",
+      "start": 9292,
+      "end": 9295
+    },
+    {
+      "text": "594",
+      "type": "MONEY",
+      "start": 9299,
+      "end": 9302
+    },
+    {
+      "text": "59",
+      "type": "MONEY",
+      "start": 9305,
+      "end": 9307
+    },
+    {
+      "text": "813",
+      "type": "MONEY",
+      "start": 9308,
+      "end": 9311
+    },
+    {
+      "text": "32%",
+      "type": "PERCENT",
+      "start": 9321,
+      "end": 9324
+    },
+    {
+      "text": "37%",
+      "type": "PERCENT",
+      "start": 9332,
+      "end": 9335
+    },
+    {
+      "text": "2024",
+      "type": "MONEY",
+      "start": 9347,
+      "end": 9351
+    },
+    {
+      "text": "6",
+      "type": "MONEY",
+      "start": 9354,
+      "end": 9355
+    },
+    {
+      "text": "30",
+      "type": "MONEY",
+      "start": 9357,
+      "end": 9359
+    },
+    {
+      "text": "50",
+      "type": "MONEY",
+      "start": 9374,
+      "end": 9376
+    },
+    {
+      "text": "732",
+      "type": "MONEY",
+      "start": 9377,
+      "end": 9380
+    },
+    {
+      "text": "6",
+      "type": "MONEY",
+      "start": 9382,
+      "end": 9383
+    },
+    {
+      "text": "213",
+      "type": "MONEY",
+      "start": 9384,
+      "end": 9387
+    },
+    {
+      "text": "1",
+      "type": "MONEY",
+      "start": 9392,
+      "end": 9393
+    },
+    {
+      "text": "305",
+      "type": "MONEY",
+      "start": 9394,
+      "end": 9397
+    },
+    {
+      "text": "190",
+      "type": "MONEY",
+      "start": 9401,
+      "end": 9404
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 9405,
+      "end": 9406
+    },
+    {
+      "text": "58",
+      "type": "MONEY",
+      "start": 9409,
+      "end": 9411
+    },
+    {
+      "text": "443",
+      "type": "MONEY",
+      "start": 9412,
+      "end": 9415
+    },
+    {
+      "text": "分占联营公司及合营公司",
+      "type": "ORG",
+      "start": 9418,
+      "end": 9429
+    },
+    {
+      "text": "7",
+      "type": "MONEY",
+      "start": 9442,
+      "end": 9443
+    },
+    {
+      "text": "718",
+      "type": "MONEY",
+      "start": 9444,
+      "end": 9447
+    },
+    {
+      "text": "926",
+      "type": "MONEY",
+      "start": 9449,
+      "end": 9452
+    },
+    {
+      "text": "91",
+      "type": "MONEY",
+      "start": 9454,
+      "end": 9456
+    },
+    {
+      "text": "1",
+      "type": "MONEY",
+      "start": 9458,
+      "end": 9459
+    },
+    {
+      "text": "313",
+      "type": "MONEY",
+      "start": 9460,
+      "end": 9463
+    },
+    {
+      "text": "20",
+      "type": "MONEY",
+      "start": 9465,
+      "end": 9467
+    },
+    {
+      "text": "9",
+      "type": "MONEY",
+      "start": 9474,
+      "end": 9475
+    },
+    {
+      "text": "886",
+      "type": "MONEY",
+      "start": 9476,
+      "end": 9479
+    },
+    {
+      "text": "48",
+      "type": "MONEY",
+      "start": 9487,
+      "end": 9489
+    },
+    {
+      "text": "366",
+      "type": "MONEY",
+      "start": 9490,
+      "end": 9493
+    },
+    {
+      "text": "7",
+      "type": "MONEY",
+      "start": 9495,
+      "end": 9496
+    },
+    {
+      "text": "139",
+      "type": "MONEY",
+      "start": 9497,
+      "end": 9500
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 9503,
+      "end": 9504
+    },
+    {
+      "text": "672",
+      "type": "MONEY",
+      "start": 9505,
+      "end": 9508
+    },
+    {
+      "text": "2",
+      "type": "MONEY",
+      "start": 9511,
+      "end": 9512
+    },
+    {
+      "text": "618",
+      "type": "MONEY",
+      "start": 9513,
+      "end": 9516
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 9518,
+      "end": 9519
+    },
+    {
+      "text": "526",
+      "type": "MONEY",
+      "start": 9520,
+      "end": 9523
+    },
+    {
+      "text": "1",
+      "type": "MONEY",
+      "start": 9525,
+      "end": 9526
+    },
+    {
+      "text": "025",
+      "type": "MONEY",
+      "start": 9527,
+      "end": 9530
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 9532,
+      "end": 9533
+    },
+    {
+      "text": "561",
+      "type": "MONEY",
+      "start": 9535,
+      "end": 9538
+    },
+    {
+      "text": "58",
+      "type": "MONEY",
+      "start": 9541,
+      "end": 9543
+    },
+    {
+      "text": "444",
+      "type": "MONEY",
+      "start": 9544,
+      "end": 9547
+    },
+    {
+      "text": "47",
+      "type": "MONEY",
+      "start": 9564,
+      "end": 9566
+    },
+    {
+      "text": "630",
+      "type": "MONEY",
+      "start": 9567,
+      "end": 9570
+    },
+    {
+      "text": "6",
+      "type": "MONEY",
+      "start": 9572,
+      "end": 9573
+    },
+    {
+      "text": "981",
+      "type": "MONEY",
+      "start": 9574,
+      "end": 9577
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 9580,
+      "end": 9581
+    },
+    {
+      "text": "726",
+      "type": "MONEY",
+      "start": 9582,
+      "end": 9585
+    },
+    {
+      "text": "2",
+      "type": "MONEY",
+      "start": 9588,
+      "end": 9589
+    },
+    {
+      "text": "418",
+      "type": "MONEY",
+      "start": 9590,
+      "end": 9593
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 9595,
+      "end": 9596
+    },
+    {
+      "text": "492",
+      "type": "MONEY",
+      "start": 9597,
+      "end": 9600
+    },
+    {
+      "text": "1",
+      "type": "MONEY",
+      "start": 9602,
+      "end": 9603
+    },
+    {
+      "text": "025",
+      "type": "MONEY",
+      "start": 9604,
+      "end": 9607
+    },
+    {
+      "text": "3",
+      "type": "MONEY",
+      "start": 9609,
+      "end": 9610
+    },
+    {
+      "text": "510",
+      "type": "MONEY",
+      "start": 9612,
+      "end": 9615
+    },
+    {
+      "text": "57",
+      "type": "MONEY",
+      "start": 9618,
+      "end": 9620
+    },
+    {
+      "text": "313",
+      "type": "MONEY",
+      "start": 9621,
+      "end": 9624
+    },
+    {
+      "text": "31%",
+      "type": "PERCENT",
+      "start": 9634,
+      "end": 9637
+    },
+    {
+      "text": "36%",
+      "type": "PERCENT",
+      "start": 9645,
+      "end": 9648
+    },
+    {
+      "text": "2023",
+      "type": "MONEY",
+      "start": 9660,
+      "end": 9664
+    },
+    {
+      "text": "9",
+      "type": "MONEY",
+      "start": 9666,
+      "end": 9667
+    },
+    {
+      "text": "30",
+      "type": "MONEY",
+      "start": 9670,
+      "end": 9672
+    },
+    {
+      "text": "44",
+      "type": "MONEY",
+      "start": 9692,
+      "end": 9694
+    },
+    {
+      "text": "348",
+      "type": "MONEY",
+      "start": 9695,
+      "end": 9698
+    },
+    {
+      "text": "5",
+      "type": "MONEY",
+      "start": 9700,
+      "end": 9701
+    },
+    {
+      "text": "655",
+      "type": "MONEY",
+      "start": 9702,
+      "end": 9705
+    },
+    {
+      "text": "1",
+      "type": "MONEY",
+      "start": 9709,
+      "end": 9710
+    },
+    {
+      "text": "434",
+      "type": "MONEY",
+      "start": 9711,
+      "end": 9714
+    },
+    {
+      "text": "231",
+      "type": "MONEY",
+      "start": 9718,
+      "end": 9721
+    },
+    {
+      "text": "51",
+      "type": "MONEY",
+      "start": 9726,
+      "end": 9728
+    },
+    {
+      "text": "668",
+      "type": "MONEY",
+      "start": 9729,
+      "end": 9732
+    },
+    {
+      "text": "分占联营公司及合营公司",
+      "type": "ORG",
+      "start": 9735,
+      "end": 9746
+    },
+    {
+      "text": "2",
+      "type": "MONEY",
+      "start": 9759,
+      "end": 9760
+    },
+    {
+      "text": "098",
+      "type": "MONEY",
+      "start": 9761,
+      "end": 9764
+    },
+    {
+      "text": "1",
+      "type": "MONEY",
+      "start": 9766,
+      "end": 9767
+    },
+    {
+      "text": "293",
+      "type": "MONEY",
+      "start": 9768,
+      "end": 9771
+    },
+    {
+      "text": "138",
+      "type": "MONEY",
+      "start": 9773,
+      "end": 9776
+    },
+    {
+      "text": "1",
+      "type": "MONEY",
+      "start": 9777,
+      "end": 9778
+    },
+    {
+      "text": "232",
+      "type": "MONEY",
+      "start": 9779,
+      "end": 9782
+    },
+    {
+      "text": "25",
+      "type": "MONEY",
+      "start": 9784,
+      "end": 9786
+    },
+    {
+      "text": "4",
+      "type": "MONEY",
+      "start": 9793,
+      "end": 9794
+    },
+    {
+      "text": "786",
+      "type": "MONEY",
+      "start": 9795,
+      "end": 9798
+    },
+    {
+      "text": "36",
+      "type": "MONEY",
+      "start": 9806,
+      "end": 9808
+    },
+    {
+      "text": "781",
+      "type": "MONEY",
+      "start": 9809,
+      "end": 9812
+    },
+    {
+      "text": "6",
+      "type": "MONEY",
+      "start": 9814,
+      "end": 9815
+    },
+    {
+      "text": "948",
+      "type": "MONEY",
+      "start": 9816,
+      "end": 9819
+    },
+    {
+      "text": "565",
+      "type": "MONEY",
+      "start": 9822,
+      "end": 9825
+    },
+    {
+      "text": "2",
+      "type": "MONEY",
+      "start": 9828,
+      "end": 9829
+    },
+    {
+      "text": "666",
+      "type": "MONEY",
+      "start": 9830,
+      "end": 9833
+    },
+    {
+      "text": "346",
+      "type": "MONEY",
+      "start": 9835,
+      "end": 9838
+    },
+    {
+      "text": "301",
+      "type": "MONEY",
+      "start": 9839,
+      "end": 9842
+    },
+    {
+      "text": "640",
+      "type": "MONEY",
+      "start": 9846,
+      "end": 9849
+    },
+    {
+      "text": "45",
+      "type": "MONEY",
+      "start": 9852,
+      "end": 9854
+    },
+    {
+      "text": "837",
+      "type": "MONEY",
+      "start": 9855,
+      "end": 9858
+    },
+    {
+      "text": "36",
+      "type": "MONEY",
+      "start": 9875,
+      "end": 9877
+    },
+    {
+      "text": "182",
+      "type": "MONEY",
+      "start": 9878,
+      "end": 9881
+    },
+    {
+      "text": "6",
+      "type": "MONEY",
+      "start": 9883,
+      "end": 9884
+    },
+    {
+      "text": "833",
+      "type": "MONEY",
+      "start": 9885,
+      "end": 9888
+    },
+    {
+      "text": "583",
+      "type": "MONEY",
+      "start": 9891,
+      "end": 9894
+    },
+    {
+      "text": "2",
+      "type": "MONEY",
+      "start": 9897,
+      "end": 9898
+    },
+    {
+      "text": "458",
+      "type": "MONEY",
+      "start": 9899,
+      "end": 9902
+    },
+    {
+      "text": "309",
+      "type": "MONEY",
+      "start": 9904,
+      "end": 9907
+    },
+    {
+      "text": "301",
+      "type": "MONEY",
+      "start": 9908,
+      "end": 9911
+    },
+    {
+      "text": "579",
+      "type": "MONEY",
+      "start": 9915,
+      "end": 9918
+    },
+    {
+      "text": "44",
+      "type": "MONEY",
+      "start": 9921,
+      "end": 9923
+    },
+    {
+      "text": "921",
+      "type": "MONEY",
+      "start": 9924,
+      "end": 9927
+    },
+    {
+      "text": "29%",
+      "type": "PERCENT",
+      "start": 9942,
+      "end": 9945
+    },
+    {
+      "text": "33%",
+      "type": "PERCENT",
+      "start": 9953,
+      "end": 9956
+    },
+    {
+      "text": "包括授予投资公司",
+      "type": "ORG",
+      "start": 9967,
+      "end": 9975
+    },
+    {
+      "text": "期权",
+      "type": "PRODUCT",
+      "start": 9980,
+      "end": 9982
+    },
+    {
+      "text": "可由本集团收购的投资公司",
+      "type": "ORG",
+      "start": 9983,
+      "end": 9995
+    },
+    {
+      "text": "处置投资公司",
+      "type": "ORG",
+      "start": 10035,
+      "end": 10041
+    },
+    {
+      "text": "投资公司",
+      "type": "ORG",
+      "start": 10042,
+      "end": 10046
+    },
+    {
+      "text": "亏损净额以及与投资公司",
+      "type": "ORG",
+      "start": 10060,
+      "end": 10071
+    },
+    {
+      "text": "收购",
+      "type": "EVENT",
+      "start": 10090,
+      "end": 10092
+    },
+    {
+      "text": "主要包括于联营公司",
+      "type": "ORG",
+      "start": 10108,
+      "end": 10117
+    },
+    {
+      "text": "合营公司",
+      "type": "ORG",
+      "start": 10118,
+      "end": 10122
+    },
+    {
+      "text": "收购",
+      "type": "EVENT",
+      "start": 10126,
+      "end": 10128
+    },
+    {
+      "text": "主要包括本集团",
+      "type": "ORG",
+      "start": 10155,
+      "end": 10162
+    },
+    {
+      "text": "主要为本集团",
+      "type": "ORG",
+      "start": 10194,
+      "end": 10200
+    },
+    {
+      "text": "或投资公司",
+      "type": "ORG",
+      "start": 10203,
+      "end": 10208
+    }
+  ],
+  "relations": [
+    {
+      "type": "PART_OF",
+      "source": {
+        "text": "我们于上市投资公司",
+        "type": "ORG"
+      },
+      "target": {
+        "text": "不包括附属公司",
+        "type": "ORG"
+      }
+    },
+    {
+      "type": "PART_OF",
+      "source": {
+        "text": "不包括附属公司",
+        "type": "ORG"
+      },
+      "target": {
+        "text": "不包括附属公司",
+        "type": "ORG"
+      }
+    }
+  ],
+  "summary": "- 每股基本盈利 为人民币 6. 475元，每股摊薄盈利 为人民币 6. - 每股基本盈利为人民币 5. 0074元计算  \n3 包括透过特殊目的公司持有的权益 ，且按应占基准计  \n*  自二零二三年第四季起，若干项目已自经营盈利以上重新分类至经营盈利以下。 • 长视频付费会员数同比增长 6%至1. 金融科技及企业服务业务二零二四年第三季的收入同比增长 2%至人民币 531亿元。 762   3. 828   5. 762   5. 644   3. 752   5. 644  4. 文档包含 MONEY类型实体385个，包括157, 142, 949等；ORG类型实体28个，包括资者评估本公司, 包括透过特殊目的公司, 处置投资公司等；PERCENT类型实体27个，包括17%, 30%, 19%等；EVENT类型实体3个：上市, 合并, 收购；LOCATION类型实体9个，包括国际市, 年于香港联合交易所上市, 得益于广告主对视频号等；PRODUCT类型实体1个：期权。 发现 PART_OF关系2个：我们于上市投资公司与不包括附属公司、不包括附属公司与不包括附属公司。",
+  "qa_pairs": [
+    {
+      "question": "文档中涉及到哪些资金数额？",
+      "answer": "157, 142, 949, 7, 304等385个。"
+    },
+    {
+      "question": "文档中涉及到哪些公司或机构？",
+      "answer": "资者评估本公司, 包括透过特殊目的公司, 处置投资公司, 此等非国际财务报告准则财务计量的定义可能与其他公司, 可由本集团收购的投资公司等28个。"
+    },
+    {
+      "question": "文档中涉及到哪些组织结构关系？",
+      "answer": "我们于上市投资公司是不包括附属公司的一部分; 不包括附属公司是不包括附属公司的一部分。"
+    },
+    {
+      "question": "这份文档的主要内容是什么？",
+      "answer": "文档包含815个实体（主要类型：PERCENT, ORG, EVENT），2个关系（类型：PART_OF）。"
+    },
+    {
+      "question": "文档中有哪些重要发现？",
+      "answer": "涉及机构：科技公司, 腾讯控股有限公司。相关金额：1, 00700。"
+    }
+  ],
+  "compliance_events": [],
+  "processing_stats": {
+    "initial_entity_count": 815,
+    "enhanced_entity_count": 3470,
+    "relation_count": 2,
+    "qa_pair_count": 5,
+    "compliance_event_count": 0
+  }
+}

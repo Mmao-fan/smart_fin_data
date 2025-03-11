@@ -13,6 +13,12 @@ from io import StringIO
 import numpy as np
 from collections import defaultdict
 import subprocess
+from pathlib import Path
+
+from information_extraction import (
+    InformationProcessor,
+    AdaptiveSystem
+)
 
 # 配置日志记录
 logging.basicConfig(
@@ -316,16 +322,16 @@ def process_csv_file(file_path: str) -> Dict[str, Any]:
             'column_types': column_types,
             'row_count': len(df),
             'metadata': {
-                'file_path': file_path,
+                'file_path': str(file_path),  # 转换为字符串
                 'file_type': '.csv',
                 'encoding': encoding,
                 'separator': used_sep,
                 'file_size': os.path.getsize(file_path),
-                'processed_time': pd.Timestamp.now().isoformat()
+                'processed_time': datetime.now().isoformat()
             },
             'statistics': {
                 'missing_values': df.isnull().sum().to_dict(),
-                'unique_values': {col: df[col].nunique() for col in df.columns},
+                'unique_values': {col: int(df[col].nunique()) for col in df.columns},  # 转换为整数
                 'numeric_columns': df.select_dtypes(include=[np.number]).columns.tolist()
             }
         }
@@ -437,6 +443,7 @@ def extract_text_from_docx(file_path: str) -> Dict[str, Any]:
 def extract_text_from_pdf(file_path: str) -> Dict[str, Any]:
     """增强的PDF文档文本提取"""
     if not HAS_PYPDF2:
+        logging.error("PyPDF2 模块未安装")
         return None
 
     try:
@@ -448,70 +455,142 @@ def extract_text_from_pdf(file_path: str) -> Dict[str, Any]:
             'links': []
         }
 
+        logging.info(f"开始处理PDF文件: {file_path}")
+        
+        if not os.path.exists(file_path):
+            logging.error(f"PDF文件不存在: {file_path}")
+            return None
+            
+        file_size = os.path.getsize(file_path)
+        if file_size == 0:
+            logging.error(f"PDF文件为空: {file_path}")
+            return None
+            
+        logging.info(f"PDF文件大小: {file_size} 字节")
+
         with open(file_path, 'rb') as file:
-            reader = PyPDF2.PdfReader(file)
+            try:
+                reader = PyPDF2.PdfReader(file)
+                logging.info(f"成功创建PDF阅读器")
+            except Exception as e:
+                logging.error(f"创建PDF阅读器失败: {str(e)}")
+                return None
+            
+            if not reader.pages:
+                logging.warning(f"PDF文件 {file_path} 没有页面")
+                return None
+                
+            logging.info(f"PDF文件页数: {len(reader.pages)}")
 
             # 提取元数据
-            document_data['metadata'] = {
-                'title': reader.metadata.get('/Title', ''),
-                'author': reader.metadata.get('/Author', ''),
-                'subject': reader.metadata.get('/Subject', ''),
-                'creator': reader.metadata.get('/Creator', ''),
-                'producer': reader.metadata.get('/Producer', ''),
-                'creation_date': reader.metadata.get('/CreationDate', ''),
-                'modification_date': reader.metadata.get('/ModDate', '')
-            }
+            try:
+                document_data['metadata'] = {
+                    'title': reader.metadata.get('/Title', ''),
+                    'author': reader.metadata.get('/Author', ''),
+                    'subject': reader.metadata.get('/Subject', ''),
+                    'creator': reader.metadata.get('/Creator', ''),
+                    'producer': reader.metadata.get('/Producer', ''),
+                    'creation_date': reader.metadata.get('/CreationDate', ''),
+                    'modification_date': reader.metadata.get('/ModDate', '')
+                }
+                logging.info("成功提取元数据")
+            except Exception as e:
+                logging.warning(f"提取元数据失败: {str(e)}")
 
             # 提取页面内容
             for page_num in range(len(reader.pages)):
-                page = reader.pages[page_num]
-                page_data = {
-                    'number': page_num + 1,
-                    'text': page.extract_text() or "",
-                    'size': {
-                        'width': float(page.mediabox.width),
-                        'height': float(page.mediabox.height)
-                    },
-                    'rotation': page.get('/Rotate', 0)
-                }
-
-                # 提取表单字段
-                if '/AcroForm' in page:
-                    form_fields = []
+                try:
+                    page = reader.pages[page_num]
+                    logging.info(f"处理第 {page_num + 1} 页")
+                    
                     try:
-                        for annot in page['/Annots']:
-                            if isinstance(annot, PyPDF2.generic.IndirectObject):
-                                annot = annot.get_object()
-                            if annot.get('/FT'):
-                                field_data = {
-                                    'type': str(annot['/FT']),
-                                    'name': str(annot.get('/T', '')),
-                                    'value': str(annot.get('/V', ''))
-                                }
-                                form_fields.append(field_data)
-                    except:
-                        pass
-                    page_data['forms'] = form_fields
+                        text = page.extract_text()
+                        if text:
+                            logging.info(f"第 {page_num + 1} 页成功提取文本，长度: {len(text)}")
+                        else:
+                            logging.warning(f"第 {page_num + 1} 页文本为空")
+                    except Exception as e:
+                        logging.error(f"提取第 {page_num + 1} 页文本失败: {str(e)}")
+                        text = ""
+                    
+                    # 如果页面文本为空，尝试OCR
+                    if not text and HAS_TESSERACT:
+                        try:
+                            logging.info(f"尝试对第 {page_num + 1} 页进行OCR处理")
+                            # 将PDF页面转换为图像
+                            images = convert_from_path(file_path, first_page=page_num+1, last_page=page_num+1)
+                            if images:
+                                text = pytesseract.image_to_string(images[0], lang='chi_sim+eng')
+                                if text:
+                                    logging.info(f"OCR成功提取文本，长度: {len(text)}")
+                                else:
+                                    logging.warning("OCR未能提取到文本")
+                        except Exception as e:
+                            logging.warning(f"OCR处理失败: {str(e)}")
+                    
+                    page_data = {
+                        'number': page_num + 1,
+                        'text': text or "",
+                        'size': {
+                            'width': float(page.mediabox.width),
+                            'height': float(page.mediabox.height)
+                        },
+                        'rotation': page.get('/Rotate', 0)
+                    }
 
-                # 提取链接
-                if hasattr(page, 'annotations'):
+                    # 提取表单字段
+                    if '/AcroForm' in page:
+                        form_fields = []
+                        try:
+                            for annot in page['/Annots']:
+                                if isinstance(annot, PyPDF2.generic.IndirectObject):
+                                    annot = annot.get_object()
+                                if annot.get('/FT'):
+                                    field_data = {
+                                        'type': str(annot['/FT']),
+                                        'name': str(annot.get('/T', '')),
+                                        'value': str(annot.get('/V', ''))
+                                    }
+                                    form_fields.append(field_data)
+                            logging.info(f"成功提取 {len(form_fields)} 个表单字段")
+                        except Exception as e:
+                            logging.warning(f"提取表单字段失败: {str(e)}")
+                        page_data['forms'] = form_fields
+
+                    # 提取链接
                     links = []
                     try:
-                        for annot in page.annotations:
-                            if isinstance(annot, PyPDF2.generic.IndirectObject):
-                                annot = annot.get_object()
-                            if annot.get('/Subtype') == '/Link':
-                                if annot.get('/A'):
-                                    link_data = {
-                                        'type': 'external',
-                                        'url': str(annot['/A'].get('/URI', ''))
-                                    }
-                                    links.append(link_data)
-                    except:
-                        pass
+                        if hasattr(page, 'annotations') and page.annotations:
+                            for annot in page.annotations:
+                                try:
+                                    if isinstance(annot, PyPDF2.generic.IndirectObject):
+                                        annot = annot.get_object()
+                                    if annot and annot.get('/Subtype') == '/Link' and annot.get('/A'):
+                                        link_data = {
+                                            'type': 'external',
+                                            'url': str(annot['/A'].get('/URI', ''))
+                                        }
+                                        if link_data['url']:  # 只添加有效的URL
+                                            links.append(link_data)
+                                except Exception as e:
+                                    continue  # 跳过单个链接的错误
+                            logging.info(f"成功提取 {len(links)} 个链接")
+                    except Exception as e:
+                        logging.debug(f"页面 {page_num + 1} 没有链接或链接提取失败")
                     page_data['links'] = links
 
-                document_data['pages'].append(page_data)
+                    document_data['pages'].append(page_data)
+                except Exception as e:
+                    logging.error(f"处理第 {page_num + 1} 页时出错: {str(e)}")
+                    continue
+
+            # 检查是否成功提取了任何文本
+            total_text = ''.join(page.get('text', '') for page in document_data['pages'])
+            if not total_text.strip():
+                logging.warning(f"未能从PDF文件 {file_path} 提取到任何文本")
+                return None
+                
+            logging.info(f"成功提取文本，总长度: {len(total_text)}")
 
         return document_data
 
@@ -586,7 +665,10 @@ def process_pdf_file(file_path: str) -> Dict[str, Any]:
             return None
 
         # 构建完整文本
-        full_text = "\n".join([page['text'] for page in pdf_data['pages']])
+        full_text = "\n".join([page.get('text', '') for page in pdf_data['pages']])
+        if not full_text.strip():
+            logging.warning(f"PDF文件 {file_path} 提取的文本为空")
+            return None
 
         # 提取关键信息
         keywords = extract_advanced_keywords(full_text)
@@ -597,7 +679,7 @@ def process_pdf_file(file_path: str) -> Dict[str, Any]:
         # 构建结构化数据
         structured_data = {
             'type': 'document',
-            'content': full_text[:1000] + "..." if len(full_text) > 1000 else full_text,
+            'content': full_text,  # 存储完整文本
             'metadata': {
                 'file_path': file_path,
                 'file_type': '.pdf',
@@ -660,163 +742,137 @@ def get_file_scenario(file_path: str) -> str:
     return "customer_service"
 
 
-def process_file(file_path: str, scenario: str = None) -> Dict[str, Any]:
-    """
-    处理单个文件
-    """
+def process_file(file_path: str, processor: InformationProcessor, adaptive_system: AdaptiveSystem) -> Dict[str, Any]:
+    """处理单个文件"""
     try:
-        logging.info(f"开始处理文件: {file_path}")
-
         # 获取文件扩展名
         _, ext = os.path.splitext(file_path)
-
-        # 如果未指定场景，自动选择
-        if scenario is None:
-            scenario = get_file_scenario(file_path)
-            logging.info(f"自动选择场景: {scenario}")
-
-        # 根据文件类型选择处理方法
-        if ext.lower() == '.csv':
-            structured_data = process_csv_file(file_path)
-            if not structured_data:
+        
+        # 根据文件类型选择处理方式
+        if ext.lower() == '.txt':
+            # 读取文本文件
+            encoding = detect_file_encoding(file_path)
+            with open(file_path, 'r', encoding=encoding) as f:
+                text = f.read()
+        elif ext.lower() == '.csv':
+            # 处理CSV文件
+            csv_data = process_csv_file(file_path)
+            if not csv_data:
                 return None
-        elif ext.lower() in ['.docx', '.doc']:
-            structured_data = process_docx_file(file_path)
-            if not structured_data:
+            text = json.dumps(csv_data, ensure_ascii=False)
+        elif ext.lower() in ['.docx', '.doc'] and HAS_DOCX:
+            # 处理Word文件
+            doc_data = process_docx_file(file_path)
+            if not doc_data:
                 return None
-        elif ext.lower() == '.pdf':
-            structured_data = process_pdf_file(file_path)
-            if not structured_data:
+            text = doc_data.get('content', '')
+        elif ext.lower() == '.pdf' and HAS_PYPDF2:
+            # 处理PDF文件
+            pdf_data = process_pdf_file(file_path)
+            if not pdf_data:
                 return None
+            text = pdf_data.get('content', '')  # 直接获取content字段
         else:
-            # 其他类型文件使用文档处理器
-            if not HAS_DOCUMENT_PROCESSOR:
-                logging.error(f"无法处理 {ext} 类型文件，DocumentProcessor 模块未加载")
-                return None
-
-            structured_data = DocumentProcessor.process_document(file_path)
-
-        logging.info(f"文件 {file_path} 结构化处理完成")
-
-        # 根据场景进行特定处理
-        if scenario == "fraud_detection" and structured_data['type'] == 'tabular_data' and HAS_SCENARIO_ADAPTATION:
-            # 处理交易数据
-            encoder = FraudEncoder()
-            for record in structured_data['data']:
-                encoder.add_transaction_chunk(pd.Series(record))
-            suspicious_patterns = encoder.detect_suspicious_patterns()
-
-            # 添加分析结果
-            structured_data['analysis'] = {
-                'suspicious_patterns': suspicious_patterns,
-                'transaction_graph': {
-                    'nodes': list(encoder.graph.nodes(data=True)),
-                    'edges': list(encoder.graph.edges(data=True))
-                }
-            }
-
-            logging.info(f"发现 {len(suspicious_patterns)} 个可疑交易模式")
-        elif scenario == "customer_service" and HAS_SCENARIO_ADAPTATION:
-            # 处理客户服务场景
-            try:
-                # 创建客服生成器
-                generator = CustomerServiceGenerator(CUSTOMER_SERVICE_CONFIG)
-
-                # 提取文档内容
-                if structured_data['type'] == 'document':
-                    document_content = structured_data['content']
-
-                    # 分段处理长文档
-                    paragraphs = structured_data['structure']['paragraphs']
-                    dialogs = []
-
-                    # 对每个段落生成对话
-                    for i, para in enumerate(paragraphs):
-                        if len(para.strip()) > 10:  # 忽略太短的段落
-                            dialog = generator.generate_dialog({"text": para})
-                            dialogs.append(dialog)
-
-                            # 最多处理10个段落
-                            if i >= 9:
-                                break
-                else:
-                    document_content = json.dumps(structured_data)
-                    dialogs = [generator.generate_dialog({"text": document_content})]
-
-                # 添加到结构化数据
-                structured_data['customer_service'] = {
-                    'dialogs': dialogs,
-                    'dialog_count': len(dialogs)
-                }
-
-                logging.info(f"生成 {len(dialogs)} 个客服对话")
-            except Exception as e:
-                logging.error(f"客服场景处理失败: {str(e)}", exc_info=True)
-                structured_data['customer_service'] = {
-                    'error': str(e),
-                    'dialogs': []
-                }
-        elif scenario == "compliance" and HAS_SCENARIO_ADAPTATION and HAS_TEXT_PROCESSING:
-            # 处理合规场景
-            chunks = ChunkManager(mode="structure").chunk_text(json.dumps(structured_data))
-            processed_chunks = InformationProcessor().process_chunks(chunks)
-            mapper = ComplianceMapper()
-            structured_data['compliance'] = [mapper.map_clause(c) for c in processed_chunks]
+            logging.warning(f"不支持的文件类型: {ext}")
+            return None
+            
+        if not text.strip():
+            logging.warning(f"文件 {file_path} 内容为空")
+            return None
         
-        # 增强功能：生成问答对
-        if HAS_TEXT_PROCESSING:
-            try:
-                # 提取文本内容
-                text_content = ""
-                if structured_data['type'] == 'document':
-                    text_content = structured_data['content']
-                elif structured_data['type'] == 'tabular_data':
-                    # 将表格数据转换为文本
-                    text_content = json.dumps(structured_data['data'][:10], ensure_ascii=False)  # 限制数量
-                
-                # 生成训练数据
-                if text_content:
-                    processor = InformationProcessor()
-                    training_data = processor.extract_training_data(text_content, scenario)
-                    
-                    # 添加到结构化数据
-                    structured_data['training_data'] = {
-                        'qa_pairs': training_data['qa_pairs'],
-                        'summary': training_data['summary'],
-                        'metadata': training_data['metadata']
+        # 初始处理
+        logging.info(f"处理文件: {os.path.basename(file_path)}")
+        logging.info("执行初始处理...")
+        
+        # 应用自适应系统的已学习模式
+        learned_patterns = adaptive_system.get_learned_patterns()
+        if learned_patterns:
+            logging.info(f"应用 {len(learned_patterns)} 个已学习的模式")
+            
+        result = processor.process_text(text)
+        if not result:
+            logging.error(f"处理文件 {file_path} 失败")
+            return None
+            
+        # 自适应增强
+        logging.info("执行自适应增强...")
+        enhanced_entities = adaptive_system.enhance_recognition(text, result.entities)
+        
+        # 如果实体有更新，重新处理
+        if enhanced_entities != result.entities:
+            logging.info("使用增强后的实体重新处理...")
+            result = processor.process_chunk(0, text)
+            
+            # 更新自适应系统的统计信息
+            adaptive_system.update_enhancement_stats(
+                original_count=len(result.entities),
+                enhanced_count=len(enhanced_entities)
+            )
+            
+        # 保存处理结果
+        output_dir = Path('output')
+        output_dir.mkdir(exist_ok=True)
+        
+        output_file = output_dir / f"{os.path.splitext(os.path.basename(file_path))[0]}_structured.json"
+        
+        # 构建输出数据
+        output_data = {
+            'file_name': os.path.basename(file_path),
+            'file_type': ext.lower(),
+            'processing_time': datetime.now().isoformat(),
+            'original_text': text[:1000] + "..." if len(text) > 1000 else text,  # 保存部分原文用于后续学习
+            'entities': [
+                {
+                    'text': entity.text,
+                    'type': entity.type,
+                    'start': entity.start,
+                    'end': entity.end
+                }
+                for entity in result.entities
+            ],
+            'relations': [
+                {
+                    'type': relation.type,
+                    'source': {
+                        'text': relation.source.text,
+                        'type': relation.source.type
+                    },
+                    'target': {
+                        'text': relation.target.text,
+                        'type': relation.target.type
                     }
-                    
-                    logging.info(f"生成 {len(training_data['qa_pairs'])} 个问答对")
-            except Exception as e:
-                logging.error(f"生成训练数据失败: {str(e)}", exc_info=True)
-                structured_data['training_data'] = {
-                    'error': str(e),
-                    'qa_pairs': []
                 }
+                for relation in result.relations
+            ],
+            'summary': result.summary,
+            'qa_pairs': result.qa_pairs,
+            'compliance_events': [
+                {
+                    'type': event.type,
+                    'text': event.text,
+                    'importance': event.importance
+                }
+                for event in result.compliance_events
+            ],
+            'processing_stats': {
+                'initial_entity_count': len(result.entities),
+                'enhanced_entity_count': len(enhanced_entities) if enhanced_entities != result.entities else len(result.entities),
+                'relation_count': len(result.relations),
+                'qa_pair_count': len(result.qa_pairs),
+                'compliance_event_count': len(result.compliance_events)
+            }
+        }
         
-        # 增强功能：隐私保护
-        try:
-            from information_extraction.privacy_protector import DataAnonymizer
+        # 保存结果
+        with open(output_file, 'w', encoding='utf-8') as f:
+            json.dump(output_data, f, ensure_ascii=False, indent=2)
             
-            # 对敏感字段进行脱敏处理
-            anonymizer = DataAnonymizer()
-            
-            # 处理文本内容
-            if structured_data['type'] == 'document' and 'content' in structured_data:
-                structured_data['content'] = anonymizer.anonymize(structured_data['content'])
-            
-            # 处理表格数据
-            if structured_data['type'] == 'tabular_data' and 'data' in structured_data:
-                structured_data['data'] = anonymizer._anonymize_tabular_data(structured_data['data'])
-            
-            logging.info("完成敏感信息脱敏处理")
-        except Exception as e:
-            logging.warning(f"隐私保护处理失败: {str(e)}")
-
-        return structured_data
-
+        logging.info(f"处理结果已保存到: {output_file}")
+        return output_data
+        
     except Exception as e:
-        logging.error(f"处理文件 {file_path} 时出现异常: {str(e)}", exc_info=True)
+        logging.error(f"处理文件 {file_path} 时出错: {str(e)}")
+        logging.error(traceback.format_exc())
         return None
 
 
@@ -872,15 +928,122 @@ def process_directory(data_dir: str, output_dir: str, scenario: str = None) -> L
     return results
 
 
-if __name__ == "__main__":
-    # 设置目录路径
-    data_dir = "data"
-    output_dir = "output"
+def setup_logging():
+    """设置日志"""
+    log_dir = Path("output/logs")
+    log_dir.mkdir(parents=True, exist_ok=True)
+    log_file = log_dir / f'processing_{datetime.now().strftime("%Y%m%d_%H%M%S")}.log'
+    
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s',
+        handlers=[
+            logging.FileHandler(log_file),
+            logging.StreamHandler(sys.stdout)
+        ]
+    )
+    return logging.getLogger(__name__)
 
-    # 启动处理流程（不指定场景，自动选择）
-    results = process_directory(data_dir, output_dir)
 
-    # 输出处理结果摘要
-    print("\n处理结果摘要:")
-    print(f"成功处理文件数: {len(results)}")
-    print(f"详细结果请查看 output 目录下的文件")
+def main():
+    """主函数"""
+    try:
+        logging.info("开始处理...")
+        
+        # 初始化处理器
+        processor = InformationProcessor(enable_privacy_protection=True, adaptive_learning=True)
+        adaptive_system = AdaptiveSystem()
+        
+        # 处理data目录下的所有文件
+        data_dir = Path('data')
+        if not data_dir.exists():
+            logging.error("data目录不存在")
+            return
+            
+        # 获取所有支持的文件
+        supported_extensions = ['.txt', '.csv']
+        if HAS_DOCX:
+            supported_extensions.extend(['.docx', '.doc'])
+        if HAS_PYPDF2:
+            supported_extensions.append('.pdf')
+            
+        all_files = []
+        for ext in supported_extensions:
+            all_files.extend(list(data_dir.glob(f'*{ext}')))
+        
+        if not all_files:
+            logging.warning(f"在data目录下未找到支持的文件类型: {', '.join(supported_extensions)}")
+            return
+            
+        # 处理每个文件
+        results = []
+        processed_files = []
+        failed_files = []
+        
+        for file_path in all_files:
+            try:
+                # 获取文件场景
+                scenario = get_file_scenario(str(file_path))
+                logging.info(f"处理文件 {file_path.name}，使用场景: {scenario}")
+                
+                # 处理文件
+                result = process_file(file_path, processor, adaptive_system)
+                
+                if result:
+                    results.append(result)
+                    processed_files.append(file_path.name)
+                    
+                    # 更新自适应系统
+                    if result['entities']:
+                        adaptive_system.update_patterns(
+                            text=result['original_text'] if 'original_text' in result else '',
+                            entities=result['entities']
+                        )
+                else:
+                    failed_files.append(file_path.name)
+                    
+            except Exception as e:
+                logging.error(f"处理文件 {file_path.name} 失败: {str(e)}")
+                logging.error(traceback.format_exc())
+                failed_files.append(file_path.name)
+        
+        # 保存处理报告
+        if results:
+            report = {
+                'total_files': len(all_files),
+                'processed_files': len(processed_files),
+                'failed_files': len(failed_files),
+                'processing_time': datetime.now().isoformat(),
+                'processed_file_list': processed_files,
+                'failed_file_list': failed_files,
+                'summary': {
+                    'total_entities': sum(len(r['entities']) for r in results),
+                    'total_relations': sum(len(r['relations']) for r in results),
+                    'total_qa_pairs': sum(len(r['qa_pairs']) for r in results),
+                    'total_compliance_events': sum(len(r['compliance_events']) for r in results)
+                },
+                'adaptive_system_stats': adaptive_system.get_statistics()
+            }
+            
+            report_file = Path('output') / 'processing_report.json'
+            with open(report_file, 'w', encoding='utf-8') as f:
+                json.dump(report, f, ensure_ascii=False, indent=2)
+                
+            logging.info(f"处理报告已保存到: {report_file}")
+            
+            # 输出处理统计
+            logging.info(f"处理完成! 总文件数: {len(all_files)}")
+            logging.info(f"成功处理: {len(processed_files)} 个文件")
+            logging.info(f"处理失败: {len(failed_files)} 个文件")
+            if failed_files:
+                logging.info(f"失败文件列表: {', '.join(failed_files)}")
+        
+        logging.info("处理完成!")
+        
+    except Exception as e:
+        logging.error(f"处理过程中出错: {str(e)}")
+        logging.error(traceback.format_exc())
+
+
+if __name__ == '__main__':
+    main()

@@ -1,9 +1,7 @@
 # schemas.py
-from pydantic import BaseModel, Field
+from dataclasses import dataclass
 from typing import List, Optional, Dict, Any
 from enum import Enum, auto
-from pydantic.types import conint
-from dataclasses import dataclass
 from datetime import datetime
 
 class EntityLabel(str, Enum):
@@ -58,14 +56,21 @@ class Entity:
         return self.end
 
 @dataclass
+class Relation:
+    """关系类"""
+    type: str
+    source: Entity
+    target: Entity
+    confidence: float = 1.0
+
+@dataclass
 class ComplianceEvent:
     """合规事件类"""
     type: str
     text: str
-    start: int
-    end: int
-    importance: str
+    importance: float
     subtype: Optional[str] = None
+    timestamp: Optional[datetime] = None
 
 @dataclass
 class ProcessedChunk:
@@ -73,39 +78,9 @@ class ProcessedChunk:
     chunk_id: int
     original_text: str
     entities: List[Entity]
-    relations: List[Dict[str, Any]]
+    relations: List[Relation]
     summary: Optional[str] = None
-    anomalies: Optional[List[Dict[str, Any]]] = None
-    qa_pairs: Optional[List[Dict[str, str]]] = None
+    anomalies: Optional[List[Dict]] = None
+    qa_pairs: Optional[List[Dict]] = None
     compliance_events: Optional[List[ComplianceEvent]] = None
-    compliance_analysis: Optional[Dict[str, Any]] = None
-
-class FinancialEntity(BaseModel):
-    """金融实体模型"""
-    text: str
-    label: EntityLabel
-    start_pos: int
-    end_pos: int
-    confidence: float = Field(..., ge=0, le=1)
-
-class Relation(BaseModel):
-    """关系模型"""
-    source: Entity
-    target: Entity
-    relation_type: str
-    confidence: float = Field(..., ge=0, le=1)
-
-class EntityRelation(BaseModel):
-    """实体关系模型"""
-    source: FinancialEntity
-    target: FinancialEntity
-    relation_type: RelationType
-    confidence: float = Field(default=1.0, ge=0, le=1)
-
-class Anomaly(BaseModel):
-    """异常模型"""
-    type: str
-    description: str
-    entities: List[Entity]
-    confidence: float = Field(..., ge=0, le=1)
-    context: Optional[str] = None
+    compliance_analysis: Optional[Dict] = None

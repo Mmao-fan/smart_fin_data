@@ -6,7 +6,7 @@ import re
 import logging
 import random
 from .entity_extractor import FinancialEntityExtractor
-from .schemas import Entity
+from .schemas import Entity, Relation, ComplianceEvent
 
 class QAPairGenerator:
     """问答对生成器"""
@@ -28,8 +28,70 @@ class QAPairGenerator:
             ],
             "compliance": [
                 {"q": "{entity}需要遵守哪些合规要求？", "a": "主要合规要求包括：{context}"},
-                {"q": "请说明{entity}相关的监管规定。", "a": "相关监管规定如下：{context}"},
-                {"q": "{entity}在合规方面有哪些关键点？", "a": "合规关键点包括：{context}"}
+                {"q": "{entity}在合规方面有哪些需要注意的地方？", "a": "合规要点包括：{context}"},
+                {"q": "从监管角度看，{entity}是否符合规定？", "a": "合规评估结果：{context}"}
+            ]
+        }
+        
+        # 实体类型问题模板
+        self.entity_templates = {
+            "PERSON": [
+                "文本中提到了哪些人物？",
+                "文档中涉及到哪些个人？",
+                "有哪些自然人在文本中被提及？"
+            ],
+            "ORG": [
+                "文本中提到了哪些组织机构？",
+                "文档中涉及到哪些公司或机构？",
+                "有哪些组织在文本中被提及？"
+            ],
+            "MONEY": [
+                "文本中提到了哪些金额？",
+                "文档中涉及到哪些资金数额？",
+                "有哪些金额在文本中被提及？"
+            ],
+            "ACCOUNT": [
+                "文本中提到了哪些账户？",
+                "文档中涉及到哪些银行账号？",
+                "有哪些账户信息在文本中被提及？"
+            ],
+            "DATE": [
+                "文本中提到了哪些日期？",
+                "文档中涉及到哪些时间点？",
+                "有哪些日期在文本中被提及？"
+            ]
+        }
+        
+        # 关系类型问题模板
+        self.relation_templates = {
+            "TRANSFER_TO": [
+                "文本中提到了哪些转账关系？",
+                "文档中涉及到哪些资金流转？",
+                "有哪些转账记录在文本中被提及？"
+            ],
+            "BELONGS_TO": [
+                "文本中提到了哪些所属关系？",
+                "文档中涉及到哪些归属关系？",
+                "有哪些从属关系在文本中被提及？"
+            ],
+            "PART_OF": [
+                "文本中提到了哪些部分-整体关系？",
+                "文档中涉及到哪些组织结构关系？",
+                "有哪些隶属关系在文本中被提及？"
+            ]
+        }
+        
+        # 合规事件问题模板
+        self.event_templates = {
+            "general": [
+                "文本中提到了哪些合规事件？",
+                "文档中涉及到哪些合规风险？",
+                "有哪些需要关注的合规问题？"
+            ],
+            "high_importance": [
+                "文本中有哪些高风险的合规事件？",
+                "文档中涉及到哪些重要的合规问题？",
+                "有哪些需要立即处理的合规风险？"
             ]
         }
         
@@ -50,52 +112,190 @@ class QAPairGenerator:
             "数字": r'\d+(?:\.\d+)?(?:%|万|亿)?'
         }
         
-    def generate_qa_pairs(self, text: str, scenario: str = None, num_pairs: int = 3) -> List[Dict[str, str]]:
+    def generate_qa_pairs(self, text: str, entities: List[Entity], relations: List[Relation], compliance_events: List[ComplianceEvent]) -> List[Dict[str, str]]:
         """生成问答对"""
-        if not text or not scenario:
-            return []
-            
-        # 提取实体
-        entities = self.entity_extractor.extract_entities(text)
-        if not entities:
-            return []
-            
-        # 获取场景模板
-        templates = self.templates.get(scenario, self.templates["customer_service"])
-        
         qa_pairs = []
-        used_entities = set()
         
-        # 为每个重要实体生成问答对
+        # 基于实体生成问题
+        qa_pairs.extend(self._generate_entity_qa(entities))
+        
+        # 基于关系生成问题
+        qa_pairs.extend(self._generate_relation_qa(relations))
+        
+        # 基于合规事件生成问题
+        qa_pairs.extend(self._generate_event_qa(compliance_events))
+        
+        # 生成一般性问题
+        qa_pairs.extend(self._generate_general_qa(text, entities, relations, compliance_events))
+        
+        return qa_pairs
+    
+    def _generate_entity_qa(self, entities: List[Entity]) -> List[Dict[str, str]]:
+        """基于实体生成问答对"""
+        qa_pairs = []
+        
+        # 按类型分组
+        entity_by_type = {}
         for entity in entities:
-            if len(qa_pairs) >= num_pairs:
-                break
+            if entity.type not in entity_by_type:
+                entity_by_type[entity.type] = []
+            entity_by_type[entity.type].append(entity.text)
+        
+        # 为每种类型生成问答对
+        for entity_type, entity_texts in entity_by_type.items():
+            if entity_type in self.entity_templates and entity_texts:
+                # 去重
+                unique_texts = list(set(entity_texts))
                 
-            # 避免重复使用相同实体
-            if entity.text in used_entities:
-                continue
+                # 选择一个问题模板
+                question = random.choice(self.entity_templates.get(entity_type, ["文本中提到了哪些相关实体？"]))
                 
-            # 获取实体上下文
-            context = self._get_entity_context(text, entity)
-            if not context:
-                continue
+                # 生成答案
+                if len(unique_texts) > 5:
+                    answer = f"{', '.join(unique_texts[:5])}等{len(unique_texts)}个。"
+                else:
+                    answer = f"{', '.join(unique_texts)}。"
                 
-            # 选择模板
-            template = random.choice(templates)
-            
-            # 生成问答对
-            question = template["q"].format(entity=entity.text)
-            answer = template["a"].format(context=context)
-            
-            # 确保答案完整性
-            if len(answer) > 10:  # 避免过短的答案
                 qa_pairs.append({
                     "question": question,
-                    "answer": answer,
-                    "entity": entity.text,
-                    "entity_type": entity.type
+                    "answer": answer
                 })
-                used_entities.add(entity.text)
+        
+        return qa_pairs
+    
+    def _generate_relation_qa(self, relations: List[Relation]) -> List[Dict[str, str]]:
+        """基于关系生成问答对"""
+        qa_pairs = []
+        
+        # 按类型分组
+        relation_by_type = {}
+        for relation in relations:
+            if relation.type not in relation_by_type:
+                relation_by_type[relation.type] = []
+            relation_by_type[relation.type].append((relation.source.text, relation.target.text))
+        
+        # 为每种类型生成问答对
+        for relation_type, relation_pairs in relation_by_type.items():
+            if relation_type in self.relation_templates and relation_pairs:
+                # 选择一个问题模板
+                question = random.choice(self.relation_templates.get(relation_type, ["文本中提到了哪些关系？"]))
+                
+                # 生成答案
+                if relation_type == "TRANSFER_TO":
+                    relation_texts = [f"从{src}到{tgt}" for src, tgt in relation_pairs]
+                elif relation_type == "BELONGS_TO":
+                    relation_texts = [f"{tgt}拥有{src}" for src, tgt in relation_pairs]
+                elif relation_type == "PART_OF":
+                    relation_texts = [f"{src}是{tgt}的一部分" for src, tgt in relation_pairs]
+                else:
+                    relation_texts = [f"{src}与{tgt}" for src, tgt in relation_pairs]
+                
+                if len(relation_texts) > 3:
+                    answer = f"{'; '.join(relation_texts[:3])}等{len(relation_texts)}个关系。"
+                else:
+                    answer = f"{'; '.join(relation_texts)}。"
+                
+                qa_pairs.append({
+                    "question": question,
+                    "answer": answer
+                })
+        
+        return qa_pairs
+    
+    def _generate_event_qa(self, events: List[ComplianceEvent]) -> List[Dict[str, str]]:
+        """基于合规事件生成问答对"""
+        qa_pairs = []
+        
+        if not events:
+            return qa_pairs
+        
+        # 所有事件
+        question = random.choice(self.event_templates["general"])
+        event_texts = [e.text[:50] + "..." if len(e.text) > 50 else e.text for e in events]
+        if len(event_texts) > 3:
+            answer = f"{'; '.join(event_texts[:3])}等{len(event_texts)}个事件。"
+        else:
+            answer = f"{'; '.join(event_texts)}。"
+        
+        qa_pairs.append({
+            "question": question,
+            "answer": answer
+        })
+        
+        # 高重要性事件
+        high_importance_events = [e for e in events if e.importance > 0.7]
+        if high_importance_events:
+            question = random.choice(self.event_templates["high_importance"])
+            event_texts = [e.text[:50] + "..." if len(e.text) > 50 else e.text for e in high_importance_events]
+            if len(event_texts) > 2:
+                answer = f"{'; '.join(event_texts[:2])}等{len(event_texts)}个高风险事件。"
+            else:
+                answer = f"{'; '.join(event_texts)}。"
+            
+            qa_pairs.append({
+                "question": question,
+                "answer": answer
+            })
+        
+        return qa_pairs
+    
+    def _generate_general_qa(self, text: str, entities: List[Entity], relations: List[Relation], compliance_events: List[ComplianceEvent]) -> List[Dict[str, str]]:
+        """生成一般性问答对"""
+        qa_pairs = []
+        
+        # 文档总体情况
+        summary = []
+        if entities:
+            entity_types = list(set([e.type for e in entities]))
+            summary.append(f"包含{len(entities)}个实体（主要类型：{', '.join(entity_types[:3])}）")
+        if relations:
+            relation_types = list(set([r.type for r in relations]))
+            summary.append(f"{len(relations)}个关系（类型：{', '.join(relation_types[:3])}）")
+        if compliance_events:
+            high_risk = len([e for e in compliance_events if e.importance > 0.7])
+            summary.append(f"{len(compliance_events)}个合规事件（其中{high_risk}个高风险事件）")
+            
+        qa_pairs.append({
+            "question": "这份文档的主要内容是什么？",
+            "answer": "文档" + "，".join(summary) + "。"
+        })
+        
+        # 重要实体和关系
+        if entities or relations:
+            key_findings = []
+            # 提取重要实体
+            org_entities = [e for e in entities if e.type == "ORG"][:2]
+            person_entities = [e for e in entities if e.type == "PERSON"][:2]
+            money_entities = [e for e in entities if e.type == "MONEY"][:2]
+            
+            if org_entities:
+                key_findings.append(f"涉及机构：{', '.join([e.text for e in org_entities])}")
+            if person_entities:
+                key_findings.append(f"相关人员：{', '.join([e.text for e in person_entities])}")
+            if money_entities:
+                key_findings.append(f"相关金额：{', '.join([e.text for e in money_entities])}")
+                
+            # 提取重要关系
+            transfer_relations = [r for r in relations if r.type == "TRANSFER_TO"][:2]
+            if transfer_relations:
+                relation_texts = [f"从{r.source.text}到{r.target.text}" for r in transfer_relations]
+                key_findings.append(f"主要资金流向：{'; '.join(relation_texts)}")
+                
+            if key_findings:
+                qa_pairs.append({
+                    "question": "文档中有哪些重要发现？",
+                    "answer": "。".join(key_findings) + "。"
+                })
+        
+        # 合规风险提示
+        if compliance_events:
+            high_risk_events = [e for e in compliance_events if e.importance > 0.7]
+            if high_risk_events:
+                event_texts = [e.text[:50] + "..." if len(e.text) > 50 else e.text for e in high_risk_events[:2]]
+                qa_pairs.append({
+                    "question": "文档中存在哪些需要重点关注的合规风险？",
+                    "answer": f"发现{len(high_risk_events)}个高风险合规事件，主要包括：{'; '.join(event_texts)}。"
+                })
         
         return qa_pairs
 
@@ -211,24 +411,25 @@ class QAPairGenerator:
         
         return qa_pairs
     
-    def _generate_general_qa(self, text: str) -> List[Dict[str, str]]:
-        """生成通用问答对"""
-        qa_pairs = []
-        
-        # 选择2-3个通用问题
-        num_questions = min(len(self.general_templates), random.randint(2, 3))
-        selected_templates = random.sample(self.general_templates, num_questions)
-        
-        for template in selected_templates:
-            # 生成答案
-            answer = self._generate_general_answer(text, template)
+    def _generate_answer_for_entity(self, text: str, entity: Entity) -> str:
+        """为实体生成答案"""
+        try:
+            # 查找实体所在的上下文
+            start_pos = max(0, entity.start - 100)
+            end_pos = min(len(text), entity.end + 100)
+            context = text[start_pos:end_pos]
             
-            qa_pairs.append({
-                'question': template,
-                'answer': answer
-            })
-        
-        return qa_pairs
+            # 简单实现：返回包含实体的句子
+            sentences = re.split(r'(?<=[。！？.!?])\s+', context)
+            for sentence in sentences:
+                if entity.text in sentence:
+                    return sentence
+            
+            # 如果没有找到包含实体的句子，返回一个通用答案
+            return f"关于{entity.text}的信息，请参考文档中的相关内容。"
+        except Exception as e:
+            logging.error(f"为实体生成答案时出错: {str(e)}")
+            return f"关于{entity.text}的信息，请参考文档中的相关内容。"
     
     def _generate_scenario_qa(self, text: str, scenario: str) -> List[Dict[str, str]]:
         """生成场景特定问答对"""
@@ -278,33 +479,6 @@ class QAPairGenerator:
         except Exception as e:
             logging.error(f"提取主题时出错: {str(e)}")
             return ["金融服务", "账户管理"]
-    
-    def _generate_answer_for_entity(self, text: str, entity: Entity) -> str:
-        """为实体生成答案"""
-        try:
-            # 查找实体所在的上下文
-            start_pos = max(0, entity.start - 100)
-            end_pos = min(len(text), entity.end + 100)
-            context = text[start_pos:end_pos]
-            
-            # 简单实现：返回包含实体的句子
-            sentences = re.split(r'(?<=[。！？.!?])\s+', context)
-            for sentence in sentences:
-                if entity.text in sentence:
-                    return sentence
-            
-            # 如果没有找到包含实体的句子，返回一个通用答案
-            return f"关于{entity.text}的信息，请参考文档中的相关内容。"
-        except Exception as e:
-            logging.error(f"为实体生成答案时出错: {str(e)}")
-            return f"关于{entity.text}的信息，请参考文档中的相关内容。"
-    
-    def _generate_general_answer(self, text: str, question: str) -> str:
-        """生成通用问题的答案"""
-        # 简单实现：返回文档的前200个字符作为摘要
-        if len(text) > 200:
-            return text[:200] + "..."
-        return text
     
     def _generate_scenario_answer(self, text: str, topic: str, scenario: str) -> str:
         """生成场景特定问题的答案"""

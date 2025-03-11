@@ -13,8 +13,7 @@ from .qa_generator import QAPairGenerator
 from .compliance_detector import ComplianceDetector
 from .privacy_protector import SensitiveInfoDetector, DataAnonymizer
 from .schemas import ProcessedChunk, Entity, ComplianceEvent
-from .entity_extractor import EntityExtractor
-from .adaptive_learning import AdaptiveLearningManager
+from .adaptive_system import AdaptiveSystem
 
 class InformationProcessor:
     """信息处理器"""
@@ -34,7 +33,7 @@ class InformationProcessor:
             self.anonymizer = DataAnonymizer(self.sensitive_detector)
         
         if adaptive_learning:
-            self.learning_manager = AdaptiveLearningManager()
+            self.learning_manager = AdaptiveSystem()
 
     def process_chunk(self, chunk_id: int, text: str, scenario: str = None) -> Optional[ProcessedChunk]:
         """处理文本块"""
@@ -49,38 +48,42 @@ class InformationProcessor:
             
             # 如果启用了自适应学习，应用学习到的模式
             if self.adaptive_learning:
-                entities = self._apply_learned_patterns(text, entities)
+                entities = self.learning_manager.enhance_recognition(text, entities)
             
             # 2. 提取关系
             relations = self.relation_extractor.find_transfer_relations(entities, text)
             relations.extend(self.relation_extractor.find_ownership_relations(entities, text))
             relations.extend(self.relation_extractor.find_part_whole_relations(entities, text))
             
-            processing_time = time.time() - start_time
-            
             # 3. 检测异常
-            anomalies = self.anomaly_detector.detect_time_anomalies(entities, text)
+            anomalies = self.anomaly_detector.detect_anomalies(entities, text)
             
-            # 4. 检测合规事件
-            compliance_events = self.compliance_detector.detect_compliance_events(text)
+            # 4. 合规检测
+            compliance_events = self.compliance_detector.detect_events(text, entities, relations)
             
             # 5. 生成摘要
-            summary = None
-            if len(text) > 100:  # 只对较长文本生成摘要
-                summary = self.summarizer.summarize_regulation(text)
+            summary = self.summarizer.generate_summary(text, entities, relations, compliance_events)
             
             # 6. 生成问答对
-            qa_pairs = None
-            if scenario:
-                qa_pairs = self.qa_generator.generate_qa_pairs(text, scenario)
+            qa_pairs = self.qa_generator.generate_qa_pairs(text, entities, relations, compliance_events)
             
-            # 7. 合规风险分析
-            compliance_analysis = None
-            if compliance_events:
-                compliance_analysis = self.compliance_detector.analyze_compliance_risk(compliance_events)
+            # 7. 隐私保护
+            if self.enable_privacy_protection:
+                # 检测敏感信息
+                sensitive_info = self.sensitive_detector.detect_sensitive_info(text)
+                # 匿名化处理
+                if sensitive_info:
+                    anonymized_text = self.anonymizer.anonymize(text)
+                    anonymized_entities = entities  # 实体已经在匿名化文本中更新
+                else:
+                    anonymized_text = text
+                    anonymized_entities = entities
+            else:
+                anonymized_text = text
+                anonymized_entities = entities
             
-            # 创建处理后的文本块
-            processed_chunk = ProcessedChunk(
+            # 8. 创建处理结果
+            result = ProcessedChunk(
                 chunk_id=chunk_id,
                 original_text=text,
                 entities=entities,
@@ -88,22 +91,86 @@ class InformationProcessor:
                 summary=summary,
                 anomalies=anomalies,
                 qa_pairs=qa_pairs,
-                compliance_events=compliance_events,
-                compliance_analysis=compliance_analysis
+                compliance_events=compliance_events
             )
             
-            # 如果启用了隐私保护，对结果进行脱敏处理
-            if self.enable_privacy_protection:
-                processed_chunk = self._anonymize_processed_chunk(processed_chunk)
+            processing_time = time.time() - start_time
+            logging.info(f"处理块 {chunk_id} 完成，耗时 {processing_time:.2f} 秒")
             
-            # 如果启用了自适应学习，记录处理时间
-            if self.adaptive_learning:
-                self._record_processing_time(processing_time)
-            
-            return processed_chunk
+            return result
             
         except Exception as e:
-            logging.error(f"处理文本块失败: {str(e)}", exc_info=True)
+            logging.error(f"处理块 {chunk_id} 时出错: {str(e)}")
+            logging.error(re.sub(r'\n\s*', ' ', str(e)))
+            return None
+
+    def process_text(self, text: str) -> Optional[ProcessedChunk]:
+        """处理文本"""
+        if not text.strip():
+            return None
+            
+        try:
+            start_time = time.time()
+            
+            # 1. 提取实体
+            entities = self.entity_extractor.extract_entities(text)
+            
+            # 如果启用了自适应学习，应用学习到的模式
+            if self.adaptive_learning:
+                entities = self.learning_manager.enhance_recognition(text, entities)
+            
+            # 2. 提取关系
+            relations = self.relation_extractor.find_transfer_relations(entities, text)
+            relations.extend(self.relation_extractor.find_ownership_relations(entities, text))
+            relations.extend(self.relation_extractor.find_part_whole_relations(entities, text))
+            
+            # 3. 检测异常
+            anomalies = self.anomaly_detector.detect_anomalies(entities, text)
+            
+            # 4. 合规检测
+            compliance_events = self.compliance_detector.detect_events(text, entities, relations)
+            
+            # 5. 生成摘要
+            summary = self.summarizer.generate_summary(text, entities, relations, compliance_events)
+            
+            # 6. 生成问答对
+            qa_pairs = self.qa_generator.generate_qa_pairs(text, entities, relations, compliance_events)
+            
+            # 7. 隐私保护
+            if self.enable_privacy_protection:
+                # 检测敏感信息
+                sensitive_info = self.sensitive_detector.detect_sensitive_info(text)
+                # 匿名化处理
+                if sensitive_info:
+                    anonymized_text = self.anonymizer.anonymize(text)
+                    anonymized_entities = entities  # 实体已经在匿名化文本中更新
+                else:
+                    anonymized_text = text
+                    anonymized_entities = entities
+            else:
+                anonymized_text = text
+                anonymized_entities = entities
+            
+            # 8. 创建处理结果
+            result = ProcessedChunk(
+                chunk_id=0,  # 单文本处理使用0作为ID
+                original_text=anonymized_text,
+                entities=anonymized_entities,
+                relations=relations,
+                summary=summary,
+                anomalies=anomalies,
+                qa_pairs=qa_pairs,
+                compliance_events=compliance_events
+            )
+            
+            processing_time = time.time() - start_time
+            logging.info(f"文本处理完成，耗时 {processing_time:.2f} 秒")
+            
+            return result
+            
+        except Exception as e:
+            logging.error(f"文本处理时出错: {str(e)}")
+            logging.error(re.sub(r'\n\s*', ' ', str(e)))
             return None
 
     def extract_key_info(self, text: str) -> Dict[str, Any]:
@@ -118,8 +185,13 @@ class InformationProcessor:
                 if entity.text not in info[entity.type]:
                     info[entity.type].append(entity.text)
             
-            # 3. 提取合规事件
-            compliance_events = self.compliance_detector.detect_compliance_events(text)
+            # 3. 提取关系
+            relations = self.relation_extractor.find_transfer_relations(entities, text)
+            relations.extend(self.relation_extractor.find_ownership_relations(entities, text))
+            relations.extend(self.relation_extractor.find_part_whole_relations(entities, text))
+            
+            # 4. 提取合规事件
+            compliance_events = self.compliance_detector.detect_events(text, entities, relations)
             if compliance_events:
                 info["COMPLIANCE_EVENTS"] = [
                     {
@@ -130,8 +202,8 @@ class InformationProcessor:
                     for event in compliance_events
                 ]
             
-            # 4. 检测异常
-            anomalies = self.anomaly_detector.detect_time_anomalies(entities, text)
+            # 5. 检测异常
+            anomalies = self.anomaly_detector.detect_anomalies(entities, text)
             if anomalies:
                 info["ANOMALIES"] = [
                     {
@@ -142,9 +214,9 @@ class InformationProcessor:
                     for anomaly in anomalies
                 ]
             
-            # 5. 生成摘要
+            # 6. 生成摘要
             if len(text) > 100:
-                summary = self.summarizer.summarize_regulation(text)
+                summary = self.summarizer.generate_summary(text, entities, relations, compliance_events)
                 if summary:
                     info["SUMMARY"] = summary
             
@@ -164,7 +236,7 @@ class InformationProcessor:
             sensitive_info = self.sensitive_detector.detect_sensitive_info(chunk.original_text)
             
             # 对文本进行脱敏处理
-            anonymized_text = self.anonymizer.anonymize_text(chunk.original_text, sensitive_info)
+            anonymized_text = self.anonymizer.anonymize(chunk.original_text)
             
             # 更新处理后的文本块
             chunk.original_text = anonymized_text
@@ -172,7 +244,7 @@ class InformationProcessor:
             # 对摘要进行脱敏处理
             if chunk.summary:
                 sensitive_info_summary = self.sensitive_detector.detect_sensitive_info(chunk.summary)
-                chunk.summary = self.anonymizer.anonymize_text(chunk.summary, sensitive_info_summary)
+                chunk.summary = self.anonymizer.anonymize(chunk.summary)
             
             # 对问答对进行脱敏处理
             if chunk.qa_pairs:
@@ -180,8 +252,8 @@ class InformationProcessor:
                     sensitive_info_q = self.sensitive_detector.detect_sensitive_info(qa_pair["question"])
                     sensitive_info_a = self.sensitive_detector.detect_sensitive_info(qa_pair["answer"])
                     
-                    qa_pair["question"] = self.anonymizer.anonymize_text(qa_pair["question"], sensitive_info_q)
-                    qa_pair["answer"] = self.anonymizer.anonymize_text(qa_pair["answer"], sensitive_info_a)
+                    qa_pair["question"] = self.anonymizer.anonymize(qa_pair["question"])
+                    qa_pair["answer"] = self.anonymizer.anonymize(qa_pair["answer"])
             
             return chunk
             
@@ -197,19 +269,21 @@ class InformationProcessor:
             
             # 2. 提取关系
             relations = self.relation_extractor.find_transfer_relations(entities, text)
+            relations.extend(self.relation_extractor.find_ownership_relations(entities, text))
+            relations.extend(self.relation_extractor.find_part_whole_relations(entities, text))
             
             # 3. 检测合规事件
-            compliance_events = self.compliance_detector.detect_compliance_events(text)
+            compliance_events = self.compliance_detector.detect_events(text, entities, relations)
             
             # 4. 生成问答对
             qa_pairs = []
             if scenario:
-                qa_pairs = self.qa_generator.generate_qa_pairs(text, scenario)
+                qa_pairs = self.qa_generator.generate_qa_pairs(text, entities, relations, compliance_events)
             
             # 5. 生成摘要
             summary = None
             if len(text) > 100:
-                summary = self.summarizer.summarize_regulation(text)
+                summary = self.summarizer.generate_summary(text, entities, relations, compliance_events)
             
             # 6. 合规风险分析
             compliance_analysis = None
@@ -235,8 +309,7 @@ class InformationProcessor:
                     {
                         'type': event.type,
                         'text': event.text,
-                        'importance': event.importance,
-                        'subtype': event.subtype
+                        'importance': event.importance
                     }
                     for event in (compliance_events or [])
                 ],

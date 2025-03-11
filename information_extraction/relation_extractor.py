@@ -1,11 +1,10 @@
 # relation_extractor.py
 from typing import List, Dict, Any
 from .schemas import (
-    EntityRelation, 
-    FinancialEntity, 
     RelationType, 
     EntityLabel,
-    Entity  # 添加Entity类的导入
+    Entity,
+    Relation
 )
 import re
 
@@ -32,14 +31,14 @@ class FinancialRelationExtractor:
             r'(?:下属|旗下)'
         ]
 
-    def find_transfer_relations(self, entities: List[Entity], text: str) -> List[Dict[str, Any]]:
+    def find_transfer_relations(self, entities: List[Entity], text: str) -> List[Relation]:
         """查找转账关系"""
         relations = []
         
         # 提取账户相关实体
-        accounts = [e for e in entities if e.label in [EntityLabel.ACCOUNT.value, EntityLabel.BANK.value]]
-        amounts = [e for e in entities if e.label == EntityLabel.MONEY.value]
-        dates = [e for e in entities if e.label == EntityLabel.DATE.value]
+        accounts = [e for e in entities if e.type in [EntityLabel.ACCOUNT.value, EntityLabel.BANK.value]]
+        amounts = [e for e in entities if e.type == EntityLabel.MONEY.value]
+        dates = [e for e in entities if e.type == EntityLabel.DATE.value]
         
         # 对每个转账模式
         for pattern in self.transfer_patterns:
@@ -51,69 +50,42 @@ class FinancialRelationExtractor:
                 context = text[start:end]
                 
                 # 在上下文中查找相关实体
-                related_accounts = [
+                context_accounts = [
                     acc for acc in accounts 
-                    if acc.end_pos >= start and acc.start_pos <= end
+                    if start <= acc.start <= end or start <= acc.end <= end
                 ]
-                related_amounts = [
+                context_amounts = [
                     amt for amt in amounts 
-                    if amt.start >= start and amt.end <= end
-                ]
-                related_dates = [
-                    dt for dt in dates 
-                    if dt.start >= start and dt.end <= end
+                    if start <= amt.start <= end or start <= amt.end <= end
                 ]
                 
-                # 如果找到相关实体，创建关系
-                if len(related_accounts) >= 2 and related_amounts:
-                    relation = {
-                        'type': RelationType.TRANSFER_TO.value,
-                        'source': {
-                            'type': related_accounts[0].label,
-                            'text': related_accounts[0].text
-                        },
-                        'target': {
-                            'type': related_accounts[1].label,
-                            'text': related_accounts[1].text
-                        },
-                        'amount': {
-                            'text': related_amounts[0].text
-                        },
-                        'date': related_dates[0].text if related_dates else None,
-                        'context': context,
-                        'confidence': 0.9
-                    }
-                    relations.append(relation)
-                
-                # 处理单向转账（只有一个账户实体）
-                elif len(related_accounts) == 1 and related_amounts:
-                    # 判断是转入还是转出
-                    is_transfer_in = any(word in context for word in ['收到', '转入', '收款'])
-                    relation = {
-                        'type': RelationType.TRANSFER_TO.value if not is_transfer_in else RelationType.BELONGS_TO.value,
-                        'source': {
-                            'type': related_accounts[0].label,
-                            'text': related_accounts[0].text
-                        },
-                        'amount': {
-                            'text': related_amounts[0].text
-                        },
-                        'date': related_dates[0].text if related_dates else None,
-                        'context': context,
-                        'confidence': 0.7
-                    }
-                    relations.append(relation)
+                # 如果找到了账户和金额，创建转账关系
+                if len(context_accounts) >= 2 and context_amounts:
+                    source = context_accounts[0]
+                    target = context_accounts[1]
+                    amount = context_amounts[0]
+                    
+                    # 根据转账描述调整源和目标
+                    if "收到" in context or "转入" in context:
+                        source, target = target, source
+                    
+                    relations.append(Relation(
+                        type=RelationType.TRANSFER_TO.value,
+                        source=source,
+                        target=target,
+                        confidence=0.8
+                    ))
         
         return relations
 
-    def find_ownership_relations(self, entities: List[Entity], text: str) -> List[Dict[str, Any]]:
+    def find_ownership_relations(self, entities: List[Entity], text: str) -> List[Relation]:
         """查找所有权关系"""
         relations = []
         
         # 提取相关实体
-        orgs = [e for e in entities if e.label == EntityLabel.ORG.value]
-        persons = [e for e in entities if e.label == EntityLabel.PERSON.value]
-        products = [e for e in entities if e.label == EntityLabel.PRODUCT.value]
+        persons = [e for e in entities if e.type == EntityLabel.PERSON.value]
+        orgs = [e for e in entities if e.type == EntityLabel.ORG.value]
+        accounts = [e for e in entities if e.type in [EntityLabel.ACCOUNT.value, EntityLabel.BANK.value]]
         
         # 对每个所有权模式
         for pattern in self.ownership_patterns:
@@ -125,55 +97,39 @@ class FinancialRelationExtractor:
                 context = text[start:end]
                 
                 # 在上下文中查找相关实体
-                related_orgs = [org for org in orgs if org.start >= start and org.end <= end]
-                related_persons = [person for person in persons if person.start >= start and person.end <= end]
-                related_products = [prod for prod in products if prod.start >= start and prod.end <= end]
+                context_persons = [
+                    p for p in persons 
+                    if start <= p.start <= end or start <= p.end <= end
+                ]
+                context_orgs = [
+                    o for o in orgs 
+                    if start <= o.start <= end or start <= o.end <= end
+                ]
+                context_accounts = [
+                    a for a in accounts 
+                    if start <= a.start <= end or start <= a.end <= end
+                ]
                 
-                # 创建组织-人员关系
-                for org in related_orgs:
-                    for person in related_persons:
-                        relation = {
-                            'type': RelationType.BELONGS_TO.value,
-                            'source': {
-                                'type': person.label,
-                                'text': person.text
-                            },
-                            'target': {
-                                'type': org.label,
-                                'text': org.text
-                            },
-                            'context': context,
-                            'confidence': 0.8
-                        }
-                        relations.append(relation)
-                
-                # 创建组织-产品关系
-                for org in related_orgs:
-                    for product in related_products:
-                        relation = {
-                            'type': RelationType.OWNS.value,
-                            'source': {
-                                'type': org.label,
-                                'text': org.text
-                            },
-                            'target': {
-                                'type': product.label,
-                                'text': product.text
-                            },
-                            'context': context,
-                            'confidence': 0.8
-                        }
-                        relations.append(relation)
+                # 创建所有权关系
+                if context_persons and (context_orgs or context_accounts):
+                    owner = context_persons[0]
+                    owned = context_orgs[0] if context_orgs else context_accounts[0]
+                    
+                    relations.append(Relation(
+                        type=RelationType.BELONGS_TO.value,
+                        source=owned,
+                        target=owner,
+                        confidence=0.8
+                    ))
         
         return relations
 
-    def find_part_whole_relations(self, entities: List[Entity], text: str) -> List[Dict[str, Any]]:
+    def find_part_whole_relations(self, entities: List[Entity], text: str) -> List[Relation]:
         """查找部分-整体关系"""
         relations = []
         
-        # 提取相关实体
-        orgs = [e for e in entities if e.label == EntityLabel.ORG.value]
-        departments = [e for e in entities if e.label == EntityLabel.DEPARTMENT.value]
+        # 提取组织实体
+        orgs = [e for e in entities if e.type == EntityLabel.ORG.value]
         
         # 对每个部分-整体模式
         for pattern in self.part_whole_patterns:
@@ -185,25 +141,21 @@ class FinancialRelationExtractor:
                 context = text[start:end]
                 
                 # 在上下文中查找相关实体
-                related_orgs = [org for org in orgs if org.start >= start and org.end <= end]
-                related_departments = [dept for dept in departments if dept.start >= start and dept.end <= end]
+                context_orgs = [
+                    o for o in orgs 
+                    if start <= o.start <= end or start <= o.end <= end
+                ]
                 
-                # 创建部门-组织关系
-                for org in related_orgs:
-                    for department in related_departments:
-                        relation = {
-                            'type': RelationType.PART_OF.value,
-                            'source': {
-                                'type': department.label,
-                                'text': department.text
-                            },
-                            'target': {
-                                'type': org.label,
-                                'text': org.text
-                            },
-                            'context': context,
-                            'confidence': 0.8
-                        }
-                        relations.append(relation)
+                # 如果找到了多个组织实体，创建部分-整体关系
+                if len(context_orgs) >= 2:
+                    part = context_orgs[0]
+                    whole = context_orgs[1]
+                    
+                    relations.append(Relation(
+                        type=RelationType.PART_OF.value,
+                        source=part,
+                        target=whole,
+                        confidence=0.8
+                    ))
         
         return relations

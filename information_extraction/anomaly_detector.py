@@ -4,10 +4,22 @@ import datetime
 import pytz
 import re
 from typing import List, Optional, Dict, Any
-from .schemas import FinancialEntity, Anomaly, Entity, EntityLabel
+from .schemas import Entity, EntityLabel
+from datetime import timedelta
+from dataclasses import dataclass
 
 # 配置日志记录
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+@dataclass
+class Anomaly:
+    """异常类"""
+    type: str
+    description: str
+    severity: float
+    related_entities: List[Entity]
+    timestamp: datetime
+    details: Optional[Dict[str, Any]] = None
 
 class FraudDetector:
     timezone_map = {
@@ -20,6 +32,20 @@ class FraudDetector:
         "Hong Kong": "Asia/Hong_Kong"
     }
 
+    def __init__(self):
+        self.logger = logging.getLogger(__name__)
+        self.threshold_amount = 100000  # 大额交易阈值
+        self.frequency_threshold = 5    # 频繁交易阈值
+        self.time_window = timedelta(hours=24)  # 时间窗口
+        
+        # 可疑交易模式
+        self.suspicious_patterns = [
+            r'多笔.*?转账',
+            r'可疑.*?交易',
+            r'未经授权',
+            r'异常.*?操作'
+        ]
+        
     @staticmethod
     def detect_time_anomalies(entities: List[Entity], text: str, timezone_mapping: Optional[dict] = None) -> List[Anomaly]:
         anomalies = []
@@ -46,9 +72,9 @@ class FraudDetector:
                         anomalies.append(Anomaly(
                             type="TIME_ANOMALY",
                             description=anomaly_desc,
-                            entities=[time_ent, loc_ent],
-                            confidence=0.85,
-                            context=text[max(0, time_ent.start-50):min(len(text), time_ent.end+50)]
+                            severity=0.85,
+                            related_entities=[time_ent, loc_ent],
+                            timestamp=datetime.datetime.now()
                         ))
                 except pytz.exceptions.UnknownTimeZoneError:
                     logging.error(f"未知时区配置: {location}")
@@ -153,6 +179,55 @@ class FraudDetector:
             ))
         return entities
 
+    def detect_anomalies(self, entities: List[Entity], text: str) -> List[Anomaly]:
+        """检测异常"""
+        anomalies = []
+        
+        # 提取金额和账户实体
+        amounts = [e for e in entities if e.type == EntityLabel.MONEY.value]
+        accounts = [e for e in entities if e.type in [EntityLabel.ACCOUNT.value, EntityLabel.BANK.value]]
+        dates = [e for e in entities if e.type == EntityLabel.DATE.value]
+        
+        # 检测大额交易
+        for amount in amounts:
+            try:
+                value = float(re.sub(r'[^\d.]', '', amount.text))
+                if value > self.threshold_amount:
+                    anomalies.append(Anomaly(
+                        type="LARGE_TRANSACTION",
+                        description=f"发现大额交易: {amount.text}",
+                        severity=0.7,
+                        related_entities=[amount],
+                        timestamp=datetime.datetime.now()
+                    ))
+            except ValueError:
+                continue
+        
+        # 检测可疑模式
+        for pattern in self.suspicious_patterns:
+            matches = re.finditer(pattern, text)
+            for match in matches:
+                # 获取上下文
+                start = max(0, match.start() - 50)
+                end = min(len(text), match.end() + 50)
+                context = text[start:end]
+                
+                # 查找相关实体
+                related = []
+                for entity in entities:
+                    if start <= entity.start <= end or start <= entity.end <= end:
+                        related.append(entity)
+                
+                if related:
+                    anomalies.append(Anomaly(
+                        type="SUSPICIOUS_PATTERN",
+                        description=f"发现可疑交易模式: {match.group()}",
+                        severity=0.6,
+                        related_entities=related,
+                        timestamp=datetime.datetime.now()
+                    ))
+        
+        return anomalies
 
 class AnomalyDetector:
     def __init__(self):

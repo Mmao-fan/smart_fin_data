@@ -1,7 +1,8 @@
 # summarizer.py
-from typing import Optional
+from typing import Optional, List
 import logging
 import re
+from .schemas import Entity, Relation, ComplianceEvent
 
 class ComplianceSummarizer:
     """离线文本摘要生成器"""
@@ -10,6 +11,105 @@ class ComplianceSummarizer:
         self.default_max_length = 512
         logging.info("使用离线摘要生成模式")
         
+    def generate_summary(self, text: str, entities: List[Entity], relations: List[Relation], compliance_events: List[ComplianceEvent]) -> str:
+        """生成综合摘要"""
+        # 基础摘要
+        base_summary = self.summarize_regulation(text)
+        
+        # 实体摘要
+        entity_summary = self._summarize_entities(entities)
+        
+        # 关系摘要
+        relation_summary = self._summarize_relations(relations)
+        
+        # 合规事件摘要
+        event_summary = self._summarize_events(compliance_events)
+        
+        # 组合摘要
+        combined_summary = []
+        if base_summary:
+            combined_summary.append(base_summary)
+        if entity_summary:
+            combined_summary.append(entity_summary)
+        if relation_summary:
+            combined_summary.append(relation_summary)
+        if event_summary:
+            combined_summary.append(event_summary)
+        
+        if not combined_summary:
+            return "无法生成摘要，文本内容不足。"
+        
+        return " ".join(combined_summary)
+    
+    def _summarize_entities(self, entities: List[Entity]) -> Optional[str]:
+        """摘要实体信息"""
+        if not entities:
+            return None
+        
+        # 按类型分组
+        entity_types = {}
+        for entity in entities:
+            if entity.type not in entity_types:
+                entity_types[entity.type] = []
+            entity_types[entity.type].append(entity.text)
+        
+        # 生成摘要
+        summary_parts = []
+        for entity_type, entity_texts in entity_types.items():
+            unique_texts = list(set(entity_texts))  # 去重
+            if len(unique_texts) > 3:
+                summary_parts.append(f"{entity_type}类型实体{len(unique_texts)}个，包括{', '.join(unique_texts[:3])}等")
+            else:
+                summary_parts.append(f"{entity_type}类型实体{len(unique_texts)}个：{', '.join(unique_texts)}")
+        
+        return "文档包含 " + "；".join(summary_parts) + "。"
+    
+    def _summarize_relations(self, relations: List[Relation]) -> Optional[str]:
+        """摘要关系信息"""
+        if not relations:
+            return None
+        
+        # 按类型分组
+        relation_types = {}
+        for relation in relations:
+            if relation.type not in relation_types:
+                relation_types[relation.type] = []
+            relation_types[relation.type].append((relation.source.text, relation.target.text))
+        
+        # 生成摘要
+        summary_parts = []
+        for relation_type, relation_pairs in relation_types.items():
+            if len(relation_pairs) > 2:
+                examples = relation_pairs[:2]
+                examples_text = "、".join([f"{src}与{tgt}" for src, tgt in examples])
+                summary_parts.append(f"{relation_type}关系{len(relation_pairs)}个，包括{examples_text}等")
+            else:
+                examples_text = "、".join([f"{src}与{tgt}" for src, tgt in relation_pairs])
+                summary_parts.append(f"{relation_type}关系{len(relation_pairs)}个：{examples_text}")
+        
+        return "发现 " + "；".join(summary_parts) + "。"
+    
+    def _summarize_events(self, events: List[ComplianceEvent]) -> Optional[str]:
+        """摘要合规事件"""
+        if not events:
+            return None
+        
+        # 按重要性排序
+        sorted_events = sorted(events, key=lambda e: e.importance, reverse=True)
+        
+        # 生成摘要
+        if len(sorted_events) > 3:
+            high_importance = [e for e in sorted_events if e.importance > 0.7]
+            if high_importance:
+                event_texts = [e.text[:30] + "..." if len(e.text) > 30 else e.text for e in high_importance[:2]]
+                return f"发现{len(sorted_events)}个合规事件，其中高重要性事件包括：{'; '.join(event_texts)}等。"
+            else:
+                event_texts = [e.text[:30] + "..." if len(e.text) > 30 else e.text for e in sorted_events[:2]]
+                return f"发现{len(sorted_events)}个合规事件，包括：{'; '.join(event_texts)}等。"
+        else:
+            event_texts = [e.text[:30] + "..." if len(e.text) > 30 else e.text for e in sorted_events]
+            return f"发现{len(sorted_events)}个合规事件：{'; '.join(event_texts)}。"
+
     def _calculate_target_length(self, text: str) -> int:
         """计算目标摘要长度"""
         text_length = len(text)
