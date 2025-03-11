@@ -1,5 +1,5 @@
 # schemas.py
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import List, Optional, Dict, Any
 from enum import Enum, auto
 from datetime import datetime
@@ -35,11 +35,20 @@ class RelationType(str, Enum):
 @dataclass
 class Entity:
     """实体类"""
-    type: str  # 实体类型
-    text: str  # 实体文本
-    start: int  # 开始位置
-    end: int   # 结束位置
-    
+    id: str
+    text: str
+    type: str
+    start: int
+    end: int
+    confidence: float = 0.0
+    metadata: Dict[str, Any] = field(default_factory=dict)
+
+    def __post_init__(self):
+        if self.metadata is None:
+            self.metadata = {}
+        if self.confidence is None:
+            self.confidence = 0.0
+
     @property
     def label(self) -> str:
         """兼容性属性，返回实体类型"""
@@ -58,10 +67,18 @@ class Entity:
 @dataclass
 class Relation:
     """关系类"""
+    id: str
     type: str
     source: Entity
     target: Entity
-    confidence: float = 1.0
+    confidence: float = 0.0
+    metadata: Dict[str, Any] = field(default_factory=dict)
+
+    def __post_init__(self):
+        if self.metadata is None:
+            self.metadata = {}
+        if self.confidence is None:
+            self.confidence = 0.0
 
 @dataclass
 class ComplianceEvent:

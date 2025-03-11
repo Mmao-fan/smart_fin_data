@@ -1,5 +1,5 @@
 # relation_extractor.py
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 from .schemas import (
     RelationType, 
     EntityLabel,
@@ -7,155 +7,183 @@ from .schemas import (
     Relation
 )
 import re
+import logging
+import uuid
 
 
-class FinancialRelationExtractor:
-    """金融关系提取器"""
+class RelationExtractor:
+    """关系提取器"""
     
     def __init__(self):
-        self.transfer_patterns = [
-            r'(?:转账|汇款|支付|收款).*?(?:到|给|从)',
-            r'(?:收到|接收).*?(?:从|由)',
-            r'(?:转入|转出).*?(?:账户|卡)',
-        ]
-        
-        self.ownership_patterns = [
-            r'(?:属于|所有|持有|拥有)',
-            r'(?:的账户|的卡|名下)',
-            r'(?:法定代表人|实际控制人|受益人)'
-        ]
-        
-        self.part_whole_patterns = [
-            r'(?:子公司|分公司|分支机构|附属公司)',
-            r'(?:隶属于|从属于|附属于)',
-            r'(?:下属|旗下)'
-        ]
+        self.logger = logging.getLogger(__name__)
+        # 定义关系模式
+        self.relation_patterns = {
+            'transfer': [
+                r'(?P<source>[\w\s]+)向(?P<target>[\w\s]+)转账(?P<amount>[\d\.]+(?:万|亿)?元)',
+                r'(?P<source>[\w\s]+)支付(?P<target>[\w\s]+)(?P<amount>[\d\.]+(?:万|亿)?元)',
+            ],
+            'ownership': [
+                r'(?P<source>[\w\s]+)持有(?P<target>[\w\s]+)(?P<percentage>[\d\.]+%)股份',
+                r'(?P<source>[\w\s]+)是(?P<target>[\w\s]+)的控股股东',
+            ],
+            'investment': [
+                r'(?P<source>[\w\s]+)投资(?P<target>[\w\s]+)(?P<amount>[\d\.]+(?:万|亿)?元)',
+                r'(?P<source>[\w\s]+)认购(?P<target>[\w\s]+)(?P<amount>[\d\.]+(?:万|亿)?元)',
+            ],
+            'cooperation': [
+                r'(?P<source>[\w\s]+)与(?P<target>[\w\s]+)签署(?:合作|协议)',
+                r'(?P<source>[\w\s]+)和(?P<target>[\w\s]+)达成(?:合作|协议)',
+            ],
+            'employment': [
+                r'(?P<source>[\w\s]+)担任(?P<target>[\w\s]+)(?P<position>[\w\s]+职务)',
+                r'(?P<source>[\w\s]+)是(?P<target>[\w\s]+)的(?P<position>[\w\s]+)',
+            ]
+        }
 
-    def find_transfer_relations(self, entities: List[Entity], text: str) -> List[Relation]:
-        """查找转账关系"""
+    def extract_relations(self, text: str, entities: List[Entity]) -> List[Relation]:
+        """提取实体间的关系"""
+        try:
+            relations = []
+            
+            # 基于规则的关系提取
+            for rel_type, patterns in self.relation_patterns.items():
+                for pattern in patterns:
+                    matches = re.finditer(pattern, text)
+                    for match in matches:
+                        source_text = match.group('source').strip()
+                        target_text = match.group('target').strip()
+                        
+                        source_entity = self._find_closest_entity(source_text, entities)
+                        target_entity = self._find_closest_entity(target_text, entities)
+                        
+                        if source_entity and target_entity:
+                            relation = Relation(
+                                id=str(uuid.uuid4()),
+                                type=rel_type,
+                                source=source_entity,
+                                target=target_entity,
+                                confidence=0.8,
+                                metadata={
+                                    'pattern': pattern,
+                                    'match_text': match.group(0)
+                                }
+                            )
+                            relations.append(relation)
+            
+            # 基于共现的关系提取
+            cooccurrence_relations = self._extract_cooccurrence_relations(text, entities)
+            relations.extend(cooccurrence_relations)
+            
+            # 合并相似的关系
+            relations = self._merge_similar_relations(relations)
+            
+            return relations
+            
+        except Exception as e:
+            self.logger.error(f"关系提取失败: {str(e)}")
+            return []
+
+    def _find_closest_entity(self, text: str, entities: List[Entity]) -> Optional[Entity]:
+        """找到最接近的实体"""
+        best_match = None
+        best_score = 0
+        
+        for entity in entities:
+            score = self._calculate_text_similarity(text, entity.text)
+            if score > best_score and score > 0.6:  # 设置阈值
+                best_score = score
+                best_match = entity
+        
+        return best_match
+
+    def _calculate_text_similarity(self, text1: str, text2: str) -> float:
+        """计算文本相似度"""
+        # 使用简单的字符重叠率
+        chars1 = set(text1)
+        chars2 = set(text2)
+        intersection = len(chars1.intersection(chars2))
+        union = len(chars1.union(chars2))
+        return intersection / union if union > 0 else 0
+
+    def _extract_cooccurrence_relations(self, text: str, entities: List[Entity]) -> List[Relation]:
+        """提取基于共现的关系"""
         relations = []
         
-        # 提取账户相关实体
-        accounts = [e for e in entities if e.type in [EntityLabel.ACCOUNT.value, EntityLabel.BANK.value]]
-        amounts = [e for e in entities if e.type == EntityLabel.MONEY.value]
-        dates = [e for e in entities if e.type == EntityLabel.DATE.value]
+        # 将文本分成句子
+        sentences = re.split(r'[。！？!?]', text)
         
-        # 对每个转账模式
-        for pattern in self.transfer_patterns:
-            matches = re.finditer(pattern, text)
-            for match in matches:
-                # 获取转账描述的上下文
-                start = max(0, match.start() - 50)
-                end = min(len(text), match.end() + 50)
-                context = text[start:end]
-                
-                # 在上下文中查找相关实体
-                context_accounts = [
-                    acc for acc in accounts 
-                    if start <= acc.start <= end or start <= acc.end <= end
-                ]
-                context_amounts = [
-                    amt for amt in amounts 
-                    if start <= amt.start <= end or start <= amt.end <= end
-                ]
-                
-                # 如果找到了账户和金额，创建转账关系
-                if len(context_accounts) >= 2 and context_amounts:
-                    source = context_accounts[0]
-                    target = context_accounts[1]
-                    amount = context_amounts[0]
-                    
-                    # 根据转账描述调整源和目标
-                    if "收到" in context or "转入" in context:
-                        source, target = target, source
-                    
-                    relations.append(Relation(
-                        type=RelationType.TRANSFER_TO.value,
-                        source=source,
-                        target=target,
-                        confidence=0.8
-                    ))
+        for sentence in sentences:
+            sentence_entities = [
+                e for e in entities
+                if e.start >= text.find(sentence) and
+                e.end <= text.find(sentence) + len(sentence)
+            ]
+            
+            # 检查每对实体
+            for i, e1 in enumerate(sentence_entities):
+                for e2 in sentence_entities[i+1:]:
+                    rel_type = self._infer_relation_type(e1, e2, sentence)
+                    if rel_type:
+                        relation = Relation(
+                            id=str(uuid.uuid4()),
+                            type=rel_type,
+                            source=e1,
+                            target=e2,
+                            confidence=0.6,
+                            metadata={
+                                'method': 'cooccurrence',
+                                'sentence': sentence
+                            }
+                        )
+                        relations.append(relation)
         
         return relations
 
-    def find_ownership_relations(self, entities: List[Entity], text: str) -> List[Relation]:
-        """查找所有权关系"""
-        relations = []
+    def _infer_relation_type(self, e1: Entity, e2: Entity, context: str) -> Optional[str]:
+        """推断两个实体之间的关系类型"""
+        # 基于实体类型和上下文推断关系
+        if e1.type == 'PERSON' and e2.type == 'ORG':
+            if any(word in context for word in ['担任', '任职', '就职']):
+                return 'employment'
+            elif any(word in context for word in ['投资', '认购']):
+                return 'investment'
+        elif e1.type == 'ORG' and e2.type == 'ORG':
+            if any(word in context for word in ['收购', '持股', '控股']):
+                return 'ownership'
+            elif any(word in context for word in ['合作', '协议', '签署']):
+                return 'cooperation'
         
-        # 提取相关实体
-        persons = [e for e in entities if e.type == EntityLabel.PERSON.value]
-        orgs = [e for e in entities if e.type == EntityLabel.ORG.value]
-        accounts = [e for e in entities if e.type in [EntityLabel.ACCOUNT.value, EntityLabel.BANK.value]]
-        
-        # 对每个所有权模式
-        for pattern in self.ownership_patterns:
-            matches = re.finditer(pattern, text)
-            for match in matches:
-                # 获取描述的上下文
-                start = max(0, match.start() - 50)
-                end = min(len(text), match.end() + 50)
-                context = text[start:end]
-                
-                # 在上下文中查找相关实体
-                context_persons = [
-                    p for p in persons 
-                    if start <= p.start <= end or start <= p.end <= end
-                ]
-                context_orgs = [
-                    o for o in orgs 
-                    if start <= o.start <= end or start <= o.end <= end
-                ]
-                context_accounts = [
-                    a for a in accounts 
-                    if start <= a.start <= end or start <= a.end <= end
-                ]
-                
-                # 创建所有权关系
-                if context_persons and (context_orgs or context_accounts):
-                    owner = context_persons[0]
-                    owned = context_orgs[0] if context_orgs else context_accounts[0]
-                    
-                    relations.append(Relation(
-                        type=RelationType.BELONGS_TO.value,
-                        source=owned,
-                        target=owner,
-                        confidence=0.8
-                    ))
-        
-        return relations
+        return None
 
-    def find_part_whole_relations(self, entities: List[Entity], text: str) -> List[Relation]:
-        """查找部分-整体关系"""
-        relations = []
+    def _merge_similar_relations(self, relations: List[Relation]) -> List[Relation]:
+        """合并相似的关系"""
+        merged = []
+        used = set()
         
-        # 提取组织实体
-        orgs = [e for e in entities if e.type == EntityLabel.ORG.value]
-        
-        # 对每个部分-整体模式
-        for pattern in self.part_whole_patterns:
-            matches = re.finditer(pattern, text)
-            for match in matches:
-                # 获取描述的上下文
-                start = max(0, match.start() - 50)
-                end = min(len(text), match.end() + 50)
-                context = text[start:end]
+        for i, r1 in enumerate(relations):
+            if i in used:
+                continue
                 
-                # 在上下文中查找相关实体
-                context_orgs = [
-                    o for o in orgs 
-                    if start <= o.start <= end or start <= o.end <= end
-                ]
-                
-                # 如果找到了多个组织实体，创建部分-整体关系
-                if len(context_orgs) >= 2:
-                    part = context_orgs[0]
-                    whole = context_orgs[1]
-                    
-                    relations.append(Relation(
-                        type=RelationType.PART_OF.value,
-                        source=part,
-                        target=whole,
-                        confidence=0.8
-                    ))
+            similar = [r1]
+            used.add(i)
+            
+            # 查找相似的关系
+            for j, r2 in enumerate(relations[i+1:], i+1):
+                if j not in used and self._are_relations_similar(r1, r2):
+                    similar.append(r2)
+                    used.add(j)
+            
+            # 如果找到相似关系，选择置信度最高的
+            if similar:
+                best_relation = max(similar, key=lambda r: r.confidence)
+                merged.append(best_relation)
         
-        return relations
+        return merged
+
+    def _are_relations_similar(self, r1: Relation, r2: Relation) -> bool:
+        """判断两个关系是否相似"""
+        return (
+            r1.type == r2.type and
+            self._calculate_text_similarity(r1.source.text, r2.source.text) > 0.8 and
+            self._calculate_text_similarity(r1.target.text, r2.target.text) > 0.8
+        )

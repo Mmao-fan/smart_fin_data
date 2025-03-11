@@ -2,11 +2,19 @@
 from abc import ABC, abstractmethod
 from pathlib import Path
 import logging
+from typing import Dict, Any, Union
 
 class BaseProcessor(ABC):
     @classmethod
     @abstractmethod
-    def extract_text(cls, file_path: str) -> str:
+    def extract_text(cls, file_path: str) -> Dict[str, Any]:
+        """
+        从文件中提取文本和相关信息
+        Args:
+            file_path: 文件路径
+        Returns:
+            Dict[str, Any]: 包含文本内容和元数据的字典
+        """
         pass
 
     @classmethod

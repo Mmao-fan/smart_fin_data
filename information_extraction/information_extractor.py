@@ -2,397 +2,256 @@
 from typing import List, Dict, Any, Optional
 import re
 import logging
+import uuid
+from information_extraction.schemas import Entity, EntityLabel
 from collections import defaultdict
-import time
-
-from .entity_extractor import FinancialEntityExtractor
-from .relation_extractor import FinancialRelationExtractor
-from .anomaly_detector import FraudDetector
-from .summarizer import ComplianceSummarizer
-from .qa_generator import QAPairGenerator
-from .compliance_detector import ComplianceDetector
-from .privacy_protector import SensitiveInfoDetector, DataAnonymizer
-from .schemas import ProcessedChunk, Entity, ComplianceEvent
-from .adaptive_system import AdaptiveSystem
+from datetime import datetime
 
 class InformationProcessor:
     """信息处理器"""
     
-    def __init__(self, enable_privacy_protection: bool = True, adaptive_learning: bool = True):
-        self.entity_extractor = FinancialEntityExtractor()
-        self.relation_extractor = FinancialRelationExtractor()
-        self.anomaly_detector = FraudDetector()
-        self.summarizer = ComplianceSummarizer()
-        self.qa_generator = QAPairGenerator()
-        self.compliance_detector = ComplianceDetector()
-        self.enable_privacy_protection = enable_privacy_protection
-        self.adaptive_learning = adaptive_learning
+    def __init__(self):
+        self.logger = logging.getLogger(__name__)
         
-        if enable_privacy_protection:
-            self.sensitive_detector = SensitiveInfoDetector()
-            self.anonymizer = DataAnonymizer(self.sensitive_detector)
+        # 实体识别模式
+        self.entity_patterns = {
+            EntityLabel.PERSON: [
+                r'(?:[\u4e00-\u9fa5]{2,4}(?:先生|女士|老师|教授|董事长|总经理|经理|主任|员工))',
+                r'(?:[A-Z][a-z]+\s+[A-Z][a-z]+)'
+            ],
+            EntityLabel.ORG: [
+                r'(?:[\u4e00-\u9fa5]+(?:公司|集团|银行|企业|研究所|大学|学院|机构|部门))',
+                r'(?:[A-Z][a-zA-Z\s]*(?:Corp|Inc|Ltd|LLC|Company|Group|Bank))'
+            ],
+            EntityLabel.MONEY: [
+                r'(?:\d+(?:\.\d+)?(?:万|亿|千|百)?(?:元|美元|欧元|英镑|日元|人民币))',
+                r'(?:USD|CNY|EUR|GBP|JPY)\s*\d+(?:\.\d+)?'
+            ],
+            EntityLabel.PERCENT: [
+                r'\d+(?:\.\d+)?%',
+                r'\d+(?:\.\d+)?个百分点'
+            ],
+            EntityLabel.DATE: [
+                r'\d{4}[-/年]\d{1,2}[-/月]\d{1,2}[日]?',
+                r'\d{1,2}[-/月]\d{1,2}[日]?,?\s*\d{4}[年]?'
+            ]
+        }
         
-        if adaptive_learning:
-            self.learning_manager = AdaptiveSystem()
+        # 关系识别模式
+        self.relation_patterns = {
+            'acquisition': [
+                r'([\u4e00-\u9fa5]+(?:公司|集团|企业)).*?收购.*?([\u4e00-\u9fa5]+(?:公司|集团|企业))',
+                r'([\u4e00-\u9fa5]+(?:公司|集团|企业)).*?并购.*?([\u4e00-\u9fa5]+(?:公司|集团|企业))'
+            ],
+            'investment': [
+                r'([\u4e00-\u9fa5]+(?:公司|集团|企业)).*?投资.*?([\u4e00-\u9fa5]+(?:公司|集团|企业))',
+                r'([\u4e00-\u9fa5]+(?:公司|集团|企业)).*?入股.*?([\u4e00-\u9fa5]+(?:公司|集团|企业))'
+            ],
+            'cooperation': [
+                r'([\u4e00-\u9fa5]+(?:公司|集团|企业)).*?合作.*?([\u4e00-\u9fa5]+(?:公司|集团|企业))',
+                r'([\u4e00-\u9fa5]+(?:公司|集团|企业)).*?签署.*?协议.*?([\u4e00-\u9fa5]+(?:公司|集团|企业))'
+            ]
+        }
+        
+        # 异常检测阈值
+        self.anomaly_thresholds = {
+            'money': {
+                'min': 0,
+                'max': 1e12  # 1万亿
+            },
+            'percent': {
+                'min': 0,
+                'max': 100
+            }
+        }
+        
+        # 处理统计
+        self.statistics = {
+            'total_processed': 0,
+            'successful_processed': 0,
+            'failed_processed': 0,
+            'total_entities': 0,
+            'total_relations': 0,
+            'total_anomalies': 0,
+            'processing_time': defaultdict(float)
+        }
 
-    def process_chunk(self, chunk_id: int, text: str, scenario: str = None) -> Optional[ProcessedChunk]:
-        """处理文本块"""
-        if not text.strip():
-            return None
-            
-        try:
-            start_time = time.time()
-            
-            # 1. 提取实体
-            entities = self.entity_extractor.extract_entities(text)
-            
-            # 如果启用了自适应学习，应用学习到的模式
-            if self.adaptive_learning:
-                entities = self.learning_manager.enhance_recognition(text, entities)
-            
-            # 2. 提取关系
-            relations = self.relation_extractor.find_transfer_relations(entities, text)
-            relations.extend(self.relation_extractor.find_ownership_relations(entities, text))
-            relations.extend(self.relation_extractor.find_part_whole_relations(entities, text))
-            
-            # 3. 检测异常
-            anomalies = self.anomaly_detector.detect_anomalies(entities, text)
-            
-            # 4. 合规检测
-            compliance_events = self.compliance_detector.detect_events(text, entities, relations)
-            
-            # 5. 生成摘要
-            summary = self.summarizer.generate_summary(text, entities, relations, compliance_events)
-            
-            # 6. 生成问答对
-            qa_pairs = self.qa_generator.generate_qa_pairs(text, entities, relations, compliance_events)
-            
-            # 7. 隐私保护
-            if self.enable_privacy_protection:
-                # 检测敏感信息
-                sensitive_info = self.sensitive_detector.detect_sensitive_info(text)
-                # 匿名化处理
-                if sensitive_info:
-                    anonymized_text = self.anonymizer.anonymize(text)
-                    anonymized_entities = entities  # 实体已经在匿名化文本中更新
-                else:
-                    anonymized_text = text
-                    anonymized_entities = entities
-            else:
-                anonymized_text = text
-                anonymized_entities = entities
-            
-            # 8. 创建处理结果
-            result = ProcessedChunk(
-                chunk_id=chunk_id,
-                original_text=text,
-                entities=entities,
-                relations=relations,
-                summary=summary,
-                anomalies=anomalies,
-                qa_pairs=qa_pairs,
-                compliance_events=compliance_events
-            )
-            
-            processing_time = time.time() - start_time
-            logging.info(f"处理块 {chunk_id} 完成，耗时 {processing_time:.2f} 秒")
-            
-            return result
-            
-        except Exception as e:
-            logging.error(f"处理块 {chunk_id} 时出错: {str(e)}")
-            logging.error(re.sub(r'\n\s*', ' ', str(e)))
-            return None
-
-    def process_text(self, text: str) -> Optional[ProcessedChunk]:
+    def process(self, text: str, file_info: Dict[str, Any] = None) -> Dict[str, Any]:
         """处理文本"""
         if not text.strip():
-            return None
+            return {}
             
         try:
-            start_time = time.time()
+            self.statistics['total_processed'] += 1
+            start_time = datetime.now()
             
-            # 1. 提取实体
-            entities = self.entity_extractor.extract_entities(text)
+            # 记录处理进度
+            if file_info:
+                self.logger.info(f"开始处理文件: {file_info.get('name', 'unknown')}")
+                if file_info.get('total_pages'):
+                    self.logger.info(f"总页数: {file_info['total_pages']}")
+                if file_info.get('current_page'):
+                    self.logger.info(f"当前处理页数: {file_info['current_page']}/{file_info['total_pages']}")
             
-            # 如果启用了自适应学习，应用学习到的模式
-            if self.adaptive_learning:
-                entities = self.learning_manager.enhance_recognition(text, entities)
+            # 提取实体
+            entities = self.extract_entities(text)
+            self.statistics['total_entities'] += len(entities)
             
-            # 2. 提取关系
-            relations = self.relation_extractor.find_transfer_relations(entities, text)
-            relations.extend(self.relation_extractor.find_ownership_relations(entities, text))
-            relations.extend(self.relation_extractor.find_part_whole_relations(entities, text))
+            # 提取关系
+            relations = self.extract_relations(text, entities)
+            self.statistics['total_relations'] += len(relations)
             
-            # 3. 检测异常
-            anomalies = self.anomaly_detector.detect_anomalies(entities, text)
+            # 检测异常
+            anomalies = self.detect_anomalies(entities)
+            self.statistics['total_anomalies'] += len(anomalies)
             
-            # 4. 合规检测
-            compliance_events = self.compliance_detector.detect_events(text, entities, relations)
+            # 构建结果
+            result = {
+                'text': text,
+                'entities': [e.__dict__ for e in entities],
+                'relations': relations,
+                'anomalies': anomalies,
+                'metadata': {
+                    'file_info': file_info,
+                    'processing_time': (datetime.now() - start_time).total_seconds()
+                }
+            }
             
-            # 5. 生成摘要
-            summary = self.summarizer.generate_summary(text, entities, relations, compliance_events)
+            # 更新统计信息
+            self.statistics['successful_processed'] += 1
+            self.statistics['processing_time'][file_info.get('name', 'unknown')] += result['metadata']['processing_time']
             
-            # 6. 生成问答对
-            qa_pairs = self.qa_generator.generate_qa_pairs(text, entities, relations, compliance_events)
-            
-            # 7. 隐私保护
-            if self.enable_privacy_protection:
-                # 检测敏感信息
-                sensitive_info = self.sensitive_detector.detect_sensitive_info(text)
-                # 匿名化处理
-                if sensitive_info:
-                    anonymized_text = self.anonymizer.anonymize(text)
-                    anonymized_entities = entities  # 实体已经在匿名化文本中更新
-                else:
-                    anonymized_text = text
-                    anonymized_entities = entities
-            else:
-                anonymized_text = text
-                anonymized_entities = entities
-            
-            # 8. 创建处理结果
-            result = ProcessedChunk(
-                chunk_id=0,  # 单文本处理使用0作为ID
-                original_text=anonymized_text,
-                entities=anonymized_entities,
-                relations=relations,
-                summary=summary,
-                anomalies=anomalies,
-                qa_pairs=qa_pairs,
-                compliance_events=compliance_events
-            )
-            
-            processing_time = time.time() - start_time
-            logging.info(f"文本处理完成，耗时 {processing_time:.2f} 秒")
+            # 记录处理结果
+            self.logger.info(f"处理完成: 发现 {len(entities)} 个实体, {len(relations)} 个关系, {len(anomalies)} 个异常")
+            if file_info and file_info.get('current_page') == file_info.get('total_pages'):
+                self.logger.info(f"文件 {file_info['name']} 处理完成")
+                self.logger.info(f"处理时间: {self.statistics['processing_time'][file_info['name']]:.2f} 秒")
             
             return result
             
         except Exception as e:
-            logging.error(f"文本处理时出错: {str(e)}")
-            logging.error(re.sub(r'\n\s*', ' ', str(e)))
-            return None
-
-    def extract_key_info(self, text: str) -> Dict[str, Any]:
-        """提取关键信息"""
-        try:
-            # 1. 基础实体提取
-            entities = self.entity_extractor.extract_entities(text)
-            
-            # 2. 按类型组织实体
-            info = defaultdict(list)
-            for entity in entities:
-                if entity.text not in info[entity.type]:
-                    info[entity.type].append(entity.text)
-            
-            # 3. 提取关系
-            relations = self.relation_extractor.find_transfer_relations(entities, text)
-            relations.extend(self.relation_extractor.find_ownership_relations(entities, text))
-            relations.extend(self.relation_extractor.find_part_whole_relations(entities, text))
-            
-            # 4. 提取合规事件
-            compliance_events = self.compliance_detector.detect_events(text, entities, relations)
-            if compliance_events:
-                info["COMPLIANCE_EVENTS"] = [
-                    {
-                        "type": event.type,
-                        "text": event.text,
-                        "importance": event.importance
-                    }
-                    for event in compliance_events
-                ]
-            
-            # 5. 检测异常
-            anomalies = self.anomaly_detector.detect_anomalies(entities, text)
-            if anomalies:
-                info["ANOMALIES"] = [
-                    {
-                        "type": anomaly.type,
-                        "description": anomaly.description,
-                        "confidence": anomaly.confidence
-                    }
-                    for anomaly in anomalies
-                ]
-            
-            # 6. 生成摘要
-            if len(text) > 100:
-                summary = self.summarizer.generate_summary(text, entities, relations, compliance_events)
-                if summary:
-                    info["SUMMARY"] = summary
-            
-            return dict(info)
-            
-        except Exception as e:
-            logging.error(f"提取关键信息失败: {str(e)}", exc_info=True)
-            return {}
-
-    def _anonymize_processed_chunk(self, chunk: ProcessedChunk) -> ProcessedChunk:
-        """对处理后的文本块进行脱敏处理"""
-        if not self.enable_privacy_protection:
-            return chunk
-            
-        try:
-            # 检测敏感信息
-            sensitive_info = self.sensitive_detector.detect_sensitive_info(chunk.original_text)
-            
-            # 对文本进行脱敏处理
-            anonymized_text = self.anonymizer.anonymize(chunk.original_text)
-            
-            # 更新处理后的文本块
-            chunk.original_text = anonymized_text
-            
-            # 对摘要进行脱敏处理
-            if chunk.summary:
-                sensitive_info_summary = self.sensitive_detector.detect_sensitive_info(chunk.summary)
-                chunk.summary = self.anonymizer.anonymize(chunk.summary)
-            
-            # 对问答对进行脱敏处理
-            if chunk.qa_pairs:
-                for qa_pair in chunk.qa_pairs:
-                    sensitive_info_q = self.sensitive_detector.detect_sensitive_info(qa_pair["question"])
-                    sensitive_info_a = self.sensitive_detector.detect_sensitive_info(qa_pair["answer"])
-                    
-                    qa_pair["question"] = self.anonymizer.anonymize(qa_pair["question"])
-                    qa_pair["answer"] = self.anonymizer.anonymize(qa_pair["answer"])
-            
-            return chunk
-            
-        except Exception as e:
-            logging.error(f"文本脱敏处理失败: {str(e)}", exc_info=True)
-            return chunk
-
-    def extract_training_data(self, text: str, scenario: str) -> Dict[str, Any]:
-        """提取适合模型训练的数据"""
-        try:
-            # 1. 提取实体
-            entities = self.entity_extractor.extract_entities(text)
-            
-            # 2. 提取关系
-            relations = self.relation_extractor.find_transfer_relations(entities, text)
-            relations.extend(self.relation_extractor.find_ownership_relations(entities, text))
-            relations.extend(self.relation_extractor.find_part_whole_relations(entities, text))
-            
-            # 3. 检测合规事件
-            compliance_events = self.compliance_detector.detect_events(text, entities, relations)
-            
-            # 4. 生成问答对
-            qa_pairs = []
-            if scenario:
-                qa_pairs = self.qa_generator.generate_qa_pairs(text, entities, relations, compliance_events)
-            
-            # 5. 生成摘要
-            summary = None
-            if len(text) > 100:
-                summary = self.summarizer.generate_summary(text, entities, relations, compliance_events)
-            
-            # 6. 合规风险分析
-            compliance_analysis = None
-            if compliance_events:
-                compliance_analysis = self.compliance_detector.analyze_compliance_risk(compliance_events)
-            
-            # 构建训练数据
-            training_data = {
-                'scenario': scenario,
-                'qa_pairs': qa_pairs or [],
-                'entities': [
-                    {
-                        'type': entity.type,
-                        'text': entity.text,
-                        'start': entity.start,
-                        'end': entity.end
-                    }
-                    for entity in entities
-                ],
-                'relations': relations,
-                'summary': summary,
-                'compliance_events': [
-                    {
-                        'type': event.type,
-                        'text': event.text,
-                        'importance': event.importance
-                    }
-                    for event in (compliance_events or [])
-                ],
-                'compliance_analysis': compliance_analysis,
-                'metadata': {
-                    'text_length': len(text),
-                    'entity_count': len(entities),
-                    'relation_count': len(relations),
-                    'qa_pair_count': len(qa_pairs) if qa_pairs else 0,
-                    'has_summary': summary is not None,
-                    'compliance_event_count': len(compliance_events) if compliance_events else 0
-                }
-            }
-            
-            return training_data
-            
-        except Exception as e:
-            logging.error(f"提取训练数据失败: {str(e)}", exc_info=True)
+            self.statistics['failed_processed'] += 1
+            self.logger.error(f"处理文本时出错: {str(e)}")
             return {
-                'scenario': scenario,
-                'qa_pairs': [],
-                'entities': [],
-                'relations': [],
-                'summary': None,
-                'compliance_events': [],
-                'compliance_analysis': None,
-                'metadata': {
-                    'error': str(e)
-                }
+                'error': str(e),
+                'text': text[:100] + '...' if len(text) > 100 else text,
+                'metadata': {'file_info': file_info}
             }
 
-    def _apply_learned_patterns(self, text: str, entities: List[Entity]) -> List[Entity]:
-        """应用学习到的模式"""
-        if not self.adaptive_learning:
-            return entities
+    def extract_entities(self, text: str) -> List[Entity]:
+        """提取实体"""
+        entities = []
         
-        patterns = self.learning_manager.get_learned_patterns()
-        enhanced_entities = entities.copy()
+        try:
+            for entity_type, patterns in self.entity_patterns.items():
+                for pattern in patterns:
+                    for match in re.finditer(pattern, text):
+                        entity = Entity(
+                            id=str(uuid.uuid4()),
+                            text=match.group(),
+                            type=entity_type,
+                            start=match.start(),
+                            end=match.end(),
+                            confidence=0.9  # 基于规则的匹配给予较高置信度
+                        )
+                        entities.append(entity)
+            
+            # 去重并按位置排序
+            unique_entities = []
+            seen = set()
+            for entity in sorted(entities, key=lambda x: x.start):
+                if entity.text not in seen:
+                    seen.add(entity.text)
+                    unique_entities.append(entity)
+            
+            return unique_entities
+            
+        except Exception as e:
+            self.logger.error(f"实体提取失败: {str(e)}")
+            return []
+
+    def extract_relations(self, text: str, entities: List[Entity]) -> List[Dict[str, Any]]:
+        """提取实体间的关系"""
+        relations = []
         
-        for pattern_key, pattern in patterns.items():
-            if pattern['text'] in text and pattern['weight'] > 1.0:
-                # 查找模式匹配
-                start = text.find(pattern['text'])
-                if start != -1:
-                    end = start + len(pattern['text'])
-                    # 检查是否已存在相同实体
-                    exists = any(e.start == start and e.end == end 
-                               for e in enhanced_entities)
-                    if not exists:
-                        enhanced_entities.append(Entity(
-                            type=pattern['type'],
-                            text=pattern['text'],
-                            start=start,
-                            end=end
-                        ))
+        try:
+            # 构建实体索引
+            entity_index = defaultdict(list)
+            for entity in entities:
+                entity_index[entity.type].append(entity)
+            
+            # 使用模式匹配提取关系
+            for relation_type, patterns in self.relation_patterns.items():
+                for pattern in patterns:
+                    for match in re.finditer(pattern, text):
+                        relation = {
+                            'id': str(uuid.uuid4()),
+                            'type': relation_type,
+                            'source': match.group(1),
+                            'target': match.group(2),
+                            'text': match.group(),
+                            'confidence': 0.8
+                        }
+                        relations.append(relation)
+            
+            return relations
+            
+        except Exception as e:
+            self.logger.error(f"关系提取失败: {str(e)}")
+            return []
+
+    def detect_anomalies(self, entities: List[Entity]) -> List[Dict[str, Any]]:
+        """检测异常值"""
+        anomalies = []
         
-        return enhanced_entities
-    
-    def _record_processing_time(self, processing_time: float):
-        """记录处理时间"""
-        if self.adaptive_learning:
-            self.learning_manager.performance_metrics['processing_time'].append(
-                processing_time
-            )
-    
-    def update_from_feedback(self, 
-                           text: str,
-                           original_entities: List[Entity],
-                           corrected_entities: List[Entity]):
-        """根据用户反馈更新系统"""
-        if not self.adaptive_learning:
-            return
-        
-        processing_time = time.time()  # 模拟处理时间
-        self.learning_manager.update_from_feedback(
-            text,
-            original_entities,
-            corrected_entities,
-            processing_time
-        )
-    
-    def get_performance_report(self) -> Dict[str, Any]:
-        """获取性能报告"""
-        if not self.adaptive_learning:
-            return {'status': 'Adaptive learning is disabled'}
-        return self.learning_manager.get_performance_report()
+        try:
+            for entity in entities:
+                if entity.type == EntityLabel.MONEY:
+                    # 提取数值
+                    try:
+                        value = float(re.search(r'\d+(?:\.\d+)?', entity.text).group())
+                        if value < self.anomaly_thresholds['money']['min'] or \
+                           value > self.anomaly_thresholds['money']['max']:
+                            anomalies.append({
+                                'type': 'anomaly_money',
+                                'entity_id': entity.id,
+                                'value': value,
+                                'text': entity.text,
+                                'reason': '金额超出正常范围'
+                            })
+                    except:
+                        pass
+                        
+                elif entity.type == EntityLabel.PERCENT:
+                    try:
+                        value = float(re.search(r'\d+(?:\.\d+)?', entity.text).group())
+                        if value < self.anomaly_thresholds['percent']['min'] or \
+                           value > self.anomaly_thresholds['percent']['max']:
+                            anomalies.append({
+                                'type': 'anomaly_percent',
+                                'entity_id': entity.id,
+                                'value': value,
+                                'text': entity.text,
+                                'reason': '百分比超出正常范围'
+                            })
+                    except:
+                        pass
+            
+            return anomalies
+            
+        except Exception as e:
+            self.logger.error(f"异常检测失败: {str(e)}")
+            return []
+
+    def get_statistics(self) -> Dict[str, Any]:
+        """获取处理统计信息"""
+        return {
+            'total_processed': self.statistics['total_processed'],
+            'successful_processed': self.statistics['successful_processed'],
+            'failed_processed': self.statistics['failed_processed'],
+            'success_rate': self.statistics['successful_processed'] / max(1, self.statistics['total_processed']),
+            'total_entities': self.statistics['total_entities'],
+            'total_relations': self.statistics['total_relations'],
+            'total_anomalies': self.statistics['total_anomalies'],
+            'processing_time': dict(self.statistics['processing_time'])
+        }

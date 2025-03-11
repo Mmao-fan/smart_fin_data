@@ -2,29 +2,19 @@
   "total_files": 6,
   "processed_files": 6,
   "failed_files": 0,
-  "processing_time": "2025-03-11T22:46:07.691178",
+  "processing_time": 124.370243,
   "processed_file_list": [
-    "test_1.txt",
-    "test_2.txt",
     "bank_transactions.csv",
     "huaqi_info.docx",
     "shiyou_info.pdf",
-    "tencent_info.pdf"
+    "tencent_info.pdf",
+    "test_1.txt",
+    "test_2.txt"
   ],
   "failed_file_list": [],
   "summary": {
-    "total_entities": 50846,
-    "total_relations": 74,
-    "total_qa_pairs": 35,
-    "total_compliance_events": 14
-  },
-  "adaptive_system_stats": {
-    "pattern_count": 12182,
-    "high_weight_patterns": 1712,
-    "average_weight": 1.5426711660437257e+118,
-    "enhancement_stats": {
-      "total_enhancements": 4,
-      "average_improvement": 10726.0
-    }
+    "total_entities": 2429,
+    "total_relations": 22,
+    "total_anomalies": 2
   }
 }

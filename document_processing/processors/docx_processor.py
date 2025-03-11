@@ -4,6 +4,7 @@ import logging
 from pathlib import Path
 from .base_processor import BaseProcessor
 from .exceptions import DocumentProcessingError
+from typing import Dict, Any
 
 # 尝试导入 python-docx，如果不存在则提供一个替代方案
 try:
@@ -17,47 +18,58 @@ except ImportError:
 
 class DocxProcessor(BaseProcessor):
     @classmethod
-    def extract_text(cls, file_path: str) -> str:
-        """保留样式信息并转换标题"""
+    def extract_text(cls, file_path: str) -> Dict[str, Any]:
+        """从Word文档中提取文本"""
         try:
             if not HAS_DOCX:
                 raise DocumentProcessingError("python-docx 模块未安装，无法处理Word文件。请安装 python-docx: pip install python-docx")
                 
             doc = Document(file_path)
-            content = []
-
-            # 提取文档属性
-            content.append("# 文档信息")
-            if doc.core_properties.title:
-                content.append(f"标题: {doc.core_properties.title}")
-            if doc.core_properties.author:
-                content.append(f"作者: {doc.core_properties.author}")
-            if doc.core_properties.created:
-                content.append(f"创建时间: {doc.core_properties.created}")
-            if doc.core_properties.modified:
-                content.append(f"修改时间: {doc.core_properties.modified}")
-            content.append("")  # 空行分隔
-
-            content.append("# 文档内容")
+            
+            # 提取段落文本
+            paragraphs = []
             for para in doc.paragraphs:
-                # 处理标题样式
-                if para.style.name.startswith('Heading'):
-                    level = int(para.style.name.split()[-1])
-                    content.append(f"{'#' * level} {para.text}")
-                elif para.text.strip():
-                    content.append(para.text)
-
-            # 处理表格
+                if para.text.strip():
+                    paragraphs.append(para.text)
+            
+            # 提取表格文本
+            tables = []
             for table in doc.tables:
-                content.append(f"\n[Table Start]\n{cls._parse_table(table)}\n[Table End]\n")
-
-            return "\n".join(content)
-
+                table_text = []
+                for row in table.rows:
+                    row_text = []
+                    for cell in row.cells:
+                        row_text.append(cell.text.strip())
+                    if any(row_text):  # 只添加非空行
+                        table_text.append(' | '.join(row_text))
+                if table_text:
+                    tables.append('\n'.join(table_text))
+            
+            # 合并所有文本
+            text_chunks = paragraphs + tables
+            full_text = '\n\n'.join(text_chunks)
+            
+            # 收集元数据
+            metadata = {
+                'sections': len(doc.sections),
+                'paragraphs': len(paragraphs),
+                'tables': len(tables),
+                'has_headers': any(section.header for section in doc.sections),
+                'has_footers': any(section.footer for section in doc.sections)
+            }
+            
+            return {
+                'text': full_text,
+                'text_chunks': text_chunks,
+                'total_pages': len(text_chunks),  # 使用块数作为页数的估计
+                'metadata': metadata
+            }
+            
         except Exception as e:
             cls.safe_logging(file_path, e)
             if isinstance(e, DocumentProcessingError):
                 raise
-            raise DocumentProcessingError(f"Word处理失败: {str(e)}")
+            raise DocumentProcessingError(f"处理Word文档失败: {str(e)}")
 
     @classmethod
     def _parse_table(cls, table) -> str:

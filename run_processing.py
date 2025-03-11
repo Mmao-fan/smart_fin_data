@@ -14,73 +14,173 @@ import numpy as np
 from collections import defaultdict
 import subprocess
 from pathlib import Path
+import time
+from document_processing import DocumentProcessor
+from text_chunking import ChunkManager
+from information_extraction import InformationProcessor, EnhancedAdaptiveSystem
 
-from information_extraction import (
-    InformationProcessor,
-    AdaptiveSystem
-)
+# 添加项目根目录到系统路径
+project_root = os.path.dirname(os.path.abspath(__file__))
+if project_root not in sys.path:
+    sys.path.append(project_root)
 
-# 配置日志记录
+# 配置日志
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('processing.log', encoding='utf-8'),
+        logging.FileHandler('processing.log', mode='w'),
         logging.StreamHandler()
     ]
 )
 
+# 设置特定模块的日志级别
+logging.getLogger('PIL').setLevel(logging.WARNING)
+logging.getLogger('matplotlib').setLevel(logging.WARNING)
+logging.getLogger('transformers').setLevel(logging.WARNING)
 
-# 检查模块是否已安装
-def is_module_installed(module_name):
+logger = logging.getLogger(__name__)
+
+# 导入自定义模块
+try:
+    from document_processing.document_processor import DocumentProcessor
+    from text_chunking.chunk_manager import ChunkManager
+    from information_extraction.information_extractor import InformationProcessor
+    from information_extraction.enhanced_adaptive_system import EnhancedAdaptiveSystem
+    from information_extraction.anomaly_detector import AnomalyDetector
+    from scenario_adaptation.customer_service_generator import CustomerServiceGenerator
+    from scenario_adaptation.fraud_encoder import FraudEncoder
+    from scenario_adaptation.compliance_mapper import ComplianceMapper
+    from information_extraction.relation_extractor import RelationExtractor
+    logger.info("成功导入所有自定义模块")
+except ImportError as e:
+    logger.error(f"导入自定义模块失败: {str(e)}")
+    raise  # 如果模块导入失败，直接抛出异常，因为这些模块是必需的
+
+def is_module_installed(module_name: str) -> bool:
+    """检查模块是否已安装"""
     try:
         importlib.import_module(module_name)
         return True
     except ImportError:
         return False
 
+def setup_logging():
+    """设置日志配置"""
+    # 创建日志目录
+    log_dir = os.path.join(project_root, 'logs')
+    os.makedirs(log_dir, exist_ok=True)
+    
+    # 配置日志格式
+    log_format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    logging.basicConfig(
+        level=logging.INFO,
+        format=log_format,
+        handlers=[
+            logging.FileHandler(os.path.join(log_dir, 'processing.log'), mode='w'),
+            logging.StreamHandler()
+        ]
+    )
+    
+    # 设置第三方库的日志级别
+    logging.getLogger('PIL').setLevel(logging.WARNING)
+    logging.getLogger('matplotlib').setLevel(logging.WARNING)
+    logging.getLogger('transformers').setLevel(logging.WARNING)
 
-# 安装缺失的模块
+# 设置pip安装源
+PIP_INDEX_URL = "https://mirrors.aliyun.com/pypi/simple/"
+PIP_TRUSTED_HOST = "mirrors.aliyun.com"
+
 def install_module(module_name):
+    """安装Python模块"""
     try:
         logging.info(f"正在安装 {module_name} 模块...")
-        subprocess.check_call([sys.executable, "-m", "pip", "install", module_name])
+        cmd = [
+            sys.executable,
+            "-m",
+            "pip",
+            "install",
+            "--index-url",
+            PIP_INDEX_URL,
+            "--trusted-host",
+            PIP_TRUSTED_HOST,
+            module_name
+        ]
+        subprocess.check_call(cmd)
         logging.info(f"{module_name} 模块安装成功")
         return True
     except Exception as e:
         logging.error(f"{module_name} 模块安装失败: {str(e)}")
         return False
 
+# 检查并安装必要的依赖
+required_modules = {
+    'pandas': 'pandas>=1.3.0',
+    'python-docx': 'python-docx>=0.8.11',
+    'PyPDF2': 'PyPDF2>=2.0.0',
+    'scikit-learn': 'scikit-learn>=0.24.2',
+    'numpy': 'numpy>=1.21.0'
+}
+
+# 尝试导入必要模块，如果失败则进入离线模式
+OFFLINE_MODE = False
+try:
+    import pandas as pd
+    import numpy as np
+    from docx import Document
+    import PyPDF2
+    from sklearn.feature_extraction.text import TfidfVectorizer
+    logger.info("成功加载核心依赖")
+except ImportError as e:
+    logger.warning(f"无法加载某些核心依赖，进入离线模式: {str(e)}")
+    OFFLINE_MODE = True
+
+# 尝试导入可选模块
+try:
+    from sentence_transformers import SentenceTransformer
+    HAS_SENTENCE_TRANSFORMERS = True
+    logger.info("成功加载sentence-transformers")
+except ImportError:
+    HAS_SENTENCE_TRANSFORMERS = False
+    logger.info("sentence-transformers未安装，将使用基础文本处理方法")
+
+try:
+    import torch
+    HAS_TORCH = True
+    logger.info("成功加载PyTorch")
+except ImportError:
+    HAS_TORCH = False
+    logger.info("PyTorch未安装，将使用CPU处理")
 
 # 检查并安装 python-docx 模块
-HAS_DOCX = is_module_installed('docx')
+HAS_DOCX = not OFFLINE_MODE and is_module_installed('docx')
 if not HAS_DOCX:
-    logging.warning("python-docx 模块未安装，尝试自动安装...")
+    logger.warning("python-docx 模块未安装，尝试自动安装...")
     if install_module('python-docx'):
         HAS_DOCX = True
         from docx import Document
     else:
-        logging.warning("python-docx 模块安装失败，Word处理功能将受限")
+        logger.warning("python-docx 模块安装失败，Word处理功能将受限")
 else:
-    logging.info("python-docx 模块已安装")
+    logger.info("python-docx 模块已安装")
     from docx import Document
 
 # 检查并安装 PyPDF2
-HAS_PYPDF2 = is_module_installed('PyPDF2')
+HAS_PYPDF2 = not OFFLINE_MODE and is_module_installed('PyPDF2')
 if not HAS_PYPDF2:
-    logging.warning("PyPDF2 模块未安装，尝试自动安装...")
+    logger.warning("PyPDF2 模块未安装，尝试自动安装...")
     if install_module('PyPDF2'):
         HAS_PYPDF2 = True
         import PyPDF2
     else:
-        logging.warning("PyPDF2 模块未安装，PDF处理功能将受限")
+        logger.warning("PyPDF2 模块未安装，PDF处理功能将受限")
 else:
-    logging.info("PyPDF2 模块已安装")
+    logger.info("PyPDF2 模块已安装")
     import PyPDF2
 
 # 不安装spacy，使用离线模式
 HAS_SPACY = False
-logging.info("使用离线模式进行实体识别和文本处理")
+logger.info("使用离线模式进行实体识别和文本处理")
 
 # 检查并安装必要的依赖
 required_modules = {
@@ -92,13 +192,13 @@ required_modules = {
 
 for module_name, import_name in required_modules.items():
     if not is_module_installed(import_name):
-        logging.warning(f"{module_name} 模块未安装，尝试自动安装...")
+        logger.warning(f"{module_name} 模块未安装，尝试自动安装...")
         if install_module(module_name):
-            logging.info(f"{module_name} 模块安装成功")
+            logger.info(f"{module_name} 模块安装成功")
         else:
-            logging.warning(f"{module_name} 模块安装失败，部分功能可能受限")
+            logger.warning(f"{module_name} 模块安装失败，部分功能可能受限")
     else:
-        logging.info(f"{module_name} 模块已安装")
+        logger.info(f"{module_name} 模块已安装")
 
 # 尝试导入其他模块，如果导入失败则提供替代方案
 try:
@@ -107,7 +207,7 @@ try:
     HAS_DOCUMENT_PROCESSOR = True
 except ImportError:
     HAS_DOCUMENT_PROCESSOR = False
-    logging.warning("DocumentProcessor 模块导入失败，只能处理CSV文件、Word文件和PDF文件")
+    logger.warning("DocumentProcessor 模块导入失败，只能处理CSV文件、Word文件和PDF文件")
 
 try:
     from text_chunking.chunk_manager import ChunkManager
@@ -117,7 +217,7 @@ try:
     HAS_TEXT_PROCESSING = True
 except ImportError:
     HAS_TEXT_PROCESSING = False
-    logging.warning("文本处理模块导入失败，部分功能将受限")
+    logger.warning("文本处理模块导入失败，部分功能将受限")
 
 try:
     from scenario_adaptation.customer_service_generator import CustomerServiceGenerator
@@ -128,7 +228,7 @@ try:
     HAS_SCENARIO_ADAPTATION = True
 except ImportError:
     HAS_SCENARIO_ADAPTATION = False
-    logging.warning("场景适配模块导入失败，部分功能将受限")
+    logger.warning("场景适配模块导入失败，部分功能将受限")
 
 
 def detect_file_encoding(file_path: str) -> str:
@@ -253,11 +353,11 @@ def extract_document_structure(content: str) -> Dict[str, Any]:
 def process_csv_file(file_path: str) -> Dict[str, Any]:
     """增强的CSV文件处理"""
     try:
-        logging.info(f"处理CSV文件: {file_path}")
+        logger.info(f"处理CSV文件: {file_path}")
 
         # 检测文件编码
         encoding = detect_file_encoding(file_path)
-        logging.info(f"检测到文件编码: {encoding}")
+        logger.info(f"检测到文件编码: {encoding}")
 
         # 尝试不同的分隔符
         separators = [',', ';', '\t', '|']
@@ -339,7 +439,7 @@ def process_csv_file(file_path: str) -> Dict[str, Any]:
         return structured_data
 
     except Exception as e:
-        logging.error(f"处理CSV文件失败: {str(e)}", exc_info=True)
+        logger.error(f"处理CSV文件失败: {str(e)}", exc_info=True)
         return None
 
 
@@ -436,14 +536,14 @@ def extract_text_from_docx(file_path: str) -> Dict[str, Any]:
         return document_data
 
     except Exception as e:
-        logging.error(f"提取Word文档文本失败: {str(e)}")
+        logger.error(f"提取Word文档文本失败: {str(e)}")
         return None
 
 
 def extract_text_from_pdf(file_path: str) -> Dict[str, Any]:
     """增强的PDF文档文本提取"""
     if not HAS_PYPDF2:
-        logging.error("PyPDF2 模块未安装")
+        logger.error("PyPDF2 模块未安装")
         return None
 
     try:
@@ -455,32 +555,32 @@ def extract_text_from_pdf(file_path: str) -> Dict[str, Any]:
             'links': []
         }
 
-        logging.info(f"开始处理PDF文件: {file_path}")
+        logger.info(f"开始处理PDF文件: {file_path}")
         
         if not os.path.exists(file_path):
-            logging.error(f"PDF文件不存在: {file_path}")
+            logger.error(f"PDF文件不存在: {file_path}")
             return None
             
         file_size = os.path.getsize(file_path)
         if file_size == 0:
-            logging.error(f"PDF文件为空: {file_path}")
+            logger.error(f"PDF文件为空: {file_path}")
             return None
             
-        logging.info(f"PDF文件大小: {file_size} 字节")
+        logger.info(f"PDF文件大小: {file_size} 字节")
 
         with open(file_path, 'rb') as file:
             try:
                 reader = PyPDF2.PdfReader(file)
-                logging.info(f"成功创建PDF阅读器")
+                logger.info(f"成功创建PDF阅读器")
             except Exception as e:
-                logging.error(f"创建PDF阅读器失败: {str(e)}")
+                logger.error(f"创建PDF阅读器失败: {str(e)}")
                 return None
             
             if not reader.pages:
-                logging.warning(f"PDF文件 {file_path} 没有页面")
+                logger.warning(f"PDF文件 {file_path} 没有页面")
                 return None
                 
-            logging.info(f"PDF文件页数: {len(reader.pages)}")
+            logger.info(f"PDF文件页数: {len(reader.pages)}")
 
             # 提取元数据
             try:
@@ -493,40 +593,40 @@ def extract_text_from_pdf(file_path: str) -> Dict[str, Any]:
                     'creation_date': reader.metadata.get('/CreationDate', ''),
                     'modification_date': reader.metadata.get('/ModDate', '')
                 }
-                logging.info("成功提取元数据")
+                logger.info("成功提取元数据")
             except Exception as e:
-                logging.warning(f"提取元数据失败: {str(e)}")
+                logger.warning(f"提取元数据失败: {str(e)}")
 
             # 提取页面内容
             for page_num in range(len(reader.pages)):
                 try:
                     page = reader.pages[page_num]
-                    logging.info(f"处理第 {page_num + 1} 页")
+                    logger.info(f"处理第 {page_num + 1} 页")
                     
                     try:
                         text = page.extract_text()
                         if text:
-                            logging.info(f"第 {page_num + 1} 页成功提取文本，长度: {len(text)}")
+                            logger.info(f"第 {page_num + 1} 页成功提取文本，长度: {len(text)}")
                         else:
-                            logging.warning(f"第 {page_num + 1} 页文本为空")
+                            logger.warning(f"第 {page_num + 1} 页文本为空")
                     except Exception as e:
-                        logging.error(f"提取第 {page_num + 1} 页文本失败: {str(e)}")
+                        logger.error(f"提取第 {page_num + 1} 页文本失败: {str(e)}")
                         text = ""
                     
                     # 如果页面文本为空，尝试OCR
                     if not text and HAS_TESSERACT:
                         try:
-                            logging.info(f"尝试对第 {page_num + 1} 页进行OCR处理")
+                            logger.info(f"尝试对第 {page_num + 1} 页进行OCR处理")
                             # 将PDF页面转换为图像
                             images = convert_from_path(file_path, first_page=page_num+1, last_page=page_num+1)
                             if images:
                                 text = pytesseract.image_to_string(images[0], lang='chi_sim+eng')
                                 if text:
-                                    logging.info(f"OCR成功提取文本，长度: {len(text)}")
+                                    logger.info(f"OCR成功提取文本，长度: {len(text)}")
                                 else:
-                                    logging.warning("OCR未能提取到文本")
+                                    logger.warning("OCR未能提取到文本")
                         except Exception as e:
-                            logging.warning(f"OCR处理失败: {str(e)}")
+                            logger.warning(f"OCR处理失败: {str(e)}")
                     
                     page_data = {
                         'number': page_num + 1,
@@ -552,9 +652,9 @@ def extract_text_from_pdf(file_path: str) -> Dict[str, Any]:
                                         'value': str(annot.get('/V', ''))
                                     }
                                     form_fields.append(field_data)
-                            logging.info(f"成功提取 {len(form_fields)} 个表单字段")
+                            logger.info(f"成功提取 {len(form_fields)} 个表单字段")
                         except Exception as e:
-                            logging.warning(f"提取表单字段失败: {str(e)}")
+                            logger.warning(f"提取表单字段失败: {str(e)}")
                         page_data['forms'] = form_fields
 
                     # 提取链接
@@ -574,35 +674,35 @@ def extract_text_from_pdf(file_path: str) -> Dict[str, Any]:
                                             links.append(link_data)
                                 except Exception as e:
                                     continue  # 跳过单个链接的错误
-                            logging.info(f"成功提取 {len(links)} 个链接")
+                            logger.info(f"成功提取 {len(links)} 个链接")
                     except Exception as e:
-                        logging.debug(f"页面 {page_num + 1} 没有链接或链接提取失败")
+                        logger.debug(f"页面 {page_num + 1} 没有链接或链接提取失败")
                     page_data['links'] = links
 
                     document_data['pages'].append(page_data)
                 except Exception as e:
-                    logging.error(f"处理第 {page_num + 1} 页时出错: {str(e)}")
+                    logger.error(f"处理第 {page_num + 1} 页时出错: {str(e)}")
                     continue
 
             # 检查是否成功提取了任何文本
             total_text = ''.join(page.get('text', '') for page in document_data['pages'])
             if not total_text.strip():
-                logging.warning(f"未能从PDF文件 {file_path} 提取到任何文本")
+                logger.warning(f"未能从PDF文件 {file_path} 提取到任何文本")
                 return None
                 
-            logging.info(f"成功提取文本，总长度: {len(total_text)}")
+            logger.info(f"成功提取文本，总长度: {len(total_text)}")
 
         return document_data
 
     except Exception as e:
-        logging.error(f"提取PDF文档文本失败: {str(e)}")
+        logger.error(f"提取PDF文档文本失败: {str(e)}")
         return None
 
 
 def process_docx_file(file_path: str) -> Dict[str, Any]:
     """增强的Word文档处理"""
     try:
-        logging.info(f"处理Word文档: {file_path}")
+        logger.info(f"处理Word文档: {file_path}")
 
         # 提取文档内容和结构
         doc_data = extract_text_from_docx(file_path)
@@ -650,14 +750,14 @@ def process_docx_file(file_path: str) -> Dict[str, Any]:
         return structured_data
 
     except Exception as e:
-        logging.error(f"处理Word文档失败: {str(e)}", exc_info=True)
+        logger.error(f"处理Word文档失败: {str(e)}", exc_info=True)
         return None
 
 
 def process_pdf_file(file_path: str) -> Dict[str, Any]:
     """增强的PDF文档处理"""
     try:
-        logging.info(f"处理PDF文档: {file_path}")
+        logger.info(f"处理PDF文档: {file_path}")
 
         # 提取PDF内容和结构
         pdf_data = extract_text_from_pdf(file_path)
@@ -667,7 +767,7 @@ def process_pdf_file(file_path: str) -> Dict[str, Any]:
         # 构建完整文本
         full_text = "\n".join([page.get('text', '') for page in pdf_data['pages']])
         if not full_text.strip():
-            logging.warning(f"PDF文件 {file_path} 提取的文本为空")
+            logger.warning(f"PDF文件 {file_path} 提取的文本为空")
             return None
 
         # 提取关键信息
@@ -713,337 +813,329 @@ def process_pdf_file(file_path: str) -> Dict[str, Any]:
         return structured_data
 
     except Exception as e:
-        logging.error(f"处理PDF文档失败: {str(e)}", exc_info=True)
+        logger.error(f"处理PDF文档失败: {str(e)}", exc_info=True)
         return None
 
 
-def get_file_scenario(file_path: str) -> str:
+def detect_scenario(file_path: str, content: str = None) -> str:
     """
-    根据文件类型和内容自动选择合适的场景
+    自动检测文件场景
+    使用场景适配模块进行智能场景检测
     """
-    _, ext = os.path.splitext(file_path)
-
-    # 根据文件扩展名选择场景
-    if ext.lower() == '.csv':
-        # 检查是否包含交易相关列
-        try:
-            df = pd.read_csv(file_path)
-            columns = [col.lower() for col in df.columns]
-            if any(keyword in ' '.join(columns) for keyword in ['transaction', 'account', 'amount', 'balance']):
-                return "fraud_detection"
-        except:
-            pass
-
-    elif ext.lower() in ['.docx', '.doc', '.pdf', '.txt']:
-        # 对于文档类型，默认使用客服问答场景
-        return "customer_service"
-
-    # 默认场景
-    return "customer_service"
-
-
-def process_file(file_path: str, processor: InformationProcessor, adaptive_system: AdaptiveSystem) -> Dict[str, Any]:
-    """处理单个文件"""
     try:
-        # 获取文件扩展名
+        # 如果有场景适配模块，优先使用
+        if HAS_SCENARIO_ADAPTATION:
+            # 读取文件内容（如果未提供）
+            if content is None:
+                try:
+                    with open(file_path, 'r', encoding=detect_file_encoding(file_path)) as f:
+                        content = f.read()
+                except Exception as e:
+                    logger.warning(f"读取文件内容失败: {str(e)}")
+                    content = ""
+
+            # 使用各个场景检测器
+            scores = {
+                'customer_service': 0,
+                'fraud_detection': 0,
+                'compliance': 0
+            }
+
+            # 客服场景检测
+            try:
+                cs_generator = CustomerServiceGenerator()
+                cs_score = cs_generator.evaluate_content(content)
+                scores['customer_service'] = cs_score
+            except Exception as e:
+                logger.debug(f"客服场景评分失败: {str(e)}")
+
+            # 欺诈检测场景检测
+            try:
+                fraud_encoder = FraudEncoder()
+                fraud_score = fraud_encoder.analyze_risk(content)
+                scores['fraud_detection'] = fraud_score
+            except Exception as e:
+                logger.debug(f"欺诈检测场景评分失败: {str(e)}")
+
+            # 合规场景检测
+            try:
+                compliance_mapper = ComplianceMapper()
+                compliance_score = compliance_mapper.evaluate_compliance(content)
+                scores['compliance'] = compliance_score
+            except Exception as e:
+                logger.debug(f"合规场景评分失败: {str(e)}")
+
+            # 选择得分最高的场景
+            if any(scores.values()):
+                selected_scenario = max(scores.items(), key=lambda x: x[1])[0]
+                logger.info(f"场景检测结果: {scores}")
+                logger.info(f"选择场景: {selected_scenario}")
+                return selected_scenario
+
+        # 如果场景适配模块不可用或评分全为0，使用基础规则检测
         _, ext = os.path.splitext(file_path)
         
-        # 根据文件类型选择处理方式
-        if ext.lower() == '.txt':
-            # 读取文本文件
-            encoding = detect_file_encoding(file_path)
-            with open(file_path, 'r', encoding=encoding) as f:
-                text = f.read()
-        elif ext.lower() == '.csv':
-            # 处理CSV文件
-            csv_data = process_csv_file(file_path)
-            if not csv_data:
-                return None
-            text = json.dumps(csv_data, ensure_ascii=False)
-        elif ext.lower() in ['.docx', '.doc'] and HAS_DOCX:
-            # 处理Word文件
-            doc_data = process_docx_file(file_path)
-            if not doc_data:
-                return None
-            text = doc_data.get('content', '')
-        elif ext.lower() == '.pdf' and HAS_PYPDF2:
-            # 处理PDF文件
-            pdf_data = process_pdf_file(file_path)
-            if not pdf_data:
-                return None
-            text = pdf_data.get('content', '')  # 直接获取content字段
+        # 基于文件类型的基础规则
+        if ext.lower() == '.csv':
+            try:
+                df = pd.read_csv(file_path)
+                columns = [col.lower() for col in df.columns]
+                if any(keyword in ' '.join(columns) for keyword in ['transaction', 'account', 'amount', 'balance', 'fraud', 'risk']):
+                    return "fraud_detection"
+                elif any(keyword in ' '.join(columns) for keyword in ['compliance', 'regulation', 'policy', 'rule']):
+                    return "compliance"
+            except:
+                pass
+        
+        # 基于文件名的规则
+        file_name = os.path.basename(file_path).lower()
+        if any(kw in file_name for kw in ['customer', 'service', 'support', 'chat', 'qa']):
+            return "customer_service"
+        elif any(kw in file_name for kw in ['fraud', 'risk', 'transaction', 'alert']):
+            return "fraud_detection"
+        elif any(kw in file_name for kw in ['compliance', 'regulation', 'policy']):
+            return "compliance"
+        
+        # 如果有内容，基于内容的规则
+        if content:
+            content_lower = content.lower()
+            if any(kw in content_lower for kw in ['customer service', 'support', 'help', 'question', 'answer']):
+                return "customer_service"
+            elif any(kw in content_lower for kw in ['fraud', 'suspicious', 'risk', 'alert', 'transaction']):
+                return "fraud_detection"
+            elif any(kw in content_lower for kw in ['compliance', 'regulation', 'policy', 'requirement']):
+                return "compliance"
+
+        # 默认返回客服场景
+        return "customer_service"
+
+    except Exception as e:
+        logger.error(f"场景检测失败: {str(e)}")
+        return "customer_service"
+
+
+def process_file(file_path: str, output_dir: str) -> Dict[str, Any]:
+    """处理单个文件"""
+    logger.info(f"\n{'='*50}\n处理文件: {file_path}\n{'='*50}")
+    
+    try:
+        # 初始化处理器
+        doc_processor = DocumentProcessor()
+        chunk_manager = ChunkManager()
+        info_processor = InformationProcessor()
+        adaptive_system = EnhancedAdaptiveSystem()
+        
+        # 获取文件信息
+        file_info = {
+            'name': os.path.basename(file_path),
+            'path': file_path,
+            'size': os.path.getsize(file_path),
+            'type': os.path.splitext(file_path)[1]
+        }
+        
+        # 读取文档
+        doc_content = doc_processor.process_document(file_path)
+        if isinstance(doc_content, dict) and doc_content.get('total_pages'):
+            file_info['total_pages'] = doc_content['total_pages']
+            text_chunks = doc_content['text_chunks']
         else:
-            logging.warning(f"不支持的文件类型: {ext}")
-            return None
-            
-        if not text.strip():
-            logging.warning(f"文件 {file_path} 内容为空")
-            return None
+            text_chunks = chunk_manager.split_text(doc_content)
+            file_info['total_pages'] = len(text_chunks)
         
-        # 初始处理
-        logging.info(f"处理文件: {os.path.basename(file_path)}")
-        logging.info("执行初始处理...")
+        # 处理结果
+        processed_chunks = []
+        all_entities = []
+        all_relations = []
+        all_anomalies = []
         
-        # 应用自适应系统的已学习模式
-        learned_patterns = adaptive_system.get_learned_patterns()
-        if learned_patterns:
-            logging.info(f"应用 {len(learned_patterns)} 个已学习的模式")
-            
-        result = processor.process_text(text)
-        if not result:
-            logging.error(f"处理文件 {file_path} 失败")
-            return None
-            
-        # 自适应增强
-        logging.info("执行自适应增强...")
-        enhanced_entities = adaptive_system.enhance_recognition(text, result.entities)
+        # 记录开始时间
+        start_time = datetime.now()
         
-        # 如果实体有更新，重新处理
-        if enhanced_entities != result.entities:
-            logging.info("使用增强后的实体重新处理...")
-            result = processor.process_chunk(0, text)
+        # 处理每个文本块
+        for i, chunk in enumerate(text_chunks, 1):
+            chunk_info = {
+                **file_info,
+                'current_page': i,
+                'chunk_size': len(chunk)
+            }
             
-            # 更新自适应系统的统计信息
-            adaptive_system.update_enhancement_stats(
-                original_count=len(result.entities),
-                enhanced_count=len(enhanced_entities)
-            )
+            # 使用自适应系统处理
+            adaptive_result = adaptive_system.process(chunk, {'file_info': chunk_info})
             
-        # 保存处理结果
-        output_dir = Path('output')
-        output_dir.mkdir(exist_ok=True)
-        
-        output_file = output_dir / f"{os.path.splitext(os.path.basename(file_path))[0]}_structured.json"
-        
-        # 构建输出数据
-        output_data = {
-            'file_name': os.path.basename(file_path),
-            'file_type': ext.lower(),
-            'processing_time': datetime.now().isoformat(),
-            'original_text': text[:1000] + "..." if len(text) > 1000 else text,  # 保存部分原文用于后续学习
-            'entities': [
-                {
-                    'text': entity.text,
-                    'type': entity.type,
-                    'start': entity.start,
-                    'end': entity.end
+            # 使用信息处理器处理
+            info_result = info_processor.process(adaptive_result['text'], chunk_info)
+            
+            # 合并结果
+            processed_chunk = {
+                'text': chunk,
+                'enhanced_text': adaptive_result['text'],
+                'entities': info_result.get('entities', []),
+                'relations': info_result.get('relations', []),
+                'anomalies': info_result.get('anomalies', []),
+                'scene': adaptive_result.get('scene'),
+                'context_enhancements': adaptive_result.get('context_enhancements', []),
+                'metadata': {
+                    'chunk_number': i,
+                    'chunk_size': len(chunk),
+                    'processing_time': info_result.get('metadata', {}).get('processing_time', 0)
                 }
-                for entity in result.entities
-            ],
-            'relations': [
-                {
-                    'type': relation.type,
-                    'source': {
-                        'text': relation.source.text,
-                        'type': relation.source.type
-                    },
-                    'target': {
-                        'text': relation.target.text,
-                        'type': relation.target.type
-                    }
+            }
+            
+            processed_chunks.append(processed_chunk)
+            all_entities.extend(processed_chunk['entities'])
+            all_relations.extend(processed_chunk['relations'])
+            all_anomalies.extend(processed_chunk['anomalies'])
+            
+            # 从处理结果中学习
+            feedback = {
+                'patterns': {
+                    'company': [r'(?:[\u4e00-\u9fa5]+(?:股份|科技|信息|集团|控股))'],
+                    'money': [r'(?:\d+(?:\.\d+)?(?:亿|万)?美金)']
+                },
+                'keywords': {
+                    'financial': ['营收', '利润', '增长', '下滑'],
+                    'tech': ['人工智能', '区块链', '云计算', '大数据']
                 }
-                for relation in result.relations
+            }
+            adaptive_system.learn_from_feedback(chunk, feedback)
+        
+        # 生成处理报告
+        processing_time = (datetime.now() - start_time).total_seconds()
+        
+        # 获取统计信息
+        adaptive_stats = adaptive_system.get_statistics()
+        info_stats = info_processor.get_statistics()
+        
+        # 保存结果
+        result = {
+            'file_info': file_info,
+            'processing_summary': {
+                'total_chunks': len(processed_chunks),
+                'total_entities': len(all_entities),
+                'total_relations': len(all_relations),
+                'total_anomalies': len(all_anomalies),
+                'processing_time': processing_time,
+                'adaptive_system_stats': adaptive_stats,
+                'information_processor_stats': info_stats
+            },
+            'processed_chunks': processed_chunks
+        }
+        
+        # 保存到文件
+        output_file = os.path.join(
+            output_dir,
+            f"{os.path.splitext(file_info['name'])[0]}_processed.json"
+        )
+        with open(output_file, 'w', encoding='utf-8') as f:
+            json.dump(result, f, ensure_ascii=False, indent=2)
+        
+        logger.info(f"文件处理完成: {file_info['name']}")
+        logger.info(f"处理时间: {processing_time:.2f} 秒")
+        logger.info(f"发现实体: {len(all_entities)} 个")
+        logger.info(f"发现关系: {len(all_relations)} 个")
+        logger.info(f"发现异常: {len(all_anomalies)} 个")
+        logger.info(f"结果已保存到: {output_file}")
+        
+        return result
+        
+    except Exception as e:
+        logger.error(f"处理文件时出错: {str(e)}")
+        logger.error(traceback.format_exc())
+        return {
+            'error': str(e),
+            'file': file_path,
+            'traceback': traceback.format_exc()
+        }
+
+def main(input_dir: str, output_dir: str):
+    """主处理函数"""
+    try:
+        # 创建输出目录
+        os.makedirs(output_dir, exist_ok=True)
+        
+        # 获取所有文件
+        files = []
+        for root, _, filenames in os.walk(input_dir):
+            for filename in filenames:
+                if filename.endswith(('.pdf', '.docx', '.txt', '.csv')):
+                    files.append(os.path.join(root, filename))
+        
+        logger.info(f"发现 {len(files)} 个文件待处理")
+        
+        # 处理所有文件
+        results = []
+        start_time = datetime.now()
+        
+        for file_path in files:
+            result = process_file(file_path, output_dir)
+            results.append(result)
+        
+        # 生成总体报告
+        total_time = (datetime.now() - start_time).total_seconds()
+        
+        report = {
+            'total_files': len(files),
+            'processed_files': len([r for r in results if 'error' not in r]),
+            'failed_files': len([r for r in results if 'error' in r]),
+            'processing_time': total_time,
+            'processed_file_list': [os.path.basename(f) for f in files],
+            'failed_file_list': [
+                os.path.basename(r['file']) 
+                for r in results 
+                if 'error' in r
             ],
-            'summary': result.summary,
-            'qa_pairs': result.qa_pairs,
-            'compliance_events': [
-                {
-                    'type': event.type,
-                    'text': event.text,
-                    'importance': event.importance
-                }
-                for event in result.compliance_events
-            ],
-            'processing_stats': {
-                'initial_entity_count': len(result.entities),
-                'enhanced_entity_count': len(enhanced_entities) if enhanced_entities != result.entities else len(result.entities),
-                'relation_count': len(result.relations),
-                'qa_pair_count': len(result.qa_pairs),
-                'compliance_event_count': len(result.compliance_events)
+            'summary': {
+                'total_entities': sum(
+                    r.get('processing_summary', {}).get('total_entities', 0)
+                    for r in results
+                    if 'error' not in r
+                ),
+                'total_relations': sum(
+                    r.get('processing_summary', {}).get('total_relations', 0)
+                    for r in results
+                    if 'error' not in r
+                ),
+                'total_anomalies': sum(
+                    r.get('processing_summary', {}).get('total_anomalies', 0)
+                    for r in results
+                    if 'error' not in r
+                )
             }
         }
         
-        # 保存结果
-        with open(output_file, 'w', encoding='utf-8') as f:
-            json.dump(output_data, f, ensure_ascii=False, indent=2)
-            
-        logging.info(f"处理结果已保存到: {output_file}")
-        return output_data
+        # 保存报告
+        report_file = os.path.join(output_dir, 'processing_report.json')
+        with open(report_file, 'w', encoding='utf-8') as f:
+            json.dump(report, f, ensure_ascii=False, indent=2)
+        
+        logger.info(f"\n{'='*50}")
+        logger.info(f"处理完成")
+        logger.info(f"总文件数: {report['total_files']}")
+        logger.info(f"成功处理: {report['processed_files']}")
+        logger.info(f"处理失败: {report['failed_files']}")
+        logger.info(f"总处理时间: {total_time:.2f} 秒")
+        logger.info(f"报告已保存到: {report_file}")
         
     except Exception as e:
-        logging.error(f"处理文件 {file_path} 时出错: {str(e)}")
-        logging.error(traceback.format_exc())
-        return None
-
-
-def process_directory(data_dir: str, output_dir: str, scenario: str = None) -> List[Dict[str, Any]]:
-    """
-    处理整个目录中的文件
-    """
-    results = []
-    processed_files = []
-    failed_files = []
-
-    # 确保输出目录存在
-    os.makedirs(output_dir, exist_ok=True)
-
-    # 遍历数据目录
-    for filename in os.listdir(data_dir):
-        file_path = os.path.join(data_dir, filename)
-        if os.path.isfile(file_path):
-            try:
-                # 处理文件
-                file_scenario = scenario or get_file_scenario(file_path)
-                logging.info(f"处理文件 {filename}，使用场景: {file_scenario}")
-
-                result = process_file(file_path, file_scenario)
-                if result:
-                    # 保存结构化数据
-                    output_file = os.path.join(output_dir, f"{os.path.splitext(filename)[0]}_structured.json")
-                    with open(output_file, 'w', encoding='utf-8') as f:
-                        json.dump(result, f, ensure_ascii=False, indent=2)
-
-                    processed_files.append(filename)
-                    results.append(result)
-                    logging.info(f"文件 {filename} 处理完成，结果保存至 {output_file}")
-                else:
-                    failed_files.append(filename)
-            except Exception as e:
-                logging.error(f"处理文件 {filename} 失败: {str(e)}", exc_info=True)
-                failed_files.append(filename)
-
-    # 生成处理报告
-    report = {
-        'total_files': len(os.listdir(data_dir)),
-        'processed_files': processed_files,
-        'failed_files': failed_files,
-        'success_rate': len(processed_files) / len(os.listdir(data_dir)) if os.listdir(data_dir) else 0
-    }
-
-    # 保存处理报告
-    report_file = os.path.join(output_dir, 'processing_report.json')
-    with open(report_file, 'w', encoding='utf-8') as f:
-        json.dump(report, f, ensure_ascii=False, indent=2)
-
-    return results
-
-
-def setup_logging():
-    """设置日志"""
-    log_dir = Path("output/logs")
-    log_dir.mkdir(parents=True, exist_ok=True)
-    log_file = log_dir / f'processing_{datetime.now().strftime("%Y%m%d_%H%M%S")}.log'
-    
-    logging.basicConfig(
-        level=logging.INFO,
-        format='%(asctime)s - %(levelname)s - %(message)s',
-        handlers=[
-            logging.FileHandler(log_file),
-            logging.StreamHandler(sys.stdout)
-        ]
-    )
-    return logging.getLogger(__name__)
-
-
-def main():
-    """主函数"""
-    try:
-        logging.info("开始处理...")
-        
-        # 初始化处理器
-        processor = InformationProcessor(enable_privacy_protection=True, adaptive_learning=True)
-        adaptive_system = AdaptiveSystem()
-        
-        # 处理data目录下的所有文件
-        data_dir = Path('data')
-        if not data_dir.exists():
-            logging.error("data目录不存在")
-            return
-            
-        # 获取所有支持的文件
-        supported_extensions = ['.txt', '.csv']
-        if HAS_DOCX:
-            supported_extensions.extend(['.docx', '.doc'])
-        if HAS_PYPDF2:
-            supported_extensions.append('.pdf')
-            
-        all_files = []
-        for ext in supported_extensions:
-            all_files.extend(list(data_dir.glob(f'*{ext}')))
-        
-        if not all_files:
-            logging.warning(f"在data目录下未找到支持的文件类型: {', '.join(supported_extensions)}")
-            return
-            
-        # 处理每个文件
-        results = []
-        processed_files = []
-        failed_files = []
-        
-        for file_path in all_files:
-            try:
-                # 获取文件场景
-                scenario = get_file_scenario(str(file_path))
-                logging.info(f"处理文件 {file_path.name}，使用场景: {scenario}")
-                
-                # 处理文件
-                result = process_file(file_path, processor, adaptive_system)
-                
-                if result:
-                    results.append(result)
-                    processed_files.append(file_path.name)
-                    
-                    # 更新自适应系统
-                    if result['entities']:
-                        adaptive_system.update_patterns(
-                            text=result['original_text'] if 'original_text' in result else '',
-                            entities=result['entities']
-                        )
-                else:
-                    failed_files.append(file_path.name)
-                    
-            except Exception as e:
-                logging.error(f"处理文件 {file_path.name} 失败: {str(e)}")
-                logging.error(traceback.format_exc())
-                failed_files.append(file_path.name)
-        
-        # 保存处理报告
-        if results:
-            report = {
-                'total_files': len(all_files),
-                'processed_files': len(processed_files),
-                'failed_files': len(failed_files),
-                'processing_time': datetime.now().isoformat(),
-                'processed_file_list': processed_files,
-                'failed_file_list': failed_files,
-                'summary': {
-                    'total_entities': sum(len(r['entities']) for r in results),
-                    'total_relations': sum(len(r['relations']) for r in results),
-                    'total_qa_pairs': sum(len(r['qa_pairs']) for r in results),
-                    'total_compliance_events': sum(len(r['compliance_events']) for r in results)
-                },
-                'adaptive_system_stats': adaptive_system.get_statistics()
-            }
-            
-            report_file = Path('output') / 'processing_report.json'
-            with open(report_file, 'w', encoding='utf-8') as f:
-                json.dump(report, f, ensure_ascii=False, indent=2)
-                
-            logging.info(f"处理报告已保存到: {report_file}")
-            
-            # 输出处理统计
-            logging.info(f"处理完成! 总文件数: {len(all_files)}")
-            logging.info(f"成功处理: {len(processed_files)} 个文件")
-            logging.info(f"处理失败: {len(failed_files)} 个文件")
-            if failed_files:
-                logging.info(f"失败文件列表: {', '.join(failed_files)}")
-        
-        logging.info("处理完成!")
-        
-    except Exception as e:
-        logging.error(f"处理过程中出错: {str(e)}")
-        logging.error(traceback.format_exc())
-
+        logger.error(f"处理过程出错: {str(e)}")
+        logger.error(traceback.format_exc())
+        sys.exit(1)
 
 if __name__ == '__main__':
-    main()
+    # 设置默认目录
+    default_input_dir = 'data'
+    default_output_dir = 'output'
+    
+    if len(sys.argv) == 3:
+        input_dir = sys.argv[1]
+        output_dir = sys.argv[2]
+    else:
+        input_dir = default_input_dir
+        output_dir = default_output_dir
+        logger.info(f"使用默认目录 - 输入: {input_dir}, 输出: {output_dir}")
+    
+    if not os.path.exists(input_dir):
+        logger.error(f"输入目录不存在: {input_dir}")
+        sys.exit(1)
+    
+    main(input_dir, output_dir)
