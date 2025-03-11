@@ -300,3 +300,1652 @@ KeyError: 'structure'
 2025-03-10 21:04:33,928 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
 2025-03-10 21:04:33,929 - INFO - 生成 8 个客服对话
 2025-03-10 21:04:33,936 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-11 15:53:17,049 - INFO - python-docx 模块已安装
+2025-03-11 15:53:17,117 - INFO - PyPDF2 模块已安装
+2025-03-11 15:53:25,581 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-11 15:53:25,581 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-11 15:53:25,581 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 15:53:25,755 - INFO - 检测到文件编码: ascii
+2025-03-11 15:53:25,839 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-11 15:53:27,850 - INFO - 发现 90 个可疑交易模式
+2025-03-11 15:53:27,972 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-11 15:53:27,972 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-11 15:53:27,972 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-11 15:53:27,972 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 15:53:27,994 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-11 15:53:27,995 - INFO - 生成 1 个客服对话
+2025-03-11 15:53:27,997 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-11 15:53:27,997 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-11 15:53:27,997 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-11 15:53:27,997 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-11 15:53:37,235 - INFO - 文件 data\shiyou_info.pdf 结构化处理完成
+2025-03-11 15:53:37,235 - INFO - 生成 8 个客服对话
+2025-03-11 15:53:37,242 - INFO - 文件 shiyou_info.pdf 处理完成，结果保存至 output\shiyou_info_structured.json
+2025-03-11 15:53:37,242 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-11 15:53:37,242 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-11 15:53:37,242 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-11 15:53:37,921 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-11 15:53:37,922 - INFO - 生成 8 个客服对话
+2025-03-11 15:53:37,923 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-11 16:00:42,455 - INFO - pandas 模块已安装 (数据处理)
+2025-03-11 16:00:42,456 - WARNING - docx 模块未安装，Word文档处理功能将受限
+2025-03-11 16:00:42,457 - WARNING - PyPDF2 模块未安装，PDF文档处理功能将受限
+2025-03-11 16:00:42,457 - WARNING - sklearn 模块未安装，机器学习和文本向量化功能将受限
+2025-03-11 16:00:42,458 - WARNING - 请安装缺失的模块: pip install docx PyPDF2 sklearn
+2025-03-11 16:00:42,461 - WARNING - PyPDF2 模块未安装，PDF处理功能将受限
+2025-03-11 16:00:42,463 - ERROR - 导入模块失败: No module named 'chardet'
+2025-03-11 16:02:11,582 - INFO - pandas 模块已安装 (数据处理)
+2025-03-11 16:02:11,583 - WARNING - docx 模块未安装，Word文档处理功能将受限
+2025-03-11 16:02:11,584 - WARNING - PyPDF2 模块未安装，PDF文档处理功能将受限
+2025-03-11 16:02:11,584 - WARNING - sklearn 模块未安装，机器学习和文本向量化功能将受限
+2025-03-11 16:02:11,585 - WARNING - 请安装缺失的模块: pip install docx PyPDF2 sklearn
+2025-03-11 16:02:11,586 - WARNING - 语义搜索引擎初始化失败
+2025-03-11 16:02:11,601 - INFO - 对话管理器初始化成功
+2025-03-11 16:02:11,607 - WARNING - 模式挖掘器初始化失败
+2025-03-11 16:02:11,613 - INFO - 实时监控器初始化成功
+2025-03-11 16:02:11,618 - INFO - 规则引擎初始化成功
+2025-03-11 16:02:11,618 - INFO - 系统初始化完成，数据目录: data，输出目录: output
+2025-03-11 16:02:11,620 - INFO - 基本规则设置完成
+2025-03-11 16:02:11,621 - INFO - 监控规则设置完成
+2025-03-11 16:02:11,623 - INFO - 开始处理文件: bank_transactions.csv
+2025-03-11 16:02:11,623 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 16:02:12,754 - INFO - 文件 bank_transactions.csv 处理完成
+2025-03-11 16:02:12,755 - INFO - 开始处理文件: huaqi_info.docx
+2025-03-11 16:02:12,755 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 16:02:12,756 - ERROR - 未安装python-docx模块，无法处理Word文档
+2025-03-11 16:02:12,757 - WARNING - 文件 huaqi_info.docx 处理失败或不支持
+2025-03-11 16:02:12,758 - INFO - 开始处理文件: shiyou_info.pdf
+2025-03-11 16:02:12,758 - INFO - 处理PDF文件: data\shiyou_info.pdf
+2025-03-11 16:02:12,759 - ERROR - 未安装PyPDF2模块，无法处理PDF文件
+2025-03-11 16:02:12,760 - WARNING - 文件 shiyou_info.pdf 处理失败或不支持
+2025-03-11 16:02:12,760 - INFO - 开始处理文件: tencent_info.pdf
+2025-03-11 16:02:12,761 - INFO - 处理PDF文件: data\tencent_info.pdf
+2025-03-11 16:02:12,763 - ERROR - 未安装PyPDF2模块，无法处理PDF文件
+2025-03-11 16:02:12,763 - WARNING - 文件 tencent_info.pdf 处理失败或不支持
+2025-03-11 16:05:57,310 - INFO - pandas 模块已安装 (数据处理)
+2025-03-11 16:05:57,311 - WARNING - python-docx 模块未安装，Word文档处理功能将受限
+2025-03-11 16:05:57,312 - WARNING - PyPDF2 模块未安装，PDF文档处理功能将受限
+2025-03-11 16:05:57,312 - WARNING - scikit-learn 模块未安装，机器学习和文本向量化功能将受限
+2025-03-11 16:05:57,312 - WARNING - 请安装缺失的模块: pip install python-docx PyPDF2 scikit-learn
+2025-03-11 16:05:57,315 - WARNING - 语义搜索引擎初始化失败
+2025-03-11 16:05:57,315 - INFO - 对话管理器初始化成功
+2025-03-11 16:05:57,319 - WARNING - 模式挖掘器初始化失败
+2025-03-11 16:05:57,321 - INFO - 实时监控器初始化成功
+2025-03-11 16:05:57,334 - INFO - 规则引擎初始化成功
+2025-03-11 16:05:57,335 - INFO - 系统初始化完成，数据目录: data，输出目录: output
+2025-03-11 16:05:57,338 - INFO - 基本规则设置完成
+2025-03-11 16:05:57,338 - INFO - 监控规则设置完成
+2025-03-11 16:05:57,339 - INFO - 开始处理文件: bank_transactions.csv
+2025-03-11 16:05:57,340 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 16:05:58,434 - INFO - 文件 bank_transactions.csv 处理完成
+2025-03-11 16:05:58,435 - INFO - 开始处理文件: huaqi_info.docx
+2025-03-11 16:05:58,435 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 16:05:58,436 - ERROR - 未安装python-docx模块，无法处理Word文档
+2025-03-11 16:05:58,437 - WARNING - 文件 huaqi_info.docx 处理失败或不支持
+2025-03-11 16:05:58,437 - INFO - 开始处理文件: shiyou_info.pdf
+2025-03-11 16:05:58,437 - INFO - 处理PDF文件: data\shiyou_info.pdf
+2025-03-11 16:05:58,438 - ERROR - 未安装PyPDF2模块，无法处理PDF文件
+2025-03-11 16:05:58,438 - WARNING - 文件 shiyou_info.pdf 处理失败或不支持
+2025-03-11 16:05:58,439 - INFO - 开始处理文件: tencent_info.pdf
+2025-03-11 16:05:58,439 - INFO - 处理PDF文件: data\tencent_info.pdf
+2025-03-11 16:05:58,440 - ERROR - 未安装PyPDF2模块，无法处理PDF文件
+2025-03-11 16:05:58,441 - WARNING - 文件 tencent_info.pdf 处理失败或不支持
+2025-03-11 16:08:35,972 - INFO - python-docx 模块已安装
+2025-03-11 16:08:36,016 - INFO - PyPDF2 模块已安装
+2025-03-11 16:14:02,742 - INFO - python-docx 模块已安装
+2025-03-11 16:14:02,781 - INFO - PyPDF2 模块已安装
+2025-03-11 16:14:57,363 - INFO - python-docx 模块已安装
+2025-03-11 16:14:57,423 - INFO - PyPDF2 模块已安装
+2025-03-11 16:15:04,893 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-11 16:15:04,894 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-11 16:15:04,894 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 16:15:05,127 - INFO - 检测到文件编码: ascii
+2025-03-11 16:15:05,208 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-11 16:15:10,760 - INFO - 发现 90 个可疑交易模式
+2025-03-11 16:15:10,950 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-11 16:15:10,951 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-11 16:15:10,951 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-11 16:15:10,951 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 16:15:10,973 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-11 16:15:10,976 - INFO - 生成 1 个客服对话
+2025-03-11 16:15:10,977 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-11 16:15:10,977 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-11 16:15:10,977 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-11 16:15:10,977 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-11 16:15:12,486 - INFO - pandas 模块已安装 (数据处理)
+2025-03-11 16:15:12,486 - WARNING - python-docx 模块未安装，Word文档处理功能将受限
+2025-03-11 16:15:12,488 - WARNING - PyPDF2 模块未安装，PDF文档处理功能将受限
+2025-03-11 16:15:12,488 - WARNING - scikit-learn 模块未安装，机器学习和文本向量化功能将受限
+2025-03-11 16:15:12,489 - WARNING - 请安装缺失的模块: pip install python-docx PyPDF2 scikit-learn
+2025-03-11 16:15:12,491 - WARNING - 语义搜索引擎初始化失败
+2025-03-11 16:15:12,492 - INFO - 对话管理器初始化成功
+2025-03-11 16:15:12,494 - WARNING - 模式挖掘器初始化失败
+2025-03-11 16:15:12,495 - INFO - 实时监控器初始化成功
+2025-03-11 16:15:12,497 - INFO - 规则引擎初始化成功
+2025-03-11 16:15:12,497 - INFO - 系统初始化完成，数据目录: data，输出目录: output
+2025-03-11 16:15:12,500 - INFO - 基本规则设置完成
+2025-03-11 16:15:12,500 - INFO - 监控规则设置完成
+2025-03-11 16:15:12,501 - INFO - 开始处理文件: bank_transactions.csv
+2025-03-11 16:15:12,502 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 16:15:13,598 - INFO - 文件 bank_transactions.csv 处理完成
+2025-03-11 16:15:13,598 - INFO - 开始处理文件: huaqi_info.docx
+2025-03-11 16:15:13,599 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 16:15:13,599 - WARNING - 未安装python-docx模块，尝试使用替代方法处理Word文档
+2025-03-11 16:15:13,599 - INFO - 使用替代方法处理Word文档: data\huaqi_info.docx
+2025-03-11 16:15:13,607 - INFO - 文件 huaqi_info.docx 处理完成
+2025-03-11 16:15:13,608 - INFO - 开始处理文件: shiyou_info.pdf
+2025-03-11 16:15:13,608 - INFO - 处理PDF文件: data\shiyou_info.pdf
+2025-03-11 16:15:13,609 - WARNING - 未安装PyPDF2模块，尝试使用替代方法处理PDF文件
+2025-03-11 16:15:13,609 - INFO - 使用替代方法处理PDF文件: data\shiyou_info.pdf
+2025-03-11 16:15:13,615 - WARNING - pdftotext命令不可用，尝试其他方法
+2025-03-11 16:15:16,338 - INFO - 文件 shiyou_info.pdf 处理完成
+2025-03-11 16:15:16,339 - INFO - 开始处理文件: tencent_info.pdf
+2025-03-11 16:15:16,340 - INFO - 处理PDF文件: data\tencent_info.pdf
+2025-03-11 16:15:16,341 - WARNING - 未安装PyPDF2模块，尝试使用替代方法处理PDF文件
+2025-03-11 16:15:16,341 - INFO - 使用替代方法处理PDF文件: data\tencent_info.pdf
+2025-03-11 16:15:16,346 - WARNING - pdftotext命令不可用，尝试其他方法
+2025-03-11 16:15:16,468 - INFO - 文件 tencent_info.pdf 处理完成
+2025-03-11 16:15:23,662 - INFO - 文件 data\shiyou_info.pdf 结构化处理完成
+2025-03-11 16:15:23,663 - INFO - 生成 8 个客服对话
+2025-03-11 16:15:23,673 - INFO - 文件 shiyou_info.pdf 处理完成，结果保存至 output\shiyou_info_structured.json
+2025-03-11 16:15:23,674 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-11 16:15:23,674 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-11 16:15:23,674 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-11 16:15:24,815 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-11 16:15:24,815 - INFO - 生成 8 个客服对话
+2025-03-11 16:15:24,818 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-11 16:18:10,888 - INFO - pandas 模块已安装 (数据处理)
+2025-03-11 16:18:11,011 - INFO - python-docx 模块已安装 (Word文档处理)
+2025-03-11 16:18:11,058 - INFO - PyPDF2 模块已安装 (PDF文档处理)
+2025-03-11 16:18:11,612 - INFO - scikit-learn 模块已安装 (机器学习和文本向量化)
+2025-03-11 16:18:11,654 - INFO - 语义搜索引擎初始化成功
+2025-03-11 16:18:11,657 - INFO - 对话管理器初始化成功
+2025-03-11 16:18:12,001 - INFO - 模式挖掘器初始化成功
+2025-03-11 16:18:12,006 - INFO - 实时监控器初始化成功
+2025-03-11 16:18:12,012 - INFO - 规则引擎初始化成功
+2025-03-11 16:18:12,013 - INFO - 系统初始化完成，数据目录: data，输出目录: output
+2025-03-11 16:18:12,014 - INFO - 基本规则设置完成
+2025-03-11 16:18:12,014 - INFO - 监控规则设置完成
+2025-03-11 16:18:12,015 - INFO - 开始处理文件: bank_transactions.csv
+2025-03-11 16:18:12,015 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 16:18:12,206 - ERROR - 模式挖掘时出错: 'timestamp'
+2025-03-11 16:18:13,300 - INFO - 文件 bank_transactions.csv 处理完成
+2025-03-11 16:18:13,300 - INFO - 开始处理文件: huaqi_info.docx
+2025-03-11 16:18:13,300 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 16:18:13,327 - INFO - 文件 huaqi_info.docx 处理完成
+2025-03-11 16:18:13,328 - INFO - 开始处理文件: shiyou_info.pdf
+2025-03-11 16:18:13,328 - INFO - 处理PDF文件: data\shiyou_info.pdf
+2025-03-11 16:18:21,620 - INFO - 文件 shiyou_info.pdf 处理完成
+2025-03-11 16:18:21,620 - INFO - 开始处理文件: tencent_info.pdf
+2025-03-11 16:18:21,621 - INFO - 处理PDF文件: data\tencent_info.pdf
+2025-03-11 16:18:22,132 - INFO - 文件 tencent_info.pdf 处理完成
+2025-03-11 16:42:21,876 - INFO - pandas 模块已安装 (数据处理)
+2025-03-11 16:42:21,947 - INFO - python-docx 模块已安装 (Word文档处理)
+2025-03-11 16:42:21,989 - INFO - PyPDF2 模块已安装 (PDF文档处理)
+2025-03-11 16:42:22,483 - INFO - scikit-learn 模块已安装 (机器学习和文本向量化)
+2025-03-11 16:42:22,509 - INFO - 语义搜索引擎初始化成功
+2025-03-11 16:42:22,510 - INFO - 对话管理器初始化成功
+2025-03-11 16:42:22,643 - INFO - 模式挖掘器初始化成功
+2025-03-11 16:42:22,644 - INFO - 实时监控器初始化成功
+2025-03-11 16:42:22,645 - INFO - 规则引擎初始化成功
+2025-03-11 16:42:22,645 - INFO - 系统初始化完成，数据目录: data，输出目录: output
+2025-03-11 16:42:22,647 - INFO - 基本规则设置完成
+2025-03-11 16:42:22,647 - INFO - 监控规则设置完成
+2025-03-11 16:42:22,648 - INFO - 开始处理文件: bank_transactions.csv
+2025-03-11 16:42:22,648 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 16:42:22,763 - ERROR - 模式挖掘时出错: 'timestamp'
+2025-03-11 16:42:23,835 - INFO - 文件 bank_transactions.csv 处理完成
+2025-03-11 16:42:23,835 - INFO - 开始处理文件: huaqi_info.docx
+2025-03-11 16:42:23,835 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 16:42:23,849 - INFO - 文件 huaqi_info.docx 处理完成
+2025-03-11 16:42:23,850 - INFO - 开始处理文件: shiyou_info.pdf
+2025-03-11 16:42:23,850 - INFO - 处理PDF文件: data\shiyou_info.pdf
+2025-03-11 16:42:32,380 - INFO - 文件 shiyou_info.pdf 处理完成
+2025-03-11 16:42:32,381 - INFO - 开始处理文件: tencent_info.pdf
+2025-03-11 16:42:32,381 - INFO - 处理PDF文件: data\tencent_info.pdf
+2025-03-11 16:42:32,899 - INFO - 文件 tencent_info.pdf 处理完成
+2025-03-11 17:09:07,776 - INFO - pandas 模块已安装 (数据处理)
+2025-03-11 17:09:07,960 - INFO - python-docx 模块已安装 (Word文档处理)
+2025-03-11 17:09:08,025 - INFO - PyPDF2 模块已安装 (PDF文档处理)
+2025-03-11 17:09:08,025 - INFO - scikit-learn 模块已安装 (机器学习和文本向量化)
+2025-03-11 17:14:21,075 - INFO - pandas 模块已安装 (数据处理)
+2025-03-11 17:14:21,211 - INFO - python-docx 模块已安装 (Word文档处理)
+2025-03-11 17:14:21,247 - INFO - PyPDF2 模块已安装 (PDF文档处理)
+2025-03-11 17:14:21,247 - INFO - scikit-learn 模块已安装 (机器学习和文本向量化)
+2025-03-11 17:14:21,248 - ERROR - 初始化文本编码器失败: 离线模式下未找到模型文件: D:\Python\smart_fin_data\multimodal_processing\models\bert-base-chinese
+2025-03-11 18:29:37,011 - INFO - pandas 模块已安装 (数据处理)
+2025-03-11 18:29:37,123 - INFO - python-docx 模块已安装 (Word文档处理)
+2025-03-11 18:29:37,156 - INFO - PyPDF2 模块已安装 (PDF文档处理)
+2025-03-11 18:29:37,156 - INFO - scikit-learn 模块已安装 (机器学习和文本向量化)
+2025-03-11 18:29:37,157 - ERROR - 初始化文本编码器失败: 离线模式下未找到模型文件: D:\Python\smart_fin_data\multimodal_processing\models\bert-base-chinese
+2025-03-11 18:29:49,232 - INFO - pandas 模块已安装 (数据处理)
+2025-03-11 18:29:49,316 - INFO - python-docx 模块已安装 (Word文档处理)
+2025-03-11 18:29:49,339 - INFO - PyPDF2 模块已安装 (PDF文档处理)
+2025-03-11 18:29:49,339 - INFO - scikit-learn 模块已安装 (机器学习和文本向量化)
+2025-03-11 18:29:49,339 - ERROR - 初始化文本编码器失败: 离线模式下未找到模型文件: D:\Python\smart_fin_data\multimodal_processing\models\bert-base-chinese
+2025-03-11 18:33:49,915 - INFO - pandas 模块已安装 (数据处理)
+2025-03-11 18:33:49,953 - INFO - python-docx 模块已安装 (Word文档处理)
+2025-03-11 18:33:49,975 - INFO - PyPDF2 模块已安装 (PDF文档处理)
+2025-03-11 18:33:49,976 - INFO - scikit-learn 模块已安装 (机器学习和文本向量化)
+2025-03-11 18:33:49,977 - INFO - 系统初始化完成，数据目录: data，输出目录: output
+2025-03-11 18:33:49,977 - INFO - 处理文件 data\bank_transactions.csv，类型: spreadsheet，场景: fraud_detection
+2025-03-11 18:33:49,989 - ERROR - 处理文档时发生错误: 'MultiModalFusion' object is not callable
+2025-03-11 18:33:49,989 - INFO - 处理文件 data\huaqi_info.docx，类型: document，场景: compliance
+2025-03-11 18:33:49,989 - WARNING - 未知的文件类型: .docx
+2025-03-11 18:33:49,989 - INFO - 处理文件 data\shiyou_info.pdf，类型: document，场景: compliance
+2025-03-11 18:33:49,989 - WARNING - 未知的文件类型: .pdf
+2025-03-11 18:33:49,989 - INFO - 处理文件 data\tencent_info.pdf，类型: document，场景: compliance
+2025-03-11 18:33:49,989 - WARNING - 未知的文件类型: .pdf
+2025-03-11 18:33:49,990 - INFO - 处理结果已保存至: output\processing_results_20250311_183349.json
+2025-03-11 18:38:06,755 - INFO - pandas 模块已安装 (数据处理)
+2025-03-11 18:38:06,755 - INFO - python-docx 模块已安装 (Word文档处理)
+2025-03-11 18:38:06,755 - INFO - PyPDF2 模块已安装 (PDF文档处理)
+2025-03-11 18:38:06,755 - INFO - scikit-learn 模块已安装 (机器学习和文本向量化)
+2025-03-11 18:38:06,756 - INFO - 系统初始化完成，数据目录: data，输出目录: output
+2025-03-11 18:38:06,756 - INFO - 处理文件 data\bank_transactions.csv，类型: spreadsheet，场景: fraud_detection
+2025-03-11 18:38:09,584 - ERROR - 保存处理结果时发生错误: Object of type DataFrame is not JSON serializable
+2025-03-11 18:38:09,585 - INFO - 处理文件 data\huaqi_info.docx，类型: document，场景: compliance
+2025-03-11 18:38:09,597 - INFO - 处理文件 data\shiyou_info.pdf，类型: document，场景: compliance
+2025-03-11 18:38:16,783 - INFO - 处理文件 data\tencent_info.pdf，类型: document，场景: compliance
+2025-03-11 18:40:01,633 - INFO - pandas 模块已安装 (数据处理)
+2025-03-11 18:40:01,633 - INFO - python-docx 模块已安装 (Word文档处理)
+2025-03-11 18:40:01,633 - INFO - PyPDF2 模块已安装 (PDF文档处理)
+2025-03-11 18:40:01,633 - INFO - scikit-learn 模块已安装 (机器学习和文本向量化)
+2025-03-11 18:40:01,634 - INFO - 系统初始化完成，数据目录: data，输出目录: output
+2025-03-11 18:40:01,634 - INFO - 处理文件 data\bank_transactions.csv，类型: spreadsheet，场景: fraud_detection
+2025-03-11 18:40:01,784 - ERROR - 处理文档时发生错误: cannot concatenate object of type '<class 'dict'>'; only Series and DataFrame objs are valid
+2025-03-11 18:40:01,784 - ERROR - 处理文件失败: cannot concatenate object of type '<class 'dict'>'; only Series and DataFrame objs are valid
+2025-03-11 18:40:01,784 - INFO - 处理文件 data\huaqi_info.docx，类型: document，场景: compliance
+2025-03-11 18:40:01,798 - INFO - 处理文件 data\shiyou_info.pdf，类型: document，场景: compliance
+2025-03-11 18:40:08,553 - INFO - 处理文件 data\tencent_info.pdf，类型: document，场景: compliance
+2025-03-11 18:48:36,210 - INFO - python-docx 模块已安装
+2025-03-11 18:48:36,249 - INFO - PyPDF2 模块已安装
+2025-03-11 18:48:40,568 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-11 18:48:40,569 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-11 18:48:40,569 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 18:48:40,691 - INFO - 检测到文件编码: ascii
+2025-03-11 18:48:40,735 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-11 18:48:42,123 - INFO - 发现 90 个可疑交易模式
+2025-03-11 18:48:42,200 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-11 18:48:42,201 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-11 18:48:42,201 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-11 18:48:42,201 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 18:48:42,213 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-11 18:48:42,213 - INFO - 生成 1 个客服对话
+2025-03-11 18:48:42,214 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-11 18:48:42,214 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-11 18:48:42,214 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-11 18:48:42,214 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-11 18:48:48,739 - INFO - 文件 data\shiyou_info.pdf 结构化处理完成
+2025-03-11 18:48:48,740 - INFO - 生成 8 个客服对话
+2025-03-11 18:48:48,745 - INFO - 文件 shiyou_info.pdf 处理完成，结果保存至 output\shiyou_info_structured.json
+2025-03-11 18:48:48,745 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-11 18:48:48,745 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-11 18:48:48,745 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-11 18:48:49,123 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-11 18:48:49,123 - INFO - 生成 8 个客服对话
+2025-03-11 18:48:49,124 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-11 19:03:59,537 - INFO - python-docx 模块已安装
+2025-03-11 19:03:59,560 - INFO - PyPDF2 模块已安装
+2025-03-11 19:04:03,064 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-11 19:04:03,065 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-11 19:04:03,065 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 19:04:03,183 - INFO - 检测到文件编码: ascii
+2025-03-11 19:04:03,232 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-11 19:04:04,614 - INFO - 发现 90 个可疑交易模式
+2025-03-11 19:04:04,692 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-11 19:04:04,692 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-11 19:04:04,692 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-11 19:04:04,692 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 19:04:04,705 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-11 19:04:04,705 - INFO - 生成 1 个客服对话
+2025-03-11 19:04:04,706 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-11 19:04:04,706 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-11 19:04:04,706 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-11 19:04:04,706 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-11 19:04:11,137 - INFO - 文件 data\shiyou_info.pdf 结构化处理完成
+2025-03-11 19:04:11,138 - INFO - 生成 8 个客服对话
+2025-03-11 19:04:11,141 - INFO - 文件 shiyou_info.pdf 处理完成，结果保存至 output\shiyou_info_structured.json
+2025-03-11 19:04:11,142 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-11 19:04:11,142 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-11 19:04:11,142 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-11 19:04:11,536 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-11 19:04:11,536 - INFO - 生成 8 个客服对话
+2025-03-11 19:04:11,537 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-11 19:21:34,094 - INFO - python-docx 模块已安装
+2025-03-11 19:21:34,120 - INFO - PyPDF2 模块已安装
+2025-03-11 19:21:37,754 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-11 19:21:37,754 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-11 19:21:37,754 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 19:21:37,902 - INFO - 检测到文件编码: ascii
+2025-03-11 19:21:37,946 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-11 19:21:39,331 - INFO - 发现 90 个可疑交易模式
+2025-03-11 19:21:39,416 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-11 19:21:39,416 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-11 19:21:39,416 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-11 19:21:39,416 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 19:21:39,427 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-11 19:21:39,428 - INFO - 生成 1 个客服对话
+2025-03-11 19:21:39,429 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-11 19:21:39,429 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-11 19:21:39,429 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-11 19:21:39,429 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-11 19:21:53,196 - INFO - 文件 data\shiyou_info.pdf 结构化处理完成
+2025-03-11 19:21:53,198 - INFO - 生成 8 个客服对话
+2025-03-11 19:21:53,210 - INFO - 文件 shiyou_info.pdf 处理完成，结果保存至 output\shiyou_info_structured.json
+2025-03-11 19:21:53,210 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-11 19:21:53,211 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-11 19:21:53,211 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-11 19:21:54,267 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-11 19:21:54,268 - INFO - 生成 8 个客服对话
+2025-03-11 19:21:54,270 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-11 19:36:03,641 - INFO - python-docx 模块已安装
+2025-03-11 19:36:03,669 - INFO - PyPDF2 模块已安装
+2025-03-11 19:36:06,093 - WARNING - 文本处理模块导入失败，部分功能将受限
+2025-03-11 19:36:07,413 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-11 19:36:07,413 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-11 19:36:07,413 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 19:36:07,533 - INFO - 检测到文件编码: ascii
+2025-03-11 19:36:07,578 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-11 19:36:08,987 - INFO - 发现 90 个可疑交易模式
+2025-03-11 19:36:08,988 - WARNING - 隐私保护处理失败: cannot import name 'EntityRelation' from 'information_extraction.schemas' (D:\Python\smart_fin_data\information_extraction\schemas.py)
+2025-03-11 19:36:09,074 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-11 19:36:09,074 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-11 19:36:09,074 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-11 19:36:09,074 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 19:36:09,086 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-11 19:36:09,087 - INFO - 生成 1 个客服对话
+2025-03-11 19:36:09,088 - WARNING - 隐私保护处理失败: cannot import name 'EntityRelation' from 'information_extraction.schemas' (D:\Python\smart_fin_data\information_extraction\schemas.py)
+2025-03-11 19:36:09,089 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-11 19:36:09,089 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-11 19:36:09,089 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-11 19:36:09,089 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-11 19:36:15,865 - INFO - 文件 data\shiyou_info.pdf 结构化处理完成
+2025-03-11 19:36:15,865 - INFO - 生成 8 个客服对话
+2025-03-11 19:36:15,866 - WARNING - 隐私保护处理失败: cannot import name 'EntityRelation' from 'information_extraction.schemas' (D:\Python\smart_fin_data\information_extraction\schemas.py)
+2025-03-11 19:36:15,872 - INFO - 文件 shiyou_info.pdf 处理完成，结果保存至 output\shiyou_info_structured.json
+2025-03-11 19:36:15,872 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-11 19:36:15,872 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-11 19:36:15,872 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-11 19:36:16,297 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-11 19:36:16,298 - INFO - 生成 8 个客服对话
+2025-03-11 19:36:16,299 - WARNING - 隐私保护处理失败: cannot import name 'EntityRelation' from 'information_extraction.schemas' (D:\Python\smart_fin_data\information_extraction\schemas.py)
+2025-03-11 19:36:16,300 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-11 19:37:09,961 - INFO - python-docx 模块已安装
+2025-03-11 19:37:09,986 - INFO - PyPDF2 模块已安装
+2025-03-11 19:37:12,372 - WARNING - 文本处理模块导入失败，部分功能将受限
+2025-03-11 19:37:13,647 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-11 19:37:13,647 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-11 19:37:13,648 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 19:37:13,779 - INFO - 检测到文件编码: ascii
+2025-03-11 19:37:13,823 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-11 19:37:15,245 - INFO - 发现 90 个可疑交易模式
+2025-03-11 19:37:15,246 - WARNING - 隐私保护处理失败: cannot import name 'EntityRelation' from 'information_extraction.schemas' (D:\Python\smart_fin_data\information_extraction\schemas.py)
+2025-03-11 19:37:15,330 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-11 19:37:15,330 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-11 19:37:15,330 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-11 19:37:15,330 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 19:37:15,341 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-11 19:37:15,341 - INFO - 生成 1 个客服对话
+2025-03-11 19:37:15,343 - WARNING - 隐私保护处理失败: cannot import name 'EntityRelation' from 'information_extraction.schemas' (D:\Python\smart_fin_data\information_extraction\schemas.py)
+2025-03-11 19:37:15,343 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-11 19:37:15,343 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-11 19:37:15,343 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-11 19:37:15,344 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-11 19:37:22,187 - INFO - 文件 data\shiyou_info.pdf 结构化处理完成
+2025-03-11 19:37:22,188 - INFO - 生成 8 个客服对话
+2025-03-11 19:37:22,189 - WARNING - 隐私保护处理失败: cannot import name 'EntityRelation' from 'information_extraction.schemas' (D:\Python\smart_fin_data\information_extraction\schemas.py)
+2025-03-11 19:37:22,194 - INFO - 文件 shiyou_info.pdf 处理完成，结果保存至 output\shiyou_info_structured.json
+2025-03-11 19:37:22,194 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-11 19:37:22,194 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-11 19:37:22,194 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-11 19:37:22,581 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-11 19:37:22,581 - INFO - 生成 8 个客服对话
+2025-03-11 19:37:22,582 - WARNING - 隐私保护处理失败: cannot import name 'EntityRelation' from 'information_extraction.schemas' (D:\Python\smart_fin_data\information_extraction\schemas.py)
+2025-03-11 19:37:22,583 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-11 19:38:23,315 - WARNING - python-docx 模块未安装，Word处理功能将受限
+2025-03-11 19:38:23,316 - WARNING - PyPDF2 模块未安装，PDF处理功能将受限
+2025-03-11 19:38:23,319 - WARNING - PyPDF2 模块未安装，PDF处理功能将受限
+2025-03-11 19:38:23,320 - WARNING - DocumentProcessor 模块导入失败，只能处理CSV文件、Word文件和PDF文件
+2025-03-11 19:38:23,323 - WARNING - 文本处理模块导入失败，部分功能将受限
+2025-03-11 19:38:23,325 - WARNING - 场景适配模块导入失败，部分功能将受限
+2025-03-11 19:38:23,341 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-11 19:38:23,341 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-11 19:38:23,341 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 19:38:23,341 - INFO - 检测到文件编码: utf-8
+2025-03-11 19:38:23,388 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-11 19:38:23,393 - WARNING - 隐私保护处理失败: No module named 'spacy'
+2025-03-11 19:38:23,420 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-11 19:38:23,421 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-11 19:38:23,421 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-11 19:38:23,421 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 19:38:23,421 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-11 19:38:23,421 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-11 19:38:23,421 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-11 19:38:23,422 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-11 19:38:23,422 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-11 19:38:23,422 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-11 19:38:28,904 - INFO - python-docx 模块已安装
+2025-03-11 19:38:28,931 - INFO - PyPDF2 模块已安装
+2025-03-11 19:38:31,388 - WARNING - 文本处理模块导入失败，部分功能将受限
+2025-03-11 19:38:32,637 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-11 19:38:32,637 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-11 19:38:32,637 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 19:38:32,637 - INFO - 检测到文件编码: utf-8
+2025-03-11 19:38:32,678 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-11 19:38:34,056 - INFO - 发现 90 个可疑交易模式
+2025-03-11 19:38:34,057 - WARNING - 隐私保护处理失败: cannot import name 'EntityRelation' from 'information_extraction.schemas' (D:\Python\smart_fin_data\information_extraction\schemas.py)
+2025-03-11 19:38:34,135 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-11 19:38:34,136 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-11 19:38:34,136 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-11 19:38:34,136 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 19:38:34,147 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-11 19:38:34,148 - INFO - 生成 1 个客服对话
+2025-03-11 19:38:34,149 - WARNING - 隐私保护处理失败: cannot import name 'EntityRelation' from 'information_extraction.schemas' (D:\Python\smart_fin_data\information_extraction\schemas.py)
+2025-03-11 19:38:34,149 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-11 19:38:34,150 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-11 19:38:34,150 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-11 19:38:34,150 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-11 19:38:40,869 - INFO - 文件 data\shiyou_info.pdf 结构化处理完成
+2025-03-11 19:38:40,869 - INFO - 生成 8 个客服对话
+2025-03-11 19:38:40,870 - WARNING - 隐私保护处理失败: cannot import name 'EntityRelation' from 'information_extraction.schemas' (D:\Python\smart_fin_data\information_extraction\schemas.py)
+2025-03-11 19:38:40,875 - INFO - 文件 shiyou_info.pdf 处理完成，结果保存至 output\shiyou_info_structured.json
+2025-03-11 19:38:40,875 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-11 19:38:40,875 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-11 19:38:40,875 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-11 19:38:41,270 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-11 19:38:41,270 - INFO - 生成 8 个客服对话
+2025-03-11 19:38:41,271 - WARNING - 隐私保护处理失败: cannot import name 'EntityRelation' from 'information_extraction.schemas' (D:\Python\smart_fin_data\information_extraction\schemas.py)
+2025-03-11 19:38:41,272 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-11 19:39:44,881 - INFO - python-docx 模块已安装
+2025-03-11 19:39:44,907 - INFO - PyPDF2 模块已安装
+2025-03-11 19:39:47,118 - WARNING - 文本处理模块导入失败，部分功能将受限
+2025-03-11 19:39:48,335 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-11 19:39:48,335 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-11 19:39:48,335 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 19:39:48,335 - INFO - 检测到文件编码: utf-8
+2025-03-11 19:39:48,377 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-11 19:39:49,765 - INFO - 发现 90 个可疑交易模式
+2025-03-11 19:39:49,766 - WARNING - 隐私保护处理失败: cannot import name 'EntityRelation' from 'information_extraction.schemas' (D:\Python\smart_fin_data\information_extraction\schemas.py)
+2025-03-11 19:39:49,849 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-11 19:39:49,849 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-11 19:39:49,849 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-11 19:39:49,849 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 19:39:49,859 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-11 19:39:49,860 - INFO - 生成 1 个客服对话
+2025-03-11 19:39:49,861 - WARNING - 隐私保护处理失败: cannot import name 'EntityRelation' from 'information_extraction.schemas' (D:\Python\smart_fin_data\information_extraction\schemas.py)
+2025-03-11 19:39:49,861 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-11 19:39:49,861 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-11 19:39:49,861 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-11 19:39:49,861 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-11 19:39:56,558 - INFO - 文件 data\shiyou_info.pdf 结构化处理完成
+2025-03-11 19:39:56,558 - INFO - 生成 8 个客服对话
+2025-03-11 19:39:56,559 - WARNING - 隐私保护处理失败: cannot import name 'EntityRelation' from 'information_extraction.schemas' (D:\Python\smart_fin_data\information_extraction\schemas.py)
+2025-03-11 19:39:56,564 - INFO - 文件 shiyou_info.pdf 处理完成，结果保存至 output\shiyou_info_structured.json
+2025-03-11 19:39:56,564 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-11 19:39:56,564 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-11 19:39:56,564 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-11 19:39:56,974 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-11 19:39:56,974 - INFO - 生成 8 个客服对话
+2025-03-11 19:39:56,975 - WARNING - 隐私保护处理失败: cannot import name 'EntityRelation' from 'information_extraction.schemas' (D:\Python\smart_fin_data\information_extraction\schemas.py)
+2025-03-11 19:39:56,976 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-11 19:45:55,680 - WARNING - python-docx 模块未安装，Word处理功能将受限
+2025-03-11 19:45:55,680 - WARNING - PyPDF2 模块未安装，PDF处理功能将受限
+2025-03-11 19:45:55,684 - WARNING - PyPDF2 模块未安装，PDF处理功能将受限
+2025-03-11 19:45:55,684 - WARNING - DocumentProcessor 模块导入失败，只能处理CSV文件、Word文件和PDF文件
+2025-03-11 19:45:55,692 - WARNING - 文本处理模块导入失败，部分功能将受限
+2025-03-11 19:45:55,693 - WARNING - 场景适配模块导入失败，部分功能将受限
+2025-03-11 19:45:55,700 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-11 19:45:55,701 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-11 19:45:55,701 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 19:45:55,701 - INFO - 检测到文件编码: utf-8
+2025-03-11 19:45:55,737 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-11 19:45:55,738 - WARNING - 隐私保护处理失败: No module named 'spacy'
+2025-03-11 19:45:55,770 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-11 19:45:55,771 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-11 19:45:55,771 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-11 19:45:55,771 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 19:45:55,771 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-11 19:45:55,772 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-11 19:45:55,772 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-11 19:45:55,772 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-11 19:45:55,772 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-11 19:45:55,772 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-11 19:46:03,141 - INFO - python-docx 模块已安装
+2025-03-11 19:46:03,169 - INFO - PyPDF2 模块已安装
+2025-03-11 19:46:06,896 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-11 19:46:06,896 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-11 19:46:06,896 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 19:46:06,896 - INFO - 检测到文件编码: utf-8
+2025-03-11 19:46:06,936 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-11 19:46:08,366 - INFO - 发现 90 个可疑交易模式
+2025-03-11 19:46:09,427 - ERROR - 生成训练数据失败: MONEY
+Traceback (most recent call last):
+  File "D:\Python\smart_fin_data\run_processing.py", line 736, in process_file
+    processor = InformationProcessor()
+  File "D:\Python\smart_fin_data\information_extraction\information_extractor.py", line 13, in __init__
+    self.entity_extractor = FinancialEntityExtractor()
+  File "D:\Python\smart_fin_data\information_extraction\entity_extractor.py", line 13, in __init__
+    self._add_entity_ruler()  # 重命名方法以明确功能
+  File "D:\Python\smart_fin_data\information_extraction\entity_extractor.py", line 67, in _add_entity_ruler
+    "label": EntityLabel.MONEY.value,
+  File "E:\Anaconda\envs\smartfindata\lib\enum.py", line 384, in __getattr__
+    raise AttributeError(name) from None
+AttributeError: MONEY
+2025-03-11 19:46:09,578 - INFO - 完成敏感信息脱敏处理
+2025-03-11 19:46:09,661 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-11 19:46:09,662 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-11 19:46:09,662 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-11 19:46:09,662 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 19:46:09,673 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-11 19:46:09,675 - INFO - 生成 1 个客服对话
+2025-03-11 19:46:10,571 - ERROR - 生成训练数据失败: MONEY
+Traceback (most recent call last):
+  File "D:\Python\smart_fin_data\run_processing.py", line 736, in process_file
+    processor = InformationProcessor()
+  File "D:\Python\smart_fin_data\information_extraction\information_extractor.py", line 13, in __init__
+    self.entity_extractor = FinancialEntityExtractor()
+  File "D:\Python\smart_fin_data\information_extraction\entity_extractor.py", line 13, in __init__
+    self._add_entity_ruler()  # 重命名方法以明确功能
+  File "D:\Python\smart_fin_data\information_extraction\entity_extractor.py", line 67, in _add_entity_ruler
+    "label": EntityLabel.MONEY.value,
+  File "E:\Anaconda\envs\smartfindata\lib\enum.py", line 384, in __getattr__
+    raise AttributeError(name) from None
+AttributeError: MONEY
+2025-03-11 19:46:10,572 - INFO - 完成敏感信息脱敏处理
+2025-03-11 19:46:10,573 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-11 19:46:10,573 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-11 19:46:10,573 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-11 19:46:10,573 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-11 19:46:17,448 - INFO - 文件 data\shiyou_info.pdf 结构化处理完成
+2025-03-11 19:46:17,449 - INFO - 生成 8 个客服对话
+2025-03-11 19:46:18,272 - ERROR - 生成训练数据失败: MONEY
+Traceback (most recent call last):
+  File "D:\Python\smart_fin_data\run_processing.py", line 736, in process_file
+    processor = InformationProcessor()
+  File "D:\Python\smart_fin_data\information_extraction\information_extractor.py", line 13, in __init__
+    self.entity_extractor = FinancialEntityExtractor()
+  File "D:\Python\smart_fin_data\information_extraction\entity_extractor.py", line 13, in __init__
+    self._add_entity_ruler()  # 重命名方法以明确功能
+  File "D:\Python\smart_fin_data\information_extraction\entity_extractor.py", line 67, in _add_entity_ruler
+    "label": EntityLabel.MONEY.value,
+  File "E:\Anaconda\envs\smartfindata\lib\enum.py", line 384, in __getattr__
+    raise AttributeError(name) from None
+AttributeError: MONEY
+2025-03-11 19:46:18,273 - INFO - 完成敏感信息脱敏处理
+2025-03-11 19:46:18,277 - INFO - 文件 shiyou_info.pdf 处理完成，结果保存至 output\shiyou_info_structured.json
+2025-03-11 19:46:18,278 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-11 19:46:18,278 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-11 19:46:18,278 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-11 19:46:18,813 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-11 19:46:18,813 - INFO - 生成 8 个客服对话
+2025-03-11 19:46:19,762 - ERROR - 生成训练数据失败: MONEY
+Traceback (most recent call last):
+  File "D:\Python\smart_fin_data\run_processing.py", line 736, in process_file
+    processor = InformationProcessor()
+  File "D:\Python\smart_fin_data\information_extraction\information_extractor.py", line 13, in __init__
+    self.entity_extractor = FinancialEntityExtractor()
+  File "D:\Python\smart_fin_data\information_extraction\entity_extractor.py", line 13, in __init__
+    self._add_entity_ruler()  # 重命名方法以明确功能
+  File "D:\Python\smart_fin_data\information_extraction\entity_extractor.py", line 67, in _add_entity_ruler
+    "label": EntityLabel.MONEY.value,
+  File "E:\Anaconda\envs\smartfindata\lib\enum.py", line 384, in __getattr__
+    raise AttributeError(name) from None
+AttributeError: MONEY
+2025-03-11 19:46:19,763 - INFO - 完成敏感信息脱敏处理
+2025-03-11 19:46:19,764 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-11 19:47:10,045 - WARNING - python-docx 模块未安装，尝试自动安装...
+2025-03-11 19:47:10,045 - INFO - 正在安装 python-docx 模块...
+2025-03-11 19:47:14,640 - INFO - python-docx 模块安装成功
+2025-03-11 19:47:14,690 - WARNING - PyPDF2 模块未安装，尝试自动安装...
+2025-03-11 19:47:14,690 - INFO - 正在安装 PyPDF2 模块...
+2025-03-11 19:47:16,687 - INFO - PyPDF2 模块安装成功
+2025-03-11 19:47:16,730 - WARNING - DocumentProcessor 模块导入失败，只能处理CSV文件、Word文件和PDF文件
+2025-03-11 19:47:16,730 - WARNING - 文本处理模块导入失败，部分功能将受限
+2025-03-11 19:47:16,732 - WARNING - 场景适配模块导入失败，部分功能将受限
+2025-03-11 19:47:16,739 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-11 19:47:16,739 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-11 19:47:16,740 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 19:47:16,740 - INFO - 检测到文件编码: utf-8
+2025-03-11 19:47:16,774 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-11 19:47:16,775 - WARNING - 隐私保护处理失败: No module named 'spacy'
+2025-03-11 19:47:16,803 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-11 19:47:16,803 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-11 19:47:16,804 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-11 19:47:16,804 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 19:47:16,813 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-11 19:47:16,815 - WARNING - 隐私保护处理失败: No module named 'spacy'
+2025-03-11 19:47:16,815 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-11 19:47:16,815 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-11 19:47:16,815 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-11 19:47:16,816 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-11 19:47:20,615 - INFO - 文件 data\shiyou_info.pdf 结构化处理完成
+2025-03-11 19:47:20,616 - WARNING - 隐私保护处理失败: No module named 'spacy'
+2025-03-11 19:47:20,620 - INFO - 文件 shiyou_info.pdf 处理完成，结果保存至 output\shiyou_info_structured.json
+2025-03-11 19:47:20,621 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-11 19:47:20,621 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-11 19:47:20,621 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-11 19:47:20,844 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-11 19:47:20,845 - WARNING - 隐私保护处理失败: No module named 'spacy'
+2025-03-11 19:47:20,846 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-11 19:47:37,460 - INFO - python-docx 模块已安装
+2025-03-11 19:47:37,488 - INFO - PyPDF2 模块已安装
+2025-03-11 19:47:41,253 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-11 19:47:41,253 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-11 19:47:41,253 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 19:47:41,253 - INFO - 检测到文件编码: utf-8
+2025-03-11 19:47:41,294 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-11 19:47:42,650 - INFO - 发现 90 个可疑交易模式
+2025-03-11 19:47:43,505 - ERROR - 生成训练数据失败: MONEY
+Traceback (most recent call last):
+  File "D:\Python\smart_fin_data\run_processing.py", line 757, in process_file
+    processor = InformationProcessor()
+  File "D:\Python\smart_fin_data\information_extraction\information_extractor.py", line 13, in __init__
+    self.entity_extractor = FinancialEntityExtractor()
+  File "D:\Python\smart_fin_data\information_extraction\entity_extractor.py", line 13, in __init__
+    self._add_entity_ruler()  # 重命名方法以明确功能
+  File "D:\Python\smart_fin_data\information_extraction\entity_extractor.py", line 67, in _add_entity_ruler
+    "label": EntityLabel.MONEY.value,
+  File "E:\Anaconda\envs\smartfindata\lib\enum.py", line 384, in __getattr__
+    raise AttributeError(name) from None
+AttributeError: MONEY
+2025-03-11 19:47:43,664 - INFO - 完成敏感信息脱敏处理
+2025-03-11 19:47:43,757 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-11 19:47:43,757 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-11 19:47:43,757 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-11 19:47:43,757 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 19:47:43,769 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-11 19:47:43,771 - INFO - 生成 1 个客服对话
+2025-03-11 19:47:44,643 - ERROR - 生成训练数据失败: MONEY
+Traceback (most recent call last):
+  File "D:\Python\smart_fin_data\run_processing.py", line 757, in process_file
+    processor = InformationProcessor()
+  File "D:\Python\smart_fin_data\information_extraction\information_extractor.py", line 13, in __init__
+    self.entity_extractor = FinancialEntityExtractor()
+  File "D:\Python\smart_fin_data\information_extraction\entity_extractor.py", line 13, in __init__
+    self._add_entity_ruler()  # 重命名方法以明确功能
+  File "D:\Python\smart_fin_data\information_extraction\entity_extractor.py", line 67, in _add_entity_ruler
+    "label": EntityLabel.MONEY.value,
+  File "E:\Anaconda\envs\smartfindata\lib\enum.py", line 384, in __getattr__
+    raise AttributeError(name) from None
+AttributeError: MONEY
+2025-03-11 19:47:44,644 - INFO - 完成敏感信息脱敏处理
+2025-03-11 19:47:44,645 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-11 19:47:44,645 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-11 19:47:44,645 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-11 19:47:44,645 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-11 19:47:51,495 - INFO - 文件 data\shiyou_info.pdf 结构化处理完成
+2025-03-11 19:47:51,496 - INFO - 生成 8 个客服对话
+2025-03-11 19:47:52,301 - ERROR - 生成训练数据失败: MONEY
+Traceback (most recent call last):
+  File "D:\Python\smart_fin_data\run_processing.py", line 757, in process_file
+    processor = InformationProcessor()
+  File "D:\Python\smart_fin_data\information_extraction\information_extractor.py", line 13, in __init__
+    self.entity_extractor = FinancialEntityExtractor()
+  File "D:\Python\smart_fin_data\information_extraction\entity_extractor.py", line 13, in __init__
+    self._add_entity_ruler()  # 重命名方法以明确功能
+  File "D:\Python\smart_fin_data\information_extraction\entity_extractor.py", line 67, in _add_entity_ruler
+    "label": EntityLabel.MONEY.value,
+  File "E:\Anaconda\envs\smartfindata\lib\enum.py", line 384, in __getattr__
+    raise AttributeError(name) from None
+AttributeError: MONEY
+2025-03-11 19:47:52,302 - INFO - 完成敏感信息脱敏处理
+2025-03-11 19:47:52,306 - INFO - 文件 shiyou_info.pdf 处理完成，结果保存至 output\shiyou_info_structured.json
+2025-03-11 19:47:52,306 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-11 19:47:52,306 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-11 19:47:52,306 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-11 19:47:52,764 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-11 19:47:52,764 - INFO - 生成 8 个客服对话
+2025-03-11 19:47:53,536 - ERROR - 生成训练数据失败: MONEY
+Traceback (most recent call last):
+  File "D:\Python\smart_fin_data\run_processing.py", line 757, in process_file
+    processor = InformationProcessor()
+  File "D:\Python\smart_fin_data\information_extraction\information_extractor.py", line 13, in __init__
+    self.entity_extractor = FinancialEntityExtractor()
+  File "D:\Python\smart_fin_data\information_extraction\entity_extractor.py", line 13, in __init__
+    self._add_entity_ruler()  # 重命名方法以明确功能
+  File "D:\Python\smart_fin_data\information_extraction\entity_extractor.py", line 67, in _add_entity_ruler
+    "label": EntityLabel.MONEY.value,
+  File "E:\Anaconda\envs\smartfindata\lib\enum.py", line 384, in __getattr__
+    raise AttributeError(name) from None
+AttributeError: MONEY
+2025-03-11 19:47:53,537 - INFO - 完成敏感信息脱敏处理
+2025-03-11 19:47:53,538 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-11 19:49:44,976 - INFO - python-docx 模块已安装
+2025-03-11 19:49:45,005 - INFO - PyPDF2 模块已安装
+2025-03-11 19:49:45,005 - WARNING - spacy 模块未安装，尝试自动安装...
+2025-03-11 19:49:45,005 - INFO - 正在安装 spacy 模块...
+2025-03-11 19:50:01,343 - INFO - python-docx 模块已安装
+2025-03-11 19:50:01,372 - INFO - PyPDF2 模块已安装
+2025-03-11 19:50:03,131 - INFO - spacy 模块已安装
+2025-03-11 19:50:05,270 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-11 19:50:05,270 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-11 19:50:05,270 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 19:50:05,271 - INFO - 检测到文件编码: utf-8
+2025-03-11 19:50:05,311 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-11 19:50:06,675 - INFO - 发现 90 个可疑交易模式
+2025-03-11 19:50:06,676 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:50:07,991 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:50:07,998 - WARNING - 时间格式无法解析: 2023/4/11
+2025-03-11 19:50:07,998 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:50:07,998 - WARNING - 时间格式无法解析: 2023/6/27
+2025-03-11 19:50:07,998 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:50:07,998 - WARNING - 时间格式无法解析: 2023/7/10
+2025-03-11 19:50:08,011 - WARNING - 时间格式无法解析: 2023/7/10
+2025-03-11 19:50:08,012 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:50:08,012 - WARNING - 时间格式无法解析: 2023/5/5
+2025-03-11 19:50:08,012 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:50:08,012 - WARNING - 时间格式无法解析: 2023/10/16
+2025-03-11 19:50:08,016 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:50:08,016 - WARNING - 时间格式无法解析: 2023/4/3
+2025-03-11 19:50:08,016 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:50:08,016 - WARNING - 时间格式无法解析: 2023/2/15
+2025-03-11 19:50:08,019 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:50:08,019 - WARNING - 时间格式无法解析: 2023/5/8
+2025-03-11 19:50:08,019 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:50:08,019 - WARNING - 时间格式无法解析: 2023/3/21
+2025-03-11 19:50:08,019 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:50:08,023 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:50:08,023 - WARNING - 时间格式无法解析: 2023/3/31
+2025-03-11 19:50:08,023 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:50:14,291 - INFO - 生成 5 个问答对
+2025-03-11 19:50:14,420 - INFO - 完成敏感信息脱敏处理
+2025-03-11 19:50:14,504 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-11 19:50:14,504 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-11 19:50:14,504 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-11 19:50:14,504 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 19:50:14,523 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-11 19:50:14,524 - INFO - 生成 1 个客服对话
+2025-03-11 19:50:14,525 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:50:15,629 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:50:15,633 - WARNING - 时间格式无法解析: 3月4日
+2025-03-11 19:50:15,634 - WARNING - 时间格式无法解析: 3月4日
+2025-03-11 19:50:15,635 - WARNING - 时间格式无法解析: 3月7日
+2025-03-11 19:50:15,636 - WARNING - 时间格式无法解析: 3月7日
+2025-03-11 19:50:15,637 - WARNING - 时间格式无法解析: 2025年3月10日
+2025-03-11 19:50:15,657 - ERROR - 模型摘要生成失败，切换到离线模式: index out of range in self
+2025-03-11 19:50:15,658 - INFO - 生成 7 个问答对
+2025-03-11 19:50:15,658 - INFO - 完成敏感信息脱敏处理
+2025-03-11 19:50:15,665 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-11 19:50:15,665 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-11 19:50:15,666 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-11 19:50:15,666 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-11 19:50:22,465 - INFO - 文件 data\shiyou_info.pdf 结构化处理完成
+2025-03-11 19:50:22,465 - INFO - 生成 8 个客服对话
+2025-03-11 19:50:22,467 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:50:23,504 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:50:23,505 - WARNING - 时间格式无法解析: 2024年8月26日
+2025-03-11 19:50:23,506 - WARNING - 时间格式无法解析: 2024年8月26日
+2025-03-11 19:50:23,609 - INFO - python-docx 模块已安装
+2025-03-11 19:50:23,673 - INFO - PyPDF2 模块已安装
+2025-03-11 19:50:23,673 - WARNING - spacy 模块未安装，尝试自动安装...
+2025-03-11 19:50:23,674 - INFO - 正在安装 spacy 模块...
+2025-03-11 19:50:26,630 - INFO - 生成 8 个问答对
+2025-03-11 19:50:26,631 - INFO - 完成敏感信息脱敏处理
+2025-03-11 19:50:26,638 - INFO - 文件 shiyou_info.pdf 处理完成，结果保存至 output\shiyou_info_structured.json
+2025-03-11 19:50:26,640 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-11 19:50:26,640 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-11 19:50:26,640 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-11 19:50:27,090 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-11 19:50:27,091 - INFO - 生成 8 个客服对话
+2025-03-11 19:50:27,092 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:50:28,033 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:50:28,043 - ERROR - 模型摘要生成失败，切换到离线模式: index out of range in self
+2025-03-11 19:50:28,044 - INFO - 生成 2 个问答对
+2025-03-11 19:50:28,044 - INFO - 完成敏感信息脱敏处理
+2025-03-11 19:50:28,048 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-11 19:51:03,176 - INFO - python-docx 模块已安装
+2025-03-11 19:51:03,198 - INFO - PyPDF2 模块已安装
+2025-03-11 19:51:03,201 - WARNING - spacy 模块未安装，尝试自动安装...
+2025-03-11 19:51:03,203 - INFO - 正在安装 spacy 模块...
+2025-03-11 19:51:57,383 - INFO - python-docx 模块已安装
+2025-03-11 19:51:57,407 - INFO - PyPDF2 模块已安装
+2025-03-11 19:51:57,407 - WARNING - spacy 模块未安装，尝试自动安装...
+2025-03-11 19:51:57,407 - INFO - 正在安装 spacy 模块...
+2025-03-11 19:52:44,477 - INFO - python-docx 模块已安装
+2025-03-11 19:52:44,514 - INFO - PyPDF2 模块已安装
+2025-03-11 19:52:46,772 - INFO - spacy 模块已安装
+2025-03-11 19:52:49,349 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-11 19:52:49,349 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-11 19:52:49,349 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 19:52:49,349 - INFO - 检测到文件编码: utf-8
+2025-03-11 19:52:49,392 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-11 19:52:50,753 - INFO - 发现 90 个可疑交易模式
+2025-03-11 19:52:50,754 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:52:51,764 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:52:51,770 - WARNING - 时间格式无法解析: 2023/4/11
+2025-03-11 19:52:51,770 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:52:51,771 - WARNING - 时间格式无法解析: 2023/6/27
+2025-03-11 19:52:51,771 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:52:51,771 - WARNING - 时间格式无法解析: 2023/7/10
+2025-03-11 19:52:51,783 - WARNING - 时间格式无法解析: 2023/7/10
+2025-03-11 19:52:51,783 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:52:51,783 - WARNING - 时间格式无法解析: 2023/5/5
+2025-03-11 19:52:51,783 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:52:51,783 - WARNING - 时间格式无法解析: 2023/10/16
+2025-03-11 19:52:51,787 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:52:51,787 - WARNING - 时间格式无法解析: 2023/4/3
+2025-03-11 19:52:51,788 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:52:51,788 - WARNING - 时间格式无法解析: 2023/2/15
+2025-03-11 19:52:51,791 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:52:51,792 - WARNING - 时间格式无法解析: 2023/5/8
+2025-03-11 19:52:51,792 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:52:51,792 - WARNING - 时间格式无法解析: 2023/3/21
+2025-03-11 19:52:51,792 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:52:51,796 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:52:51,796 - WARNING - 时间格式无法解析: 2023/3/31
+2025-03-11 19:52:51,796 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:52:57,883 - INFO - 生成 5 个问答对
+2025-03-11 19:52:58,009 - INFO - 完成敏感信息脱敏处理
+2025-03-11 19:52:58,089 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-11 19:52:58,089 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-11 19:52:58,089 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-11 19:52:58,089 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 19:52:58,102 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-11 19:52:58,103 - INFO - 生成 1 个客服对话
+2025-03-11 19:52:58,105 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:52:59,010 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:52:59,012 - WARNING - 时间格式无法解析: 3月4日
+2025-03-11 19:52:59,013 - WARNING - 时间格式无法解析: 3月4日
+2025-03-11 19:52:59,014 - WARNING - 时间格式无法解析: 3月7日
+2025-03-11 19:52:59,015 - WARNING - 时间格式无法解析: 3月7日
+2025-03-11 19:52:59,017 - WARNING - 时间格式无法解析: 2025年3月10日
+2025-03-11 19:52:59,021 - ERROR - 模型摘要生成失败，切换到离线模式: index out of range in self
+2025-03-11 19:52:59,022 - INFO - 生成 7 个问答对
+2025-03-11 19:52:59,023 - INFO - 完成敏感信息脱敏处理
+2025-03-11 19:52:59,027 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-11 19:52:59,027 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-11 19:52:59,027 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-11 19:52:59,027 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-11 19:53:05,616 - INFO - 文件 data\shiyou_info.pdf 结构化处理完成
+2025-03-11 19:53:05,617 - INFO - 生成 8 个客服对话
+2025-03-11 19:53:05,618 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:53:06,602 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:53:06,602 - WARNING - 时间格式无法解析: 2024年8月26日
+2025-03-11 19:53:06,603 - WARNING - 时间格式无法解析: 2024年8月26日
+2025-03-11 19:53:09,588 - INFO - 生成 8 个问答对
+2025-03-11 19:53:09,588 - INFO - 完成敏感信息脱敏处理
+2025-03-11 19:53:09,596 - INFO - 文件 shiyou_info.pdf 处理完成，结果保存至 output\shiyou_info_structured.json
+2025-03-11 19:53:09,596 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-11 19:53:09,596 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-11 19:53:09,596 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-11 19:53:10,000 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-11 19:53:10,000 - INFO - 生成 8 个客服对话
+2025-03-11 19:53:10,001 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:53:10,907 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:53:10,916 - ERROR - 模型摘要生成失败，切换到离线模式: index out of range in self
+2025-03-11 19:53:10,916 - INFO - 生成 2 个问答对
+2025-03-11 19:53:10,917 - INFO - 完成敏感信息脱敏处理
+2025-03-11 19:53:10,921 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-11 19:53:22,537 - INFO - python-docx 模块已安装
+2025-03-11 19:53:22,564 - INFO - PyPDF2 模块已安装
+2025-03-11 19:53:22,565 - INFO - 使用离线模式进行实体识别和文本处理
+2025-03-11 19:53:22,579 - WARNING - DocumentProcessor 模块导入失败，只能处理CSV文件、Word文件和PDF文件
+2025-03-11 19:53:22,580 - WARNING - 文本处理模块导入失败，部分功能将受限
+2025-03-11 19:53:22,581 - WARNING - 场景适配模块导入失败，部分功能将受限
+2025-03-11 19:53:22,589 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-11 19:53:22,589 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-11 19:53:22,589 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 19:53:22,589 - INFO - 检测到文件编码: utf-8
+2025-03-11 19:53:22,636 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-11 19:53:22,641 - WARNING - 隐私保护处理失败: No module named 'pydantic'
+2025-03-11 19:53:22,668 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-11 19:53:22,669 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-11 19:53:22,669 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-11 19:53:22,669 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 19:53:22,682 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-11 19:53:22,683 - WARNING - 隐私保护处理失败: No module named 'pydantic'
+2025-03-11 19:53:22,684 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-11 19:53:22,684 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-11 19:53:22,685 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-11 19:53:22,685 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-11 19:53:26,636 - INFO - 文件 data\shiyou_info.pdf 结构化处理完成
+2025-03-11 19:53:26,638 - WARNING - 隐私保护处理失败: No module named 'pydantic'
+2025-03-11 19:53:26,642 - INFO - 文件 shiyou_info.pdf 处理完成，结果保存至 output\shiyou_info_structured.json
+2025-03-11 19:53:26,642 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-11 19:53:26,642 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-11 19:53:26,643 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-11 19:53:26,910 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-11 19:53:26,911 - WARNING - 隐私保护处理失败: No module named 'pydantic'
+2025-03-11 19:53:26,913 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-11 19:53:28,446 - INFO - python-docx 模块已安装
+2025-03-11 19:53:28,473 - INFO - PyPDF2 模块已安装
+2025-03-11 19:53:28,473 - INFO - 使用离线模式进行实体识别和文本处理
+2025-03-11 19:53:31,805 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-11 19:53:31,806 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-11 19:53:31,806 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 19:53:31,806 - INFO - 检测到文件编码: utf-8
+2025-03-11 19:53:31,852 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-11 19:53:33,311 - INFO - 发现 90 个可疑交易模式
+2025-03-11 19:53:33,803 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:53:34,752 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:53:34,758 - WARNING - 时间格式无法解析: 2023/4/11
+2025-03-11 19:53:34,758 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:53:34,758 - WARNING - 时间格式无法解析: 2023/6/27
+2025-03-11 19:53:34,758 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:53:34,758 - WARNING - 时间格式无法解析: 2023/7/10
+2025-03-11 19:53:34,769 - WARNING - 时间格式无法解析: 2023/7/10
+2025-03-11 19:53:34,769 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:53:34,769 - WARNING - 时间格式无法解析: 2023/5/5
+2025-03-11 19:53:34,769 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:53:34,769 - WARNING - 时间格式无法解析: 2023/10/16
+2025-03-11 19:53:34,773 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:53:34,773 - WARNING - 时间格式无法解析: 2023/4/3
+2025-03-11 19:53:34,773 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:53:34,773 - WARNING - 时间格式无法解析: 2023/2/15
+2025-03-11 19:53:34,776 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:53:34,776 - WARNING - 时间格式无法解析: 2023/5/8
+2025-03-11 19:53:34,776 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:53:34,776 - WARNING - 时间格式无法解析: 2023/3/21
+2025-03-11 19:53:34,776 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:53:34,779 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:53:34,779 - WARNING - 时间格式无法解析: 2023/3/31
+2025-03-11 19:53:34,779 - WARNING - 时间格式无法解析: 2024/11/4
+2025-03-11 19:53:40,794 - INFO - 生成 5 个问答对
+2025-03-11 19:53:40,940 - INFO - 完成敏感信息脱敏处理
+2025-03-11 19:53:41,069 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-11 19:53:41,069 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-11 19:53:41,069 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-11 19:53:41,069 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 19:53:41,098 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-11 19:53:41,099 - INFO - 生成 1 个客服对话
+2025-03-11 19:53:41,101 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:53:42,809 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:53:42,812 - WARNING - 时间格式无法解析: 3月4日
+2025-03-11 19:53:42,813 - WARNING - 时间格式无法解析: 3月4日
+2025-03-11 19:53:42,816 - WARNING - 时间格式无法解析: 3月7日
+2025-03-11 19:53:42,819 - WARNING - 时间格式无法解析: 3月7日
+2025-03-11 19:53:42,820 - WARNING - 时间格式无法解析: 2025年3月10日
+2025-03-11 19:53:42,827 - ERROR - 模型摘要生成失败，切换到离线模式: index out of range in self
+2025-03-11 19:53:42,829 - INFO - 生成 7 个问答对
+2025-03-11 19:53:42,829 - INFO - 完成敏感信息脱敏处理
+2025-03-11 19:53:42,836 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-11 19:53:42,836 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-11 19:53:42,836 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-11 19:53:42,836 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-11 19:54:00,296 - INFO - 文件 data\shiyou_info.pdf 结构化处理完成
+2025-03-11 19:54:00,297 - INFO - 生成 8 个客服对话
+2025-03-11 19:54:00,302 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:54:02,659 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:54:02,660 - WARNING - 时间格式无法解析: 2024年8月26日
+2025-03-11 19:54:02,662 - WARNING - 时间格式无法解析: 2024年8月26日
+2025-03-11 19:54:28,474 - INFO - 生成 8 个问答对
+2025-03-11 19:54:28,474 - INFO - 完成敏感信息脱敏处理
+2025-03-11 19:54:28,485 - INFO - 文件 shiyou_info.pdf 处理完成，结果保存至 output\shiyou_info_structured.json
+2025-03-11 19:54:28,485 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-11 19:54:28,485 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-11 19:54:28,485 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-11 19:54:29,420 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-11 19:54:29,421 - INFO - 生成 8 个客服对话
+2025-03-11 19:54:29,423 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:54:31,930 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:54:31,947 - ERROR - 模型摘要生成失败，切换到离线模式: index out of range in self
+2025-03-11 19:54:31,947 - INFO - 生成 2 个问答对
+2025-03-11 19:54:31,949 - INFO - 完成敏感信息脱敏处理
+2025-03-11 19:54:32,005 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-11 19:57:07,285 - INFO - python-docx 模块已安装
+2025-03-11 19:57:07,312 - INFO - PyPDF2 模块已安装
+2025-03-11 19:57:07,312 - INFO - 使用离线模式进行实体识别和文本处理
+2025-03-11 19:57:10,533 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-11 19:57:10,534 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-11 19:57:10,534 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 19:57:10,534 - INFO - 检测到文件编码: utf-8
+2025-03-11 19:57:10,574 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-11 19:57:11,982 - INFO - 发现 90 个可疑交易模式
+2025-03-11 19:57:12,446 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:57:13,378 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:57:19,334 - INFO - 生成 5 个问答对
+2025-03-11 19:57:19,460 - INFO - 完成敏感信息脱敏处理
+2025-03-11 19:57:19,558 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-11 19:57:19,559 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-11 19:57:19,559 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-11 19:57:19,559 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 19:57:19,571 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-11 19:57:19,572 - INFO - 生成 1 个客服对话
+2025-03-11 19:57:19,573 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:57:20,479 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:57:20,489 - ERROR - 模型摘要生成失败，切换到离线模式: index out of range in self
+2025-03-11 19:57:20,491 - INFO - 生成 7 个问答对
+2025-03-11 19:57:20,491 - INFO - 完成敏感信息脱敏处理
+2025-03-11 19:57:20,494 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-11 19:57:20,494 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-11 19:57:20,494 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-11 19:57:20,494 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-11 19:57:27,466 - INFO - 文件 data\shiyou_info.pdf 结构化处理完成
+2025-03-11 19:57:27,467 - INFO - 生成 8 个客服对话
+2025-03-11 19:57:27,468 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:57:28,507 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:57:32,486 - INFO - 生成 8 个问答对
+2025-03-11 19:57:32,487 - INFO - 完成敏感信息脱敏处理
+2025-03-11 19:57:32,499 - INFO - 文件 shiyou_info.pdf 处理完成，结果保存至 output\shiyou_info_structured.json
+2025-03-11 19:57:32,500 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-11 19:57:32,500 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-11 19:57:32,500 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-11 19:57:32,956 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-11 19:57:32,956 - INFO - 生成 8 个客服对话
+2025-03-11 19:57:32,958 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:57:33,991 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 19:57:34,002 - ERROR - 模型摘要生成失败，切换到离线模式: index out of range in self
+2025-03-11 19:57:34,003 - INFO - 生成 2 个问答对
+2025-03-11 19:57:34,003 - INFO - 完成敏感信息脱敏处理
+2025-03-11 19:57:34,010 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-11 20:00:37,515 - INFO - python-docx 模块已安装
+2025-03-11 20:00:37,543 - INFO - PyPDF2 模块已安装
+2025-03-11 20:00:37,543 - INFO - 使用离线模式进行实体识别和文本处理
+2025-03-11 20:00:37,543 - INFO - pandas 模块已安装
+2025-03-11 20:00:37,543 - INFO - python-docx 模块已安装
+2025-03-11 20:00:37,543 - INFO - PyPDF2 模块已安装
+2025-03-11 20:00:37,874 - INFO - scikit-learn 模块已安装
+2025-03-11 20:00:40,835 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-11 20:00:40,835 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-11 20:00:40,836 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 20:00:40,836 - INFO - 检测到文件编码: utf-8
+2025-03-11 20:00:40,876 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-11 20:00:42,242 - INFO - 发现 90 个可疑交易模式
+2025-03-11 20:00:42,690 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 20:00:43,637 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 20:00:45,361 - INFO - 生成 5 个问答对
+2025-03-11 20:00:45,496 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:00:45,588 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-11 20:00:45,588 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-11 20:00:45,588 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-11 20:00:45,588 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 20:00:45,600 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-11 20:00:45,600 - INFO - 生成 1 个客服对话
+2025-03-11 20:00:45,602 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 20:00:46,442 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 20:01:18,069 - INFO - 生成 7 个问答对
+2025-03-11 20:01:18,069 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:01:18,072 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-11 20:01:18,074 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-11 20:01:18,074 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-11 20:01:18,074 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-11 20:01:24,976 - INFO - 文件 data\shiyou_info.pdf 结构化处理完成
+2025-03-11 20:01:24,977 - INFO - 生成 8 个客服对话
+2025-03-11 20:01:24,978 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 20:01:26,039 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 20:01:31,818 - INFO - 生成 8 个问答对
+2025-03-11 20:01:31,818 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:01:31,825 - INFO - 文件 shiyou_info.pdf 处理完成，结果保存至 output\shiyou_info_structured.json
+2025-03-11 20:01:31,825 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-11 20:01:31,826 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-11 20:01:31,826 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-11 20:01:32,229 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-11 20:01:32,230 - INFO - 生成 8 个客服对话
+2025-03-11 20:01:32,231 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 20:01:33,083 - WARNING - 加载 spaCy 模型失败: [E050] Can't find model 'zh_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.，将使用离线模式
+2025-03-11 20:02:04,558 - INFO - 生成 2 个问答对
+2025-03-11 20:02:04,558 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:02:04,564 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-11 20:04:35,542 - INFO - python-docx 模块已安装
+2025-03-11 20:04:35,569 - INFO - PyPDF2 模块已安装
+2025-03-11 20:04:35,569 - INFO - 使用离线模式进行实体识别和文本处理
+2025-03-11 20:04:35,569 - INFO - pandas 模块已安装
+2025-03-11 20:04:35,569 - INFO - python-docx 模块已安装
+2025-03-11 20:04:35,569 - INFO - PyPDF2 模块已安装
+2025-03-11 20:04:36,030 - INFO - scikit-learn 模块已安装
+2025-03-11 20:04:39,430 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-11 20:04:39,430 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-11 20:04:39,430 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 20:04:39,430 - INFO - 检测到文件编码: utf-8
+2025-03-11 20:04:39,469 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-11 20:04:40,848 - INFO - 发现 90 个可疑交易模式
+2025-03-11 20:04:43,841 - INFO - 生成 15 个问答对
+2025-03-11 20:04:43,939 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:04:44,035 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-11 20:04:44,035 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-11 20:04:44,035 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-11 20:04:44,035 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 20:04:44,059 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-11 20:04:44,060 - INFO - 生成 1 个客服对话
+2025-03-11 20:05:20,941 - INFO - 生成 12 个问答对
+2025-03-11 20:05:20,942 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:05:20,946 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-11 20:05:20,946 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-11 20:05:20,946 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-11 20:05:20,946 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-11 20:05:27,916 - INFO - 文件 data\shiyou_info.pdf 结构化处理完成
+2025-03-11 20:05:27,916 - INFO - 生成 8 个客服对话
+2025-03-11 20:05:36,586 - INFO - 生成 10 个问答对
+2025-03-11 20:05:36,586 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:05:36,595 - INFO - 文件 shiyou_info.pdf 处理完成，结果保存至 output\shiyou_info_structured.json
+2025-03-11 20:05:36,595 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-11 20:05:36,595 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-11 20:05:36,595 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-11 20:05:37,027 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-11 20:05:37,027 - INFO - 生成 8 个客服对话
+2025-03-11 20:06:41,588 - INFO - 生成 4 个问答对
+2025-03-11 20:06:41,589 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:06:41,597 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-11 20:07:32,160 - INFO - python-docx 模块已安装
+2025-03-11 20:07:32,187 - INFO - PyPDF2 模块已安装
+2025-03-11 20:07:32,187 - INFO - 使用离线模式进行实体识别和文本处理
+2025-03-11 20:07:32,187 - INFO - pandas 模块已安装
+2025-03-11 20:07:32,187 - INFO - python-docx 模块已安装
+2025-03-11 20:07:32,187 - INFO - PyPDF2 模块已安装
+2025-03-11 20:07:32,718 - INFO - scikit-learn 模块已安装
+2025-03-11 20:07:36,114 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-11 20:07:36,114 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-11 20:07:36,114 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 20:07:36,114 - INFO - 检测到文件编码: utf-8
+2025-03-11 20:07:36,160 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-11 20:07:37,631 - INFO - 发现 90 个可疑交易模式
+2025-03-11 20:07:45,190 - INFO - 生成 15 个问答对
+2025-03-11 20:07:45,287 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:07:45,371 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-11 20:07:45,372 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-11 20:07:45,372 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-11 20:07:45,372 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 20:07:45,385 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-11 20:07:45,386 - INFO - 生成 1 个客服对话
+2025-03-11 20:07:46,274 - ERROR - 模型摘要生成失败，切换到离线模式: index out of range in self
+2025-03-11 20:07:46,275 - INFO - 生成 12 个问答对
+2025-03-11 20:07:46,276 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:07:46,279 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-11 20:07:46,279 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-11 20:07:46,279 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-11 20:07:46,279 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-11 20:07:52,966 - INFO - 文件 data\shiyou_info.pdf 结构化处理完成
+2025-03-11 20:07:52,967 - INFO - 生成 8 个客服对话
+2025-03-11 20:07:57,208 - INFO - 生成 10 个问答对
+2025-03-11 20:07:57,208 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:07:57,216 - INFO - 文件 shiyou_info.pdf 处理完成，结果保存至 output\shiyou_info_structured.json
+2025-03-11 20:07:57,216 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-11 20:07:57,216 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-11 20:07:57,216 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-11 20:07:57,636 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-11 20:07:57,636 - INFO - 生成 8 个客服对话
+2025-03-11 20:07:58,573 - ERROR - 模型摘要生成失败，切换到离线模式: index out of range in self
+2025-03-11 20:07:58,574 - INFO - 生成 4 个问答对
+2025-03-11 20:07:58,574 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:07:58,579 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-11 20:08:48,499 - INFO - python-docx 模块已安装
+2025-03-11 20:08:48,528 - INFO - PyPDF2 模块已安装
+2025-03-11 20:08:48,528 - INFO - 使用离线模式进行实体识别和文本处理
+2025-03-11 20:08:48,528 - INFO - pandas 模块已安装
+2025-03-11 20:08:48,528 - INFO - python-docx 模块已安装
+2025-03-11 20:08:48,528 - INFO - PyPDF2 模块已安装
+2025-03-11 20:08:48,847 - INFO - scikit-learn 模块已安装
+2025-03-11 20:08:51,551 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-11 20:08:51,551 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-11 20:08:51,551 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 20:08:51,551 - INFO - 检测到文件编码: utf-8
+2025-03-11 20:08:51,591 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-11 20:08:53,008 - INFO - 发现 90 个可疑交易模式
+2025-03-11 20:09:00,301 - INFO - 生成 15 个问答对
+2025-03-11 20:09:00,406 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:09:00,489 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-11 20:09:00,489 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-11 20:09:00,489 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-11 20:09:00,489 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 20:09:00,501 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-11 20:09:00,502 - INFO - 生成 1 个客服对话
+2025-03-11 20:09:01,375 - ERROR - 模型摘要生成失败，切换到离线模式: index out of range in self
+2025-03-11 20:09:01,376 - INFO - 生成 12 个问答对
+2025-03-11 20:09:01,377 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:09:01,380 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-11 20:09:01,380 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-11 20:09:01,380 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-11 20:09:01,380 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-11 20:09:13,143 - INFO - 文件 data\shiyou_info.pdf 结构化处理完成
+2025-03-11 20:09:13,144 - INFO - 生成 8 个客服对话
+2025-03-11 20:09:17,872 - INFO - 生成 10 个问答对
+2025-03-11 20:09:17,872 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:09:17,880 - INFO - 文件 shiyou_info.pdf 处理完成，结果保存至 output\shiyou_info_structured.json
+2025-03-11 20:09:17,880 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-11 20:09:17,880 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-11 20:09:17,880 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-11 20:09:18,290 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-11 20:09:18,290 - INFO - 生成 8 个客服对话
+2025-03-11 20:09:19,212 - ERROR - 模型摘要生成失败，切换到离线模式: index out of range in self
+2025-03-11 20:09:19,212 - INFO - 生成 4 个问答对
+2025-03-11 20:09:19,212 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:09:19,216 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-11 20:11:33,045 - INFO - python-docx 模块已安装
+2025-03-11 20:11:33,073 - INFO - PyPDF2 模块已安装
+2025-03-11 20:11:33,073 - INFO - 使用离线模式进行实体识别和文本处理
+2025-03-11 20:11:33,073 - INFO - pandas 模块已安装
+2025-03-11 20:11:33,073 - INFO - python-docx 模块已安装
+2025-03-11 20:11:33,073 - INFO - PyPDF2 模块已安装
+2025-03-11 20:11:33,404 - INFO - scikit-learn 模块已安装
+2025-03-11 20:11:36,133 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-11 20:11:36,133 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-11 20:11:36,133 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 20:11:36,133 - INFO - 检测到文件编码: utf-8
+2025-03-11 20:11:36,174 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-11 20:11:37,531 - INFO - 发现 90 个可疑交易模式
+2025-03-11 20:11:37,531 - WARNING - 摘要模型加载失败，将使用离线摘要方法: cannot import name 'AutoModelForSeq2SeqGeneration' from 'transformers' (E:\Anaconda\envs\smartfindata\lib\site-packages\transformers\__init__.py)
+2025-03-11 20:11:37,551 - INFO - 生成 15 个问答对
+2025-03-11 20:11:37,634 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:11:37,714 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-11 20:11:37,714 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-11 20:11:37,714 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-11 20:11:37,714 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 20:11:37,725 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-11 20:11:37,726 - INFO - 生成 1 个客服对话
+2025-03-11 20:11:37,727 - WARNING - 摘要模型加载失败，将使用离线摘要方法: cannot import name 'AutoModelForSeq2SeqGeneration' from 'transformers' (E:\Anaconda\envs\smartfindata\lib\site-packages\transformers\__init__.py)
+2025-03-11 20:11:37,732 - INFO - 生成 12 个问答对
+2025-03-11 20:11:37,733 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:11:37,733 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-11 20:11:37,733 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-11 20:11:37,733 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-11 20:11:37,733 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-11 20:11:44,186 - INFO - 文件 data\shiyou_info.pdf 结构化处理完成
+2025-03-11 20:11:44,188 - INFO - 生成 8 个客服对话
+2025-03-11 20:11:44,188 - WARNING - 摘要模型加载失败，将使用离线摘要方法: cannot import name 'AutoModelForSeq2SeqGeneration' from 'transformers' (E:\Anaconda\envs\smartfindata\lib\site-packages\transformers\__init__.py)
+2025-03-11 20:11:44,192 - INFO - 生成 10 个问答对
+2025-03-11 20:11:44,192 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:11:44,196 - INFO - 文件 shiyou_info.pdf 处理完成，结果保存至 output\shiyou_info_structured.json
+2025-03-11 20:11:44,196 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-11 20:11:44,196 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-11 20:11:44,196 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-11 20:11:44,639 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-11 20:11:44,639 - INFO - 生成 8 个客服对话
+2025-03-11 20:11:44,639 - WARNING - 摘要模型加载失败，将使用离线摘要方法: cannot import name 'AutoModelForSeq2SeqGeneration' from 'transformers' (E:\Anaconda\envs\smartfindata\lib\site-packages\transformers\__init__.py)
+2025-03-11 20:11:44,641 - INFO - 生成 4 个问答对
+2025-03-11 20:11:44,642 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:11:44,643 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-11 20:13:59,054 - INFO - python-docx 模块已安装
+2025-03-11 20:13:59,085 - INFO - PyPDF2 模块已安装
+2025-03-11 20:13:59,085 - INFO - 使用离线模式进行实体识别和文本处理
+2025-03-11 20:13:59,085 - INFO - pandas 模块已安装
+2025-03-11 20:13:59,085 - INFO - python-docx 模块已安装
+2025-03-11 20:13:59,085 - INFO - PyPDF2 模块已安装
+2025-03-11 20:13:59,416 - INFO - scikit-learn 模块已安装
+2025-03-11 20:14:02,157 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-11 20:14:02,157 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-11 20:14:02,157 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 20:14:02,157 - INFO - 检测到文件编码: utf-8
+2025-03-11 20:14:02,196 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-11 20:14:03,568 - INFO - 发现 90 个可疑交易模式
+2025-03-11 20:14:03,568 - INFO - 使用离线摘要生成模式
+2025-03-11 20:14:03,587 - INFO - 生成 15 个问答对
+2025-03-11 20:14:03,670 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:14:03,747 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-11 20:14:03,747 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-11 20:14:03,747 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-11 20:14:03,747 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 20:14:03,758 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-11 20:14:03,759 - INFO - 生成 1 个客服对话
+2025-03-11 20:14:03,759 - INFO - 使用离线摘要生成模式
+2025-03-11 20:14:03,764 - INFO - 生成 12 个问答对
+2025-03-11 20:14:03,764 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:14:03,765 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-11 20:14:03,765 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-11 20:14:03,765 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-11 20:14:03,765 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-11 20:14:10,266 - INFO - 文件 data\shiyou_info.pdf 结构化处理完成
+2025-03-11 20:14:10,266 - INFO - 生成 8 个客服对话
+2025-03-11 20:14:10,266 - INFO - 使用离线摘要生成模式
+2025-03-11 20:14:10,270 - INFO - 生成 10 个问答对
+2025-03-11 20:14:10,270 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:14:10,276 - INFO - 文件 shiyou_info.pdf 处理完成，结果保存至 output\shiyou_info_structured.json
+2025-03-11 20:14:10,276 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-11 20:14:10,276 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-11 20:14:10,276 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-11 20:14:10,715 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-11 20:14:10,715 - INFO - 生成 8 个客服对话
+2025-03-11 20:14:10,715 - INFO - 使用离线摘要生成模式
+2025-03-11 20:14:10,718 - INFO - 生成 4 个问答对
+2025-03-11 20:14:10,718 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:14:10,719 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-11 20:29:40,257 - INFO - python-docx 模块已安装
+2025-03-11 20:29:40,285 - INFO - PyPDF2 模块已安装
+2025-03-11 20:29:40,285 - INFO - 使用离线模式进行实体识别和文本处理
+2025-03-11 20:29:40,285 - INFO - pandas 模块已安装
+2025-03-11 20:29:40,286 - INFO - python-docx 模块已安装
+2025-03-11 20:29:40,286 - INFO - PyPDF2 模块已安装
+2025-03-11 20:29:40,610 - INFO - scikit-learn 模块已安装
+2025-03-11 20:29:42,564 - WARNING - 文本处理模块导入失败，部分功能将受限
+2025-03-11 20:29:43,410 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-11 20:29:43,410 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-11 20:29:43,410 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 20:29:43,410 - INFO - 检测到文件编码: utf-8
+2025-03-11 20:29:43,455 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-11 20:29:44,844 - INFO - 发现 90 个可疑交易模式
+2025-03-11 20:29:44,846 - WARNING - 隐私保护处理失败: cannot import name 'ComplianceEvent' from 'information_extraction.schemas' (D:\Python\smart_fin_data\information_extraction\schemas.py)
+2025-03-11 20:29:44,932 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-11 20:29:44,933 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-11 20:29:44,933 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-11 20:29:44,933 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 20:29:44,945 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-11 20:29:44,946 - INFO - 生成 1 个客服对话
+2025-03-11 20:29:44,947 - WARNING - 隐私保护处理失败: cannot import name 'ComplianceEvent' from 'information_extraction.schemas' (D:\Python\smart_fin_data\information_extraction\schemas.py)
+2025-03-11 20:29:44,947 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-11 20:29:44,947 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-11 20:29:44,947 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-11 20:29:44,947 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-11 20:29:51,679 - INFO - 文件 data\shiyou_info.pdf 结构化处理完成
+2025-03-11 20:29:51,679 - INFO - 生成 8 个客服对话
+2025-03-11 20:29:51,680 - WARNING - 隐私保护处理失败: cannot import name 'ComplianceEvent' from 'information_extraction.schemas' (D:\Python\smart_fin_data\information_extraction\schemas.py)
+2025-03-11 20:29:51,684 - INFO - 文件 shiyou_info.pdf 处理完成，结果保存至 output\shiyou_info_structured.json
+2025-03-11 20:29:51,685 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-11 20:29:51,685 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-11 20:29:51,685 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-11 20:29:52,133 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-11 20:29:52,133 - INFO - 生成 8 个客服对话
+2025-03-11 20:29:52,134 - WARNING - 隐私保护处理失败: cannot import name 'ComplianceEvent' from 'information_extraction.schemas' (D:\Python\smart_fin_data\information_extraction\schemas.py)
+2025-03-11 20:29:52,135 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-11 20:31:30,238 - INFO - python-docx 模块已安装
+2025-03-11 20:31:30,266 - INFO - PyPDF2 模块已安装
+2025-03-11 20:31:30,266 - INFO - 使用离线模式进行实体识别和文本处理
+2025-03-11 20:31:30,266 - INFO - pandas 模块已安装
+2025-03-11 20:31:30,266 - INFO - python-docx 模块已安装
+2025-03-11 20:31:30,266 - INFO - PyPDF2 模块已安装
+2025-03-11 20:31:30,600 - INFO - scikit-learn 模块已安装
+2025-03-11 20:31:33,501 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-11 20:31:33,501 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-11 20:31:33,501 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 20:31:33,501 - INFO - 检测到文件编码: utf-8
+2025-03-11 20:31:33,548 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-11 20:31:34,933 - INFO - 发现 90 个可疑交易模式
+2025-03-11 20:31:34,933 - INFO - 使用离线摘要生成模式
+2025-03-11 20:31:34,934 - ERROR - 生成训练数据失败: 'InformationProcessor' object has no attribute 'extract_training_data'
+Traceback (most recent call last):
+  File "D:\Python\smart_fin_data\run_processing.py", line 780, in process_file
+    training_data = processor.extract_training_data(text_content, scenario)
+AttributeError: 'InformationProcessor' object has no attribute 'extract_training_data'
+2025-03-11 20:31:35,025 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:31:35,109 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-11 20:31:35,109 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-11 20:31:35,109 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-11 20:31:35,109 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 20:31:35,121 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-11 20:31:35,121 - INFO - 生成 1 个客服对话
+2025-03-11 20:31:35,121 - INFO - 使用离线摘要生成模式
+2025-03-11 20:31:35,121 - ERROR - 生成训练数据失败: 'InformationProcessor' object has no attribute 'extract_training_data'
+Traceback (most recent call last):
+  File "D:\Python\smart_fin_data\run_processing.py", line 780, in process_file
+    training_data = processor.extract_training_data(text_content, scenario)
+AttributeError: 'InformationProcessor' object has no attribute 'extract_training_data'
+2025-03-11 20:31:35,122 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:31:35,122 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-11 20:31:35,122 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-11 20:31:35,122 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-11 20:31:35,122 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-11 20:31:41,831 - INFO - 文件 data\shiyou_info.pdf 结构化处理完成
+2025-03-11 20:31:41,831 - INFO - 生成 8 个客服对话
+2025-03-11 20:31:41,831 - INFO - 使用离线摘要生成模式
+2025-03-11 20:31:41,831 - ERROR - 生成训练数据失败: 'InformationProcessor' object has no attribute 'extract_training_data'
+Traceback (most recent call last):
+  File "D:\Python\smart_fin_data\run_processing.py", line 780, in process_file
+    training_data = processor.extract_training_data(text_content, scenario)
+AttributeError: 'InformationProcessor' object has no attribute 'extract_training_data'
+2025-03-11 20:31:41,831 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:31:41,835 - INFO - 文件 shiyou_info.pdf 处理完成，结果保存至 output\shiyou_info_structured.json
+2025-03-11 20:31:41,835 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-11 20:31:41,835 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-11 20:31:41,835 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-11 20:31:42,229 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-11 20:31:42,229 - INFO - 生成 8 个客服对话
+2025-03-11 20:31:42,229 - INFO - 使用离线摘要生成模式
+2025-03-11 20:31:42,229 - ERROR - 生成训练数据失败: 'InformationProcessor' object has no attribute 'extract_training_data'
+Traceback (most recent call last):
+  File "D:\Python\smart_fin_data\run_processing.py", line 780, in process_file
+    training_data = processor.extract_training_data(text_content, scenario)
+AttributeError: 'InformationProcessor' object has no attribute 'extract_training_data'
+2025-03-11 20:31:42,230 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:31:42,231 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-11 20:32:42,245 - INFO - python-docx 模块已安装
+2025-03-11 20:32:42,273 - INFO - PyPDF2 模块已安装
+2025-03-11 20:32:42,273 - INFO - 使用离线模式进行实体识别和文本处理
+2025-03-11 20:32:42,273 - INFO - pandas 模块已安装
+2025-03-11 20:32:42,273 - INFO - python-docx 模块已安装
+2025-03-11 20:32:42,273 - INFO - PyPDF2 模块已安装
+2025-03-11 20:32:42,604 - INFO - scikit-learn 模块已安装
+2025-03-11 20:32:45,319 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-11 20:32:45,319 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-11 20:32:45,320 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 20:32:45,320 - INFO - 检测到文件编码: utf-8
+2025-03-11 20:32:45,365 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-11 20:32:46,755 - INFO - 发现 90 个可疑交易模式
+2025-03-11 20:32:46,755 - INFO - 使用离线摘要生成模式
+2025-03-11 20:32:46,761 - ERROR - 提取训练数据失败: 'Entity' object has no attribute 'label'
+Traceback (most recent call last):
+  File "D:\Python\smart_fin_data\information_extraction\information_extractor.py", line 178, in extract_training_data
+    relations = self.relation_extractor.find_transfer_relations(entities, text)
+  File "D:\Python\smart_fin_data\information_extraction\relation_extractor.py", line 14, in find_transfer_relations
+    accounts = [e for e in entities if e.label == EntityLabel.ACCOUNT]  # 使用 EntityLabel.ACCOUNT
+  File "D:\Python\smart_fin_data\information_extraction\relation_extractor.py", line 14, in <listcomp>
+    accounts = [e for e in entities if e.label == EntityLabel.ACCOUNT]  # 使用 EntityLabel.ACCOUNT
+AttributeError: 'Entity' object has no attribute 'label'
+2025-03-11 20:32:46,762 - INFO - 生成 0 个问答对
+2025-03-11 20:32:46,846 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:32:46,922 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-11 20:32:46,922 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-11 20:32:46,922 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-11 20:32:46,922 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 20:32:46,933 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-11 20:32:46,934 - INFO - 生成 1 个客服对话
+2025-03-11 20:32:46,934 - INFO - 使用离线摘要生成模式
+2025-03-11 20:32:46,935 - ERROR - 提取训练数据失败: 'Entity' object has no attribute 'label'
+Traceback (most recent call last):
+  File "D:\Python\smart_fin_data\information_extraction\information_extractor.py", line 178, in extract_training_data
+    relations = self.relation_extractor.find_transfer_relations(entities, text)
+  File "D:\Python\smart_fin_data\information_extraction\relation_extractor.py", line 14, in find_transfer_relations
+    accounts = [e for e in entities if e.label == EntityLabel.ACCOUNT]  # 使用 EntityLabel.ACCOUNT
+  File "D:\Python\smart_fin_data\information_extraction\relation_extractor.py", line 14, in <listcomp>
+    accounts = [e for e in entities if e.label == EntityLabel.ACCOUNT]  # 使用 EntityLabel.ACCOUNT
+AttributeError: 'Entity' object has no attribute 'label'
+2025-03-11 20:32:46,946 - INFO - 生成 0 个问答对
+2025-03-11 20:32:46,947 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:32:46,947 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-11 20:32:46,947 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-11 20:32:46,947 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-11 20:32:46,947 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-11 20:32:53,419 - INFO - 文件 data\shiyou_info.pdf 结构化处理完成
+2025-03-11 20:32:53,419 - INFO - 生成 8 个客服对话
+2025-03-11 20:32:53,419 - INFO - 使用离线摘要生成模式
+2025-03-11 20:32:53,419 - ERROR - 提取训练数据失败: 'Entity' object has no attribute 'label'
+Traceback (most recent call last):
+  File "D:\Python\smart_fin_data\information_extraction\information_extractor.py", line 178, in extract_training_data
+    relations = self.relation_extractor.find_transfer_relations(entities, text)
+  File "D:\Python\smart_fin_data\information_extraction\relation_extractor.py", line 14, in find_transfer_relations
+    accounts = [e for e in entities if e.label == EntityLabel.ACCOUNT]  # 使用 EntityLabel.ACCOUNT
+  File "D:\Python\smart_fin_data\information_extraction\relation_extractor.py", line 14, in <listcomp>
+    accounts = [e for e in entities if e.label == EntityLabel.ACCOUNT]  # 使用 EntityLabel.ACCOUNT
+AttributeError: 'Entity' object has no attribute 'label'
+2025-03-11 20:32:53,420 - INFO - 生成 0 个问答对
+2025-03-11 20:32:53,420 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:32:53,425 - INFO - 文件 shiyou_info.pdf 处理完成，结果保存至 output\shiyou_info_structured.json
+2025-03-11 20:32:53,425 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-11 20:32:53,425 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-11 20:32:53,425 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-11 20:32:53,846 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-11 20:32:53,846 - INFO - 生成 8 个客服对话
+2025-03-11 20:32:53,846 - INFO - 使用离线摘要生成模式
+2025-03-11 20:32:53,847 - ERROR - 提取训练数据失败: 'Entity' object has no attribute 'label'
+Traceback (most recent call last):
+  File "D:\Python\smart_fin_data\information_extraction\information_extractor.py", line 178, in extract_training_data
+    relations = self.relation_extractor.find_transfer_relations(entities, text)
+  File "D:\Python\smart_fin_data\information_extraction\relation_extractor.py", line 14, in find_transfer_relations
+    accounts = [e for e in entities if e.label == EntityLabel.ACCOUNT]  # 使用 EntityLabel.ACCOUNT
+  File "D:\Python\smart_fin_data\information_extraction\relation_extractor.py", line 14, in <listcomp>
+    accounts = [e for e in entities if e.label == EntityLabel.ACCOUNT]  # 使用 EntityLabel.ACCOUNT
+AttributeError: 'Entity' object has no attribute 'label'
+2025-03-11 20:32:53,847 - INFO - 生成 0 个问答对
+2025-03-11 20:32:53,847 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:32:53,848 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-11 20:34:29,756 - INFO - python-docx 模块已安装
+2025-03-11 20:34:29,781 - INFO - PyPDF2 模块已安装
+2025-03-11 20:34:29,781 - INFO - 使用离线模式进行实体识别和文本处理
+2025-03-11 20:34:29,781 - INFO - pandas 模块已安装
+2025-03-11 20:34:29,782 - INFO - python-docx 模块已安装
+2025-03-11 20:34:29,782 - INFO - PyPDF2 模块已安装
+2025-03-11 20:34:30,095 - INFO - scikit-learn 模块已安装
+2025-03-11 20:34:32,804 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-11 20:34:32,804 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-11 20:34:32,804 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 20:34:32,804 - INFO - 检测到文件编码: utf-8
+2025-03-11 20:34:32,846 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-11 20:34:34,217 - INFO - 发现 90 个可疑交易模式
+2025-03-11 20:34:34,218 - INFO - 使用离线摘要生成模式
+2025-03-11 20:34:34,223 - ERROR - 提取训练数据失败: ACCOUNT
+Traceback (most recent call last):
+  File "D:\Python\smart_fin_data\information_extraction\information_extractor.py", line 178, in extract_training_data
+    relations = self.relation_extractor.find_transfer_relations(entities, text)
+  File "D:\Python\smart_fin_data\information_extraction\relation_extractor.py", line 22, in find_transfer_relations
+    accounts = [e for e in entities if e.label == EntityLabel.ACCOUNT]
+  File "D:\Python\smart_fin_data\information_extraction\relation_extractor.py", line 22, in <listcomp>
+    accounts = [e for e in entities if e.label == EntityLabel.ACCOUNT]
+  File "E:\Anaconda\envs\smartfindata\lib\enum.py", line 384, in __getattr__
+    raise AttributeError(name) from None
+AttributeError: ACCOUNT
+2025-03-11 20:34:34,224 - INFO - 生成 0 个问答对
+2025-03-11 20:34:34,315 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:34:34,393 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-11 20:34:34,393 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-11 20:34:34,393 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-11 20:34:34,393 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 20:34:34,404 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-11 20:34:34,405 - INFO - 生成 1 个客服对话
+2025-03-11 20:34:34,405 - INFO - 使用离线摘要生成模式
+2025-03-11 20:34:34,406 - ERROR - 提取训练数据失败: ACCOUNT
+Traceback (most recent call last):
+  File "D:\Python\smart_fin_data\information_extraction\information_extractor.py", line 178, in extract_training_data
+    relations = self.relation_extractor.find_transfer_relations(entities, text)
+  File "D:\Python\smart_fin_data\information_extraction\relation_extractor.py", line 22, in find_transfer_relations
+    accounts = [e for e in entities if e.label == EntityLabel.ACCOUNT]
+  File "D:\Python\smart_fin_data\information_extraction\relation_extractor.py", line 22, in <listcomp>
+    accounts = [e for e in entities if e.label == EntityLabel.ACCOUNT]
+  File "E:\Anaconda\envs\smartfindata\lib\enum.py", line 384, in __getattr__
+    raise AttributeError(name) from None
+AttributeError: ACCOUNT
+2025-03-11 20:34:34,406 - INFO - 生成 0 个问答对
+2025-03-11 20:34:34,406 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:34:34,407 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-11 20:34:34,407 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-11 20:34:34,407 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-11 20:34:34,407 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-11 20:34:40,892 - INFO - 文件 data\shiyou_info.pdf 结构化处理完成
+2025-03-11 20:34:40,892 - INFO - 生成 8 个客服对话
+2025-03-11 20:34:40,892 - INFO - 使用离线摘要生成模式
+2025-03-11 20:34:40,892 - ERROR - 提取训练数据失败: ACCOUNT
+Traceback (most recent call last):
+  File "D:\Python\smart_fin_data\information_extraction\information_extractor.py", line 178, in extract_training_data
+    relations = self.relation_extractor.find_transfer_relations(entities, text)
+  File "D:\Python\smart_fin_data\information_extraction\relation_extractor.py", line 22, in find_transfer_relations
+    accounts = [e for e in entities if e.label == EntityLabel.ACCOUNT]
+  File "D:\Python\smart_fin_data\information_extraction\relation_extractor.py", line 22, in <listcomp>
+    accounts = [e for e in entities if e.label == EntityLabel.ACCOUNT]
+  File "E:\Anaconda\envs\smartfindata\lib\enum.py", line 384, in __getattr__
+    raise AttributeError(name) from None
+AttributeError: ACCOUNT
+2025-03-11 20:34:40,892 - INFO - 生成 0 个问答对
+2025-03-11 20:34:40,892 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:34:40,896 - INFO - 文件 shiyou_info.pdf 处理完成，结果保存至 output\shiyou_info_structured.json
+2025-03-11 20:34:40,896 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-11 20:34:40,897 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-11 20:34:40,897 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-11 20:34:41,327 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-11 20:34:41,327 - INFO - 生成 8 个客服对话
+2025-03-11 20:34:41,327 - INFO - 使用离线摘要生成模式
+2025-03-11 20:34:41,328 - ERROR - 提取训练数据失败: ACCOUNT
+Traceback (most recent call last):
+  File "D:\Python\smart_fin_data\information_extraction\information_extractor.py", line 178, in extract_training_data
+    relations = self.relation_extractor.find_transfer_relations(entities, text)
+  File "D:\Python\smart_fin_data\information_extraction\relation_extractor.py", line 22, in find_transfer_relations
+    accounts = [e for e in entities if e.label == EntityLabel.ACCOUNT]
+  File "D:\Python\smart_fin_data\information_extraction\relation_extractor.py", line 22, in <listcomp>
+    accounts = [e for e in entities if e.label == EntityLabel.ACCOUNT]
+  File "E:\Anaconda\envs\smartfindata\lib\enum.py", line 384, in __getattr__
+    raise AttributeError(name) from None
+AttributeError: ACCOUNT
+2025-03-11 20:34:41,328 - INFO - 生成 0 个问答对
+2025-03-11 20:34:41,328 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:34:41,329 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-11 20:37:19,463 - INFO - python-docx 模块已安装
+2025-03-11 20:37:19,488 - INFO - PyPDF2 模块已安装
+2025-03-11 20:37:19,488 - INFO - 使用离线模式进行实体识别和文本处理
+2025-03-11 20:37:19,488 - INFO - pandas 模块已安装
+2025-03-11 20:37:19,489 - INFO - python-docx 模块已安装
+2025-03-11 20:37:19,489 - INFO - PyPDF2 模块已安装
+2025-03-11 20:37:19,816 - INFO - scikit-learn 模块已安装
+2025-03-11 20:39:22,301 - INFO - python-docx 模块已安装
+2025-03-11 20:39:22,329 - INFO - PyPDF2 模块已安装
+2025-03-11 20:39:22,330 - INFO - 使用离线模式进行实体识别和文本处理
+2025-03-11 20:39:22,330 - INFO - pandas 模块已安装
+2025-03-11 20:39:22,330 - INFO - python-docx 模块已安装
+2025-03-11 20:39:22,330 - INFO - PyPDF2 模块已安装
+2025-03-11 20:39:22,650 - INFO - scikit-learn 模块已安装
+2025-03-11 20:39:25,375 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-11 20:39:25,375 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-11 20:39:25,375 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 20:39:25,376 - INFO - 检测到文件编码: utf-8
+2025-03-11 20:39:25,415 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-11 20:39:26,801 - INFO - 发现 90 个可疑交易模式
+2025-03-11 20:39:26,801 - INFO - 使用离线摘要生成模式
+2025-03-11 20:39:26,815 - INFO - 生成 3 个问答对
+2025-03-11 20:39:26,905 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:39:26,984 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-11 20:39:26,985 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-11 20:39:26,985 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-11 20:39:26,985 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 20:39:26,996 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-11 20:39:26,997 - INFO - 生成 1 个客服对话
+2025-03-11 20:39:26,997 - INFO - 使用离线摘要生成模式
+2025-03-11 20:39:26,999 - INFO - 生成 3 个问答对
+2025-03-11 20:39:27,000 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:39:27,000 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-11 20:39:27,000 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-11 20:39:27,000 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-11 20:39:27,000 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-11 20:39:33,495 - INFO - 文件 data\shiyou_info.pdf 结构化处理完成
+2025-03-11 20:39:33,495 - INFO - 生成 8 个客服对话
+2025-03-11 20:39:33,495 - INFO - 使用离线摘要生成模式
+2025-03-11 20:39:33,496 - INFO - 生成 3 个问答对
+2025-03-11 20:39:33,496 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:39:33,500 - INFO - 文件 shiyou_info.pdf 处理完成，结果保存至 output\shiyou_info_structured.json
+2025-03-11 20:39:33,500 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-11 20:39:33,500 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-11 20:39:33,500 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-11 20:39:33,935 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-11 20:39:33,935 - INFO - 生成 8 个客服对话
+2025-03-11 20:39:33,935 - INFO - 使用离线摘要生成模式
+2025-03-11 20:39:33,936 - INFO - 生成 3 个问答对
+2025-03-11 20:39:33,936 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:39:33,937 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json
+2025-03-11 20:50:06,296 - INFO - python-docx 模块已安装
+2025-03-11 20:50:06,324 - INFO - PyPDF2 模块已安装
+2025-03-11 20:50:06,324 - INFO - 使用离线模式进行实体识别和文本处理
+2025-03-11 20:50:06,324 - INFO - pandas 模块已安装
+2025-03-11 20:50:06,324 - INFO - python-docx 模块已安装
+2025-03-11 20:50:06,324 - INFO - PyPDF2 模块已安装
+2025-03-11 20:50:06,654 - INFO - scikit-learn 模块已安装
+2025-03-11 20:50:09,530 - INFO - 处理文件 bank_transactions.csv，使用场景: fraud_detection
+2025-03-11 20:50:09,530 - INFO - 开始处理文件: data\bank_transactions.csv
+2025-03-11 20:50:09,530 - INFO - 处理CSV文件: data\bank_transactions.csv
+2025-03-11 20:50:09,530 - INFO - 检测到文件编码: utf-8
+2025-03-11 20:50:09,575 - INFO - 文件 data\bank_transactions.csv 结构化处理完成
+2025-03-11 20:50:10,956 - INFO - 发现 90 个可疑交易模式
+2025-03-11 20:50:10,956 - INFO - 使用离线摘要生成模式
+2025-03-11 20:50:10,967 - INFO - 生成 3 个问答对
+2025-03-11 20:50:11,049 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:50:11,128 - INFO - 文件 bank_transactions.csv 处理完成，结果保存至 output\bank_transactions_structured.json
+2025-03-11 20:50:11,128 - INFO - 处理文件 huaqi_info.docx，使用场景: customer_service
+2025-03-11 20:50:11,128 - INFO - 开始处理文件: data\huaqi_info.docx
+2025-03-11 20:50:11,128 - INFO - 处理Word文档: data\huaqi_info.docx
+2025-03-11 20:50:11,140 - INFO - 文件 data\huaqi_info.docx 结构化处理完成
+2025-03-11 20:50:11,140 - INFO - 生成 1 个客服对话
+2025-03-11 20:50:11,140 - INFO - 使用离线摘要生成模式
+2025-03-11 20:50:11,142 - INFO - 生成 3 个问答对
+2025-03-11 20:50:11,142 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:50:11,143 - INFO - 文件 huaqi_info.docx 处理完成，结果保存至 output\huaqi_info_structured.json
+2025-03-11 20:50:11,143 - INFO - 处理文件 shiyou_info.pdf，使用场景: customer_service
+2025-03-11 20:50:11,143 - INFO - 开始处理文件: data\shiyou_info.pdf
+2025-03-11 20:50:11,143 - INFO - 处理PDF文档: data\shiyou_info.pdf
+2025-03-11 20:50:17,537 - INFO - 文件 data\shiyou_info.pdf 结构化处理完成
+2025-03-11 20:50:17,537 - INFO - 生成 8 个客服对话
+2025-03-11 20:50:17,537 - INFO - 使用离线摘要生成模式
+2025-03-11 20:50:17,538 - INFO - 生成 3 个问答对
+2025-03-11 20:50:17,538 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:50:17,542 - INFO - 文件 shiyou_info.pdf 处理完成，结果保存至 output\shiyou_info_structured.json
+2025-03-11 20:50:17,542 - INFO - 处理文件 tencent_info.pdf，使用场景: customer_service
+2025-03-11 20:50:17,542 - INFO - 开始处理文件: data\tencent_info.pdf
+2025-03-11 20:50:17,542 - INFO - 处理PDF文档: data\tencent_info.pdf
+2025-03-11 20:50:17,977 - INFO - 文件 data\tencent_info.pdf 结构化处理完成
+2025-03-11 20:50:17,977 - INFO - 生成 8 个客服对话
+2025-03-11 20:50:17,977 - INFO - 使用离线摘要生成模式
+2025-03-11 20:50:17,979 - INFO - 生成 3 个问答对
+2025-03-11 20:50:17,979 - INFO - 完成敏感信息脱敏处理
+2025-03-11 20:50:17,980 - INFO - 文件 tencent_info.pdf 处理完成，结果保存至 output\tencent_info_structured.json

@@ -9,10 +9,7 @@
     <option name="namespacePackageFolders">
       <list>
         <option value="$MODULE_DIR$/document_processing" />
-        <option value="$MODULE_DIR$/text_chunking" />
-        <option value="$MODULE_DIR$/information_extraction" />
         <option value="$MODULE_DIR$/scenario_adaptation" />
-        <option value="$MODULE_DIR$/model_training" />
       </list>
     </option>
   </component>

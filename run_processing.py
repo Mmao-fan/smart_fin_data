@@ -9,10 +9,10 @@ import re
 import sys
 import importlib
 from datetime import datetime
-import chardet
 from io import StringIO
 import numpy as np
 from collections import defaultdict
+import subprocess
 
 # 配置日志记录
 logging.basicConfig(
@@ -24,6 +24,7 @@ logging.basicConfig(
     ]
 )
 
+
 # 检查模块是否已安装
 def is_module_installed(module_name):
     try:
@@ -32,26 +33,71 @@ def is_module_installed(module_name):
     except ImportError:
         return False
 
-# 检查 python-docx 模块
+
+# 安装缺失的模块
+def install_module(module_name):
+    try:
+        logging.info(f"正在安装 {module_name} 模块...")
+        subprocess.check_call([sys.executable, "-m", "pip", "install", module_name])
+        logging.info(f"{module_name} 模块安装成功")
+        return True
+    except Exception as e:
+        logging.error(f"{module_name} 模块安装失败: {str(e)}")
+        return False
+
+
+# 检查并安装 python-docx 模块
 HAS_DOCX = is_module_installed('docx')
 if not HAS_DOCX:
-    logging.warning("python-docx 模块未安装，Word处理功能将受限")
+    logging.warning("python-docx 模块未安装，尝试自动安装...")
+    if install_module('python-docx'):
+        HAS_DOCX = True
+        from docx import Document
+    else:
+        logging.warning("python-docx 模块安装失败，Word处理功能将受限")
 else:
     logging.info("python-docx 模块已安装")
     from docx import Document
 
-# 尝试导入 PyPDF2
-try:
-    import PyPDF2
-    HAS_PYPDF2 = True
+# 检查并安装 PyPDF2
+HAS_PYPDF2 = is_module_installed('PyPDF2')
+if not HAS_PYPDF2:
+    logging.warning("PyPDF2 模块未安装，尝试自动安装...")
+    if install_module('PyPDF2'):
+        HAS_PYPDF2 = True
+        import PyPDF2
+    else:
+        logging.warning("PyPDF2 模块未安装，PDF处理功能将受限")
+else:
     logging.info("PyPDF2 模块已安装")
-except ImportError:
-    HAS_PYPDF2 = False
-    logging.warning("PyPDF2 模块未安装，PDF处理功能将受限")
+    import PyPDF2
+
+# 不安装spacy，使用离线模式
+HAS_SPACY = False
+logging.info("使用离线模式进行实体识别和文本处理")
+
+# 检查并安装必要的依赖
+required_modules = {
+    'pandas': 'pandas',
+    'python-docx': 'docx',
+    'PyPDF2': 'PyPDF2',
+    'scikit-learn': 'sklearn'
+}
+
+for module_name, import_name in required_modules.items():
+    if not is_module_installed(import_name):
+        logging.warning(f"{module_name} 模块未安装，尝试自动安装...")
+        if install_module(module_name):
+            logging.info(f"{module_name} 模块安装成功")
+        else:
+            logging.warning(f"{module_name} 模块安装失败，部分功能可能受限")
+    else:
+        logging.info(f"{module_name} 模块已安装")
 
 # 尝试导入其他模块，如果导入失败则提供替代方案
 try:
     from document_processing.document_processor import DocumentProcessor
+
     HAS_DOCUMENT_PROCESSOR = True
 except ImportError:
     HAS_DOCUMENT_PROCESSOR = False
@@ -61,6 +107,7 @@ try:
     from text_chunking.chunk_manager import ChunkManager
     from information_extraction.anomaly_detector import AnomalyDetector
     from information_extraction.information_extractor import InformationProcessor
+
     HAS_TEXT_PROCESSING = True
 except ImportError:
     HAS_TEXT_PROCESSING = False
@@ -71,6 +118,7 @@ try:
     from scenario_adaptation.fraud_encoder import FraudEncoder
     from scenario_adaptation.compliance_mapper import ComplianceMapper
     from config import CUSTOMER_SERVICE_CONFIG
+
     HAS_SCENARIO_ADAPTATION = True
 except ImportError:
     HAS_SCENARIO_ADAPTATION = False
@@ -79,12 +127,21 @@ except ImportError:
 
 def detect_file_encoding(file_path: str) -> str:
     """检测文件编码"""
-    with open(file_path, 'rb') as file:
-        raw_data = file.read()
-        result = chardet.detect(raw_data)
-        return result['encoding'] or 'utf-8'
+    encodings = ['utf-8', 'gbk', 'gb2312', 'iso-8859-1', 'ascii']
+    
+    for encoding in encodings:
+        try:
+            with open(file_path, 'r', encoding=encoding) as f:
+                f.read(100)  # 尝试读取前100个字符
+                return encoding
+        except UnicodeDecodeError:
+            continue
+    
+    # 如果所有编码都失败，默认返回utf-8
+    return 'utf-8'
 
-def chunk_large_file(file_path: str, chunk_size: int = 1024*1024) -> Generator[str, None, None]:
+
+def chunk_large_file(file_path: str, chunk_size: int = 1024 * 1024) -> Generator[str, None, None]:
     """分块读取大文件"""
     encoding = detect_file_encoding(file_path)
     with open(file_path, 'r', encoding=encoding) as file:
@@ -94,10 +151,11 @@ def chunk_large_file(file_path: str, chunk_size: int = 1024*1024) -> Generator[s
                 break
             yield chunk
 
+
 def extract_advanced_keywords(text: str) -> Dict[str, List[str]]:
     """增强的关键词提取"""
     keywords = defaultdict(list)
-    
+
     # 使用更复杂的模式匹配
     patterns = {
         'banks': [
@@ -130,7 +188,7 @@ def extract_advanced_keywords(text: str) -> Dict[str, List[str]]:
             r"(\d{3,4}[-\s]?\d{3,4}[-\s]?\d{4})",
         ],
     }
-    
+
     for category, pattern_list in patterns.items():
         for pattern in pattern_list:
             matches = re.finditer(pattern, text)
@@ -138,8 +196,9 @@ def extract_advanced_keywords(text: str) -> Dict[str, List[str]]:
                 value = match.group(1).strip()
                 if value and value not in keywords[category]:
                     keywords[category].append(value)
-    
+
     return dict(keywords)
+
 
 def extract_document_structure(content: str) -> Dict[str, Any]:
     """提取文档结构"""
@@ -149,17 +208,17 @@ def extract_document_structure(content: str) -> Dict[str, Any]:
         'lists': [],
         'tables': [],
     }
-    
+
     # 分析段落
     paragraphs = [p.strip() for p in re.split(r'\n\s*\n', content) if p.strip()]
     structure['paragraphs'] = paragraphs
-    
+
     # 识别章节
     section_pattern = r'^(?:第[一二三四五六七八九十]+[章节]|[IVX]+\.|[\d]+\.)\s*(.+)$'
     for para in paragraphs:
         if re.match(section_pattern, para, re.MULTILINE):
             structure['sections'].append(para)
-    
+
     # 识别列表
     list_pattern = r'(?:^[\d]+\.|^[-•*]\s+)(.+)$'
     current_list = []
@@ -170,7 +229,7 @@ def extract_document_structure(content: str) -> Dict[str, Any]:
             if len(current_list) > 1:
                 structure['lists'].append(current_list.copy())
             current_list = []
-    
+
     # 识别表格（简单表格）
     table_pattern = r'[|｜].+[|｜]'
     current_table = []
@@ -181,23 +240,24 @@ def extract_document_structure(content: str) -> Dict[str, Any]:
             if len(current_table) > 1:
                 structure['tables'].append(current_table.copy())
             current_table = []
-    
+
     return structure
+
 
 def process_csv_file(file_path: str) -> Dict[str, Any]:
     """增强的CSV文件处理"""
     try:
         logging.info(f"处理CSV文件: {file_path}")
-        
+
         # 检测文件编码
         encoding = detect_file_encoding(file_path)
         logging.info(f"检测到文件编码: {encoding}")
-        
+
         # 尝试不同的分隔符
         separators = [',', ';', '\t', '|']
         df = None
         used_sep = None
-        
+
         for sep in separators:
             try:
                 df = pd.read_csv(file_path, encoding=encoding, sep=sep)
@@ -205,13 +265,13 @@ def process_csv_file(file_path: str) -> Dict[str, Any]:
                 break
             except:
                 continue
-        
+
         if df is None:
             raise ValueError("无法识别CSV文件格式")
-        
+
         # 数据清洗和预处理
         df = df.replace(['', 'null', 'NULL', 'NaN', 'nan'], np.nan)
-        
+
         # 识别列类型
         column_types = {}
         for col in df.columns:
@@ -235,7 +295,7 @@ def process_csv_file(file_path: str) -> Dict[str, Any]:
                         break
                     except:
                         continue
-                
+
                 if not is_date:
                     # 检查是否是数值（带有货币符号等）
                     try:
@@ -247,7 +307,7 @@ def process_csv_file(file_path: str) -> Dict[str, Any]:
                         column_types[col] = 'text'
             else:
                 column_types[col] = str(df[col].dtype)
-        
+
         # 构建结构化数据
         structured_data = {
             'type': 'tabular_data',
@@ -269,18 +329,19 @@ def process_csv_file(file_path: str) -> Dict[str, Any]:
                 'numeric_columns': df.select_dtypes(include=[np.number]).columns.tolist()
             }
         }
-        
+
         return structured_data
-        
+
     except Exception as e:
         logging.error(f"处理CSV文件失败: {str(e)}", exc_info=True)
         return None
+
 
 def extract_text_from_docx(file_path: str) -> Dict[str, Any]:
     """增强的Word文档文本提取"""
     if not HAS_DOCX:
         return None
-    
+
     try:
         doc = Document(file_path)
         document_data = {
@@ -292,7 +353,7 @@ def extract_text_from_docx(file_path: str) -> Dict[str, Any]:
             'images': [],
             'styles': set()
         }
-        
+
         # 提取段落
         for para in doc.paragraphs:
             if para.text.strip():
@@ -311,10 +372,10 @@ def extract_text_from_docx(file_path: str) -> Dict[str, Any]:
                         para_data['right_indent'] = para.paragraph_format.right_indent
                 except:
                     pass
-                
+
                 document_data['paragraphs'].append(para_data)
                 document_data['styles'].add(para.style.name)
-        
+
         # 提取表格
         for table in doc.tables:
             table_data = []
@@ -334,7 +395,7 @@ def extract_text_from_docx(file_path: str) -> Dict[str, Any]:
                     row_data.append(cell_data)
                 table_data.append(row_data)
             document_data['tables'].append(table_data)
-        
+
         # 提取节
         for section in doc.sections:
             section_data = {
@@ -343,38 +404,41 @@ def extract_text_from_docx(file_path: str) -> Dict[str, Any]:
                 'page_height': float(section.page_height.cm) if hasattr(section, 'page_height') else None,
                 'page_width': float(section.page_width.cm) if hasattr(section, 'page_width') else None
             }
-            
+
             # 安全地提取页眉页脚
             try:
                 if section.header and section.header.paragraphs:
-                    section_data['header'] = "\n".join(p.text.strip() for p in section.header.paragraphs if p.text.strip())
+                    section_data['header'] = "\n".join(
+                        p.text.strip() for p in section.header.paragraphs if p.text.strip())
                 else:
                     section_data['header'] = None
             except:
                 section_data['header'] = None
-                
+
             try:
                 if section.footer and section.footer.paragraphs:
-                    section_data['footer'] = "\n".join(p.text.strip() for p in section.footer.paragraphs if p.text.strip())
+                    section_data['footer'] = "\n".join(
+                        p.text.strip() for p in section.footer.paragraphs if p.text.strip())
                 else:
                     section_data['footer'] = None
             except:
                 section_data['footer'] = None
-            
+
             document_data['sections'].append(section_data)
-        
+
         document_data['styles'] = list(document_data['styles'])
         return document_data
-        
+
     except Exception as e:
         logging.error(f"提取Word文档文本失败: {str(e)}")
         return None
+
 
 def extract_text_from_pdf(file_path: str) -> Dict[str, Any]:
     """增强的PDF文档文本提取"""
     if not HAS_PYPDF2:
         return None
-    
+
     try:
         document_data = {
             'pages': [],
@@ -383,10 +447,10 @@ def extract_text_from_pdf(file_path: str) -> Dict[str, Any]:
             'forms': [],
             'links': []
         }
-        
+
         with open(file_path, 'rb') as file:
             reader = PyPDF2.PdfReader(file)
-            
+
             # 提取元数据
             document_data['metadata'] = {
                 'title': reader.metadata.get('/Title', ''),
@@ -397,7 +461,7 @@ def extract_text_from_pdf(file_path: str) -> Dict[str, Any]:
                 'creation_date': reader.metadata.get('/CreationDate', ''),
                 'modification_date': reader.metadata.get('/ModDate', '')
             }
-            
+
             # 提取页面内容
             for page_num in range(len(reader.pages)):
                 page = reader.pages[page_num]
@@ -410,7 +474,7 @@ def extract_text_from_pdf(file_path: str) -> Dict[str, Any]:
                     },
                     'rotation': page.get('/Rotate', 0)
                 }
-                
+
                 # 提取表单字段
                 if '/AcroForm' in page:
                     form_fields = []
@@ -428,7 +492,7 @@ def extract_text_from_pdf(file_path: str) -> Dict[str, Any]:
                     except:
                         pass
                     page_data['forms'] = form_fields
-                
+
                 # 提取链接
                 if hasattr(page, 'annotations'):
                     links = []
@@ -446,34 +510,35 @@ def extract_text_from_pdf(file_path: str) -> Dict[str, Any]:
                     except:
                         pass
                     page_data['links'] = links
-                
+
                 document_data['pages'].append(page_data)
-        
+
         return document_data
-        
+
     except Exception as e:
         logging.error(f"提取PDF文档文本失败: {str(e)}")
         return None
+
 
 def process_docx_file(file_path: str) -> Dict[str, Any]:
     """增强的Word文档处理"""
     try:
         logging.info(f"处理Word文档: {file_path}")
-        
+
         # 提取文档内容和结构
         doc_data = extract_text_from_docx(file_path)
         if not doc_data:
             return None
-        
+
         # 构建完整文本
         full_text = "\n".join([p['text'] for p in doc_data['paragraphs']])
-        
+
         # 提取关键信息
         keywords = extract_advanced_keywords(full_text)
-        
+
         # 分析文档结构
         doc_structure = extract_document_structure(full_text)
-        
+
         # 构建结构化数据
         structured_data = {
             'type': 'document',
@@ -502,32 +567,33 @@ def process_docx_file(file_path: str) -> Dict[str, Any]:
             },
             'keywords': keywords
         }
-        
+
         return structured_data
-        
+
     except Exception as e:
         logging.error(f"处理Word文档失败: {str(e)}", exc_info=True)
         return None
+
 
 def process_pdf_file(file_path: str) -> Dict[str, Any]:
     """增强的PDF文档处理"""
     try:
         logging.info(f"处理PDF文档: {file_path}")
-        
+
         # 提取PDF内容和结构
         pdf_data = extract_text_from_pdf(file_path)
         if not pdf_data:
             return None
-        
+
         # 构建完整文本
         full_text = "\n".join([page['text'] for page in pdf_data['pages']])
-        
+
         # 提取关键信息
         keywords = extract_advanced_keywords(full_text)
-        
+
         # 分析文档结构
         doc_structure = extract_document_structure(full_text)
-        
+
         # 构建结构化数据
         structured_data = {
             'type': 'document',
@@ -561,19 +627,20 @@ def process_pdf_file(file_path: str) -> Dict[str, Any]:
             },
             'keywords': keywords
         }
-        
+
         return structured_data
-        
+
     except Exception as e:
         logging.error(f"处理PDF文档失败: {str(e)}", exc_info=True)
         return None
+
 
 def get_file_scenario(file_path: str) -> str:
     """
     根据文件类型和内容自动选择合适的场景
     """
     _, ext = os.path.splitext(file_path)
-    
+
     # 根据文件扩展名选择场景
     if ext.lower() == '.csv':
         # 检查是否包含交易相关列
@@ -584,13 +651,14 @@ def get_file_scenario(file_path: str) -> str:
                 return "fraud_detection"
         except:
             pass
-    
+
     elif ext.lower() in ['.docx', '.doc', '.pdf', '.txt']:
         # 对于文档类型，默认使用客服问答场景
         return "customer_service"
-    
+
     # 默认场景
     return "customer_service"
+
 
 def process_file(file_path: str, scenario: str = None) -> Dict[str, Any]:
     """
@@ -598,15 +666,15 @@ def process_file(file_path: str, scenario: str = None) -> Dict[str, Any]:
     """
     try:
         logging.info(f"开始处理文件: {file_path}")
-        
+
         # 获取文件扩展名
         _, ext = os.path.splitext(file_path)
-        
+
         # 如果未指定场景，自动选择
         if scenario is None:
             scenario = get_file_scenario(file_path)
             logging.info(f"自动选择场景: {scenario}")
-        
+
         # 根据文件类型选择处理方法
         if ext.lower() == '.csv':
             structured_data = process_csv_file(file_path)
@@ -625,9 +693,9 @@ def process_file(file_path: str, scenario: str = None) -> Dict[str, Any]:
             if not HAS_DOCUMENT_PROCESSOR:
                 logging.error(f"无法处理 {ext} 类型文件，DocumentProcessor 模块未加载")
                 return None
-                
+
             structured_data = DocumentProcessor.process_document(file_path)
-            
+
         logging.info(f"文件 {file_path} 结构化处理完成")
 
         # 根据场景进行特定处理
@@ -637,7 +705,7 @@ def process_file(file_path: str, scenario: str = None) -> Dict[str, Any]:
             for record in structured_data['data']:
                 encoder.add_transaction_chunk(pd.Series(record))
             suspicious_patterns = encoder.detect_suspicious_patterns()
-            
+
             # 添加分析结果
             structured_data['analysis'] = {
                 'suspicious_patterns': suspicious_patterns,
@@ -646,41 +714,41 @@ def process_file(file_path: str, scenario: str = None) -> Dict[str, Any]:
                     'edges': list(encoder.graph.edges(data=True))
                 }
             }
-            
+
             logging.info(f"发现 {len(suspicious_patterns)} 个可疑交易模式")
         elif scenario == "customer_service" and HAS_SCENARIO_ADAPTATION:
             # 处理客户服务场景
             try:
                 # 创建客服生成器
                 generator = CustomerServiceGenerator(CUSTOMER_SERVICE_CONFIG)
-                
+
                 # 提取文档内容
                 if structured_data['type'] == 'document':
                     document_content = structured_data['content']
-                    
+
                     # 分段处理长文档
                     paragraphs = structured_data['structure']['paragraphs']
                     dialogs = []
-                    
+
                     # 对每个段落生成对话
                     for i, para in enumerate(paragraphs):
                         if len(para.strip()) > 10:  # 忽略太短的段落
                             dialog = generator.generate_dialog({"text": para})
                             dialogs.append(dialog)
-                            
+
                             # 最多处理10个段落
                             if i >= 9:
                                 break
                 else:
                     document_content = json.dumps(structured_data)
                     dialogs = [generator.generate_dialog({"text": document_content})]
-                
+
                 # 添加到结构化数据
                 structured_data['customer_service'] = {
                     'dialogs': dialogs,
                     'dialog_count': len(dialogs)
                 }
-                
+
                 logging.info(f"生成 {len(dialogs)} 个客服对话")
             except Exception as e:
                 logging.error(f"客服场景处理失败: {str(e)}", exc_info=True)
@@ -694,6 +762,56 @@ def process_file(file_path: str, scenario: str = None) -> Dict[str, Any]:
             processed_chunks = InformationProcessor().process_chunks(chunks)
             mapper = ComplianceMapper()
             structured_data['compliance'] = [mapper.map_clause(c) for c in processed_chunks]
+        
+        # 增强功能：生成问答对
+        if HAS_TEXT_PROCESSING:
+            try:
+                # 提取文本内容
+                text_content = ""
+                if structured_data['type'] == 'document':
+                    text_content = structured_data['content']
+                elif structured_data['type'] == 'tabular_data':
+                    # 将表格数据转换为文本
+                    text_content = json.dumps(structured_data['data'][:10], ensure_ascii=False)  # 限制数量
+                
+                # 生成训练数据
+                if text_content:
+                    processor = InformationProcessor()
+                    training_data = processor.extract_training_data(text_content, scenario)
+                    
+                    # 添加到结构化数据
+                    structured_data['training_data'] = {
+                        'qa_pairs': training_data['qa_pairs'],
+                        'summary': training_data['summary'],
+                        'metadata': training_data['metadata']
+                    }
+                    
+                    logging.info(f"生成 {len(training_data['qa_pairs'])} 个问答对")
+            except Exception as e:
+                logging.error(f"生成训练数据失败: {str(e)}", exc_info=True)
+                structured_data['training_data'] = {
+                    'error': str(e),
+                    'qa_pairs': []
+                }
+        
+        # 增强功能：隐私保护
+        try:
+            from information_extraction.privacy_protector import DataAnonymizer
+            
+            # 对敏感字段进行脱敏处理
+            anonymizer = DataAnonymizer()
+            
+            # 处理文本内容
+            if structured_data['type'] == 'document' and 'content' in structured_data:
+                structured_data['content'] = anonymizer.anonymize(structured_data['content'])
+            
+            # 处理表格数据
+            if structured_data['type'] == 'tabular_data' and 'data' in structured_data:
+                structured_data['data'] = anonymizer._anonymize_tabular_data(structured_data['data'])
+            
+            logging.info("完成敏感信息脱敏处理")
+        except Exception as e:
+            logging.warning(f"隐私保护处理失败: {str(e)}")
 
         return structured_data
 
@@ -721,14 +839,14 @@ def process_directory(data_dir: str, output_dir: str, scenario: str = None) -> L
                 # 处理文件
                 file_scenario = scenario or get_file_scenario(file_path)
                 logging.info(f"处理文件 {filename}，使用场景: {file_scenario}")
-                
+
                 result = process_file(file_path, file_scenario)
                 if result:
                     # 保存结构化数据
                     output_file = os.path.join(output_dir, f"{os.path.splitext(filename)[0]}_structured.json")
                     with open(output_file, 'w', encoding='utf-8') as f:
                         json.dump(result, f, ensure_ascii=False, indent=2)
-                    
+
                     processed_files.append(filename)
                     results.append(result)
                     logging.info(f"文件 {filename} 处理完成，结果保存至 {output_file}")
@@ -758,10 +876,10 @@ if __name__ == "__main__":
     # 设置目录路径
     data_dir = "data"
     output_dir = "output"
-    
+
     # 启动处理流程（不指定场景，自动选择）
     results = process_directory(data_dir, output_dir)
-    
+
     # 输出处理结果摘要
     print("\n处理结果摘要:")
     print(f"成功处理文件数: {len(results)}")

@@ -1,0 +1,56 @@
+{
+  "total_files_processed": 4,
+  "processing_timestamp": "2025-03-11T16:42:32.901384",
+  "file_results": {
+    "bank_transactions.csv": {
+      "filename": "bank_transactions.csv",
+      "file_type": "csv",
+      "extraction_results": {
+        "success": true,
+        "timestamp": "2025-03-11T16:42:23.834723"
+      },
+      "row_count": 2512,
+      "anomalies_count": 0,
+      "patterns": {},
+      "rule_results_count": 0,
+      "alerts_count": 0
+    },
+    "huaqi_info.docx": {
+      "filename": "huaqi_info.docx",
+      "file_type": "docx",
+      "extraction_results": {
+        "success": true,
+        "timestamp": "2025-03-11T16:42:23.849588"
+      },
+      "semantic_index": {
+        "indexed_texts_count": 14
+      },
+      "paragraphs_count": 14,
+      "tables_count": 0
+    },
+    "shiyou_info.pdf": {
+      "filename": "shiyou_info.pdf",
+      "file_type": "pdf",
+      "extraction_results": {
+        "success": true,
+        "timestamp": "2025-03-11T16:42:32.380286"
+      },
+      "semantic_index": {
+        "indexed_texts_count": 175
+      },
+      "page_count": 175
+    },
+    "tencent_info.pdf": {
+      "filename": "tencent_info.pdf",
+      "file_type": "pdf",
+      "extraction_results": {
+        "success": true,
+        "timestamp": "2025-03-11T16:42:32.899873"
+      },
+      "semantic_index": {
+        "indexed_texts_count": 9
+      },
+      "page_count": 9
+    }
+  }
+}
