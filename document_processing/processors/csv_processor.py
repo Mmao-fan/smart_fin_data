@@ -43,18 +43,39 @@ class CSVProcessor(BaseProcessor):
                 else:
                     raise DocumentProcessingError("无法识别CSV文件格式")
 
-            # 将数据转换为文本
-            text_content = '\n'.join([delimiter.join(map(str, row)) for row in data])
+            # 将数据转换为文本，并进行分块处理
+            chunk_size = 1000  # 每块最大行数
+            chunks = []
+            current_chunk = []
+            
+            # 处理表头
+            header = delimiter.join(map(str, data[0]))
+            current_chunk.append(header)
+            
+            # 处理数据行
+            for row in data[1:]:
+                row_text = delimiter.join(map(str, row))
+                current_chunk.append(row_text)
+                
+                # 当当前块达到指定大小时，创建新块
+                if len(current_chunk) >= chunk_size:
+                    chunks.append('\n'.join(current_chunk))
+                    current_chunk = [header]  # 新块保留表头
+            
+            # 处理最后一个块
+            if current_chunk:
+                chunks.append('\n'.join(current_chunk))
             
             return {
-                'text': text_content,
-                'text_chunks': [text_content],  # 作为单个块
-                'total_pages': 1,  # CSV文件视为单页
+                'text': '\n'.join(chunks),  # 完整文本
+                'text_chunks': chunks,  # 分块后的文本
+                'total_pages': len(chunks),  # 块数作为页数
                 'metadata': {
                     'encoding': encoding,
                     'delimiter': delimiter,
                     'rows': len(data),
-                    'columns': len(data[0]) if data else 0
+                    'columns': len(data[0]) if data else 0,
+                    'chunks': len(chunks)
                 }
             }
             
